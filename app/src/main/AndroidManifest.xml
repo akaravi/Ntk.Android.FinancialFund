@@ -66,6 +66,8 @@
             android:name=".activity.BlogSearchActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar" />
+        <activity android:name=".activity.Class1" />
+        <activity android:name=".activity.Class2" />
 
 
         <provider

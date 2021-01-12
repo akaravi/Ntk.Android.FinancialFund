@@ -60,7 +60,8 @@ public class MainActivity extends AbstractMainActivity {
             R.id.search})
     List<TextView> lbl;
 
-    @BindViews({R.id.newsBtn,
+    @BindViews({R.id.card1,
+            R.id.newsBtn,
             R.id.poolingBtn,
             R.id.searchBtn,
             R.id.inviteBtn,
@@ -147,10 +148,6 @@ public class MainActivity extends AbstractMainActivity {
     }
 
 
-
-
-
-
     private void HandelSlider() {
 
         FilterDataModel request = new FilterDataModel();
@@ -193,6 +190,11 @@ public class MainActivity extends AbstractMainActivity {
                     public void onError(Throwable e) {
                     }
                 });
+    }
+
+    @OnClick(R.id.card1)
+    public void oncard1() {
+        this.startActivity(new Intent(this, Class1.class));
     }
 
     @OnClick(R.id.supportBtn)
