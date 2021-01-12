@@ -47,7 +47,14 @@ public class MyApplication extends NTKApplication {
         applicationStyle = new ApplicationStyle() {
             @Override
             public ViewController getViewController() {
-                return null;
+                ViewController vc = new ViewController() {
+                };
+                vc.setLoading_view(R.layout.sub_base_loading)
+                        .setEmpty_view(R.layout.sub_base_empty)
+                        .setError_view(R.layout.sub_base_error)
+                        .setError_button(R.id.btn_error_tryAgain)
+                        .setError_label(R.id.tvError);
+                return vc;
             }
 
             @Override
