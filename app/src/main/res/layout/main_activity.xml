@@ -1,48 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nestedScroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
 
     <RelativeLayout
+        android:id="@+id/mainRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ntk.android.financial.view.FixedSwipeRefreshLayout
-            android:id="@+id/RefreshMain"
+        <LinearLayout
+            android:id="@+id/linear"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_marginBottom="8dp"
 
-            <LinearLayout
-                android:id="@+id/bannerLayout"
+            android:background="@drawable/main_btn_background"
+            android:orientation="vertical"
+            android:padding="2.8dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/SliderActMain"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="1">
+                android:layout_height="match_parent" />
+        </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/linear"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_margin="4dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_weight="0.45"
-                    android:background="@drawable/main_btn_background"
-                    android:orientation="vertical"
-                    android:padding="2.8dp">
+        <include
+            android:id="@+id/panelButtons"
+            layout="@layout/main_page_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear"
+             />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/SliderActMain"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </LinearLayout>
-
-                <include
-                    layout="@layout/main_page_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.55" />
-            </LinearLayout>
-        </ntk.android.financial.view.FixedSwipeRefreshLayout>
     </RelativeLayout>
 </androidx.core.widget.NestedScrollView>

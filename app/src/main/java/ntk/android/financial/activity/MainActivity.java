@@ -35,6 +35,7 @@ import ntk.android.base.activity.poling.PolingActivity;
 import ntk.android.base.activity.ticketing.FaqActivity;
 import ntk.android.base.activity.ticketing.TicketListActivity;
 import ntk.android.base.activity.ticketing.TicketSearchActivity;
+import ntk.android.base.adapter.BaseRecyclerAdapter;
 import ntk.android.base.config.NtkObserver;
 import ntk.android.base.entitymodel.base.ErrorException;
 import ntk.android.base.entitymodel.base.FilterDataModel;
@@ -74,14 +75,14 @@ public class MainActivity extends AbstractMainActivity {
             R.id.messageBtn})
     List<LinearLayout> btn;
 
-    @BindView(R.id.bannerLayout)
-    LinearLayout layout;
+//    @BindView(R.id.bannerLayout)
+//    LinearLayout layout;
 
     @BindView(R.id.SliderActMain)
     RecyclerView Slider;
 
-    @BindView(R.id.RefreshMain)
-    SwipeRefreshLayout Refresh;
+//    @BindView(R.id.RefreshMain)
+//    SwipeRefreshLayout Refresh;
 
     private long lastPressedTime;
     private static final int PERIOD = 2000;
@@ -90,25 +91,36 @@ public class MainActivity extends AbstractMainActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setDirectContentView(R.layout.main_activity);
+        fixViewSize();
         ButterKnife.bind(this);
         init();
     }
 
+    private void fixViewSize() {
+        int screenHeight = BaseRecyclerAdapter.getScreenHeight();
+        findViewById(R.id.linear).getLayoutParams().height = (int) (screenHeight * .35);
+        findViewById(R.id.panelButtons).getLayoutParams().height = (int) (screenHeight );
+
+
+//        findViewById(R.id.remainView).getLayoutParams().height= (int) ((remainSpace * .75)+(screenHeight * .65)/2);
+        findViewById(R.id.mainRv).getLayoutParams().height = ((int) (screenHeight*1.35));
+    }
+
     private void init() {
-        setAnimation();
+//        setAnimation();
         for (int i = 0; i < lbl.size(); i++) {
             lbl.get(i).setTypeface(FontManager.GetTypeface(this, FontManager.DastNevis));
         }
-        Refresh.setColorSchemeResources(
-                R.color.colorAccent,
-                R.color.colorAccent,
-                R.color.colorAccent);
-
-        Refresh.setOnRefreshListener(() -> {
-//         todo   CheckUpdate(res.Item);
-            setAnimation();
-            Refresh.setRefreshing(false);
-        });
+//        Refresh.setColorSchemeResources(
+//                R.color.colorAccent,
+//                R.color.colorAccent,
+//                R.color.colorAccent);
+//
+//        Refresh.setOnRefreshListener(() -> {
+////         todo   CheckUpdate(res.Item);
+//            setAnimation();
+//            Refresh.setRefreshing(false);
+//        });
         HandelSlider();
     }
 
@@ -127,7 +139,7 @@ public class MainActivity extends AbstractMainActivity {
         for (int i = 0; i < btn.size(); i++) {
             btn.get(i).startAnimation(scaleAnimation);
         }
-        layout.startAnimation(alphaAnimation);
+//        layout.startAnimation(alphaAnimation);
     }
 
     @Override
