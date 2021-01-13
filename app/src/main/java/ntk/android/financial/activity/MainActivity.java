@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -48,7 +47,15 @@ import ntk.android.financial.event.toolbar.EVSearchClick;
 
 public class MainActivity extends AbstractMainActivity {
 
-    @BindViews({R.id.news,
+    @BindViews({
+            R.id.txtCard1,
+            R.id.txtCard2,
+            R.id.txtCard3,
+            R.id.txtCard4,
+            R.id.txtCard5,
+            R.id.txtCard6,
+            R.id.txtCard7,
+            R.id.news,
             R.id.pooling,
             R.id.invite,
             R.id.feedback,
@@ -61,7 +68,13 @@ public class MainActivity extends AbstractMainActivity {
             R.id.search})
     List<TextView> lbl;
 
-    @BindViews({R.id.card1,
+    @BindViews({R.id.mainCard1,
+            R.id.mainCard2,
+            R.id.mainCard3,
+            R.id.mainCard4,
+            R.id.mainCard5,
+            R.id.mainCard6,
+            R.id.mainCard7,
             R.id.newsBtn,
             R.id.poolingBtn,
             R.id.searchBtn,
@@ -99,28 +112,18 @@ public class MainActivity extends AbstractMainActivity {
     private void fixViewSize() {
         int screenHeight = BaseRecyclerAdapter.getScreenHeight();
         findViewById(R.id.linear).getLayoutParams().height = (int) (screenHeight * .35);
-        findViewById(R.id.panelButtons).getLayoutParams().height = (int) (screenHeight );
+        findViewById(R.id.panelButtons).getLayoutParams().height = (int) (screenHeight);
 
 
 //        findViewById(R.id.remainView).getLayoutParams().height= (int) ((remainSpace * .75)+(screenHeight * .65)/2);
-        findViewById(R.id.mainRv).getLayoutParams().height = ((int) (screenHeight*1.35));
+        findViewById(R.id.mainRv).getLayoutParams().height = (screenHeight + (int) (screenHeight * .35));
     }
 
     private void init() {
-//        setAnimation();
+        setAnimation();
         for (int i = 0; i < lbl.size(); i++) {
             lbl.get(i).setTypeface(FontManager.GetTypeface(this, FontManager.DastNevis));
         }
-//        Refresh.setColorSchemeResources(
-//                R.color.colorAccent,
-//                R.color.colorAccent,
-//                R.color.colorAccent);
-//
-//        Refresh.setOnRefreshListener(() -> {
-////         todo   CheckUpdate(res.Item);
-//            setAnimation();
-//            Refresh.setRefreshing(false);
-//        });
         HandelSlider();
     }
 
@@ -139,7 +142,7 @@ public class MainActivity extends AbstractMainActivity {
         for (int i = 0; i < btn.size(); i++) {
             btn.get(i).startAnimation(scaleAnimation);
         }
-//        layout.startAnimation(alphaAnimation);
+        findViewById(R.id.linear).startAnimation(alphaAnimation);
     }
 
     @Override
@@ -204,9 +207,39 @@ public class MainActivity extends AbstractMainActivity {
                 });
     }
 
-    @OnClick(R.id.card1)
+    @OnClick(R.id.mainCard1)
     public void oncard1() {
         this.startActivity(new Intent(this, Class1.class));
+    }
+
+    @OnClick(R.id.mainCard2)
+    public void oncard2() {
+        this.startActivity(new Intent(this, Class2.class));
+    }
+
+    @OnClick(R.id.mainCard3)
+    public void oncard3() {
+        this.startActivity(new Intent(this, Class3.class));
+    }
+
+    @OnClick(R.id.mainCard4)
+    public void oncard4() {
+        this.startActivity(new Intent(this, Class4.class));
+    }
+
+    @OnClick(R.id.mainCard5)
+    public void oncard5() {
+        this.startActivity(new Intent(this, Class5.class));
+    }
+
+    @OnClick(R.id.mainCard6)
+    public void oncard6() {
+        this.startActivity(new Intent(this, Class6.class));
+    }
+
+    @OnClick(R.id.mainCard7)
+    public void oncard7() {
+        this.startActivity(new Intent(this, Class7.class));
     }
 
     @OnClick(R.id.supportBtn)

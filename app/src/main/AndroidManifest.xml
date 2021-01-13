@@ -68,6 +68,11 @@
             android:theme="@style/NoActionBar" />
         <activity android:name=".activity.Class1" />
         <activity android:name=".activity.Class2" />
+        <activity android:name=".activity.Class3" />
+        <activity android:name=".activity.Class4" />
+        <activity android:name=".activity.Class5" />
+        <activity android:name=".activity.Class6" />
+        <activity android:name=".activity.Class7" />
 
 
         <provider

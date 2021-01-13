@@ -49,4 +49,5 @@
     <color name="colorTextSecondary">#454545</color>
     <color name="colorUnsuccess">#B14953</color>
     <color name="colorSuccess">#3B9B69</color>
+    <color name="bank_dark_color">#E65100</color>
 </resources>

@@ -2,6 +2,7 @@ package ntk.android.financial.activity;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
@@ -15,5 +16,6 @@ public class Class5 extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calss5);
         ((Button) findViewById(R.id.btnOk)).setText("گزارش");
+        ((TextView) findViewById(R.id.txtToolbar)).setText(getString(R.string.mainCard5));
     }
 }

@@ -1,6 +1,7 @@
 package ntk.android.financial.activity;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
@@ -12,5 +13,6 @@ public class Class7 extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.class7);
+        ((TextView) findViewById(R.id.txtToolbar)).setText(getString(R.string.mainCard7));
     }
 }

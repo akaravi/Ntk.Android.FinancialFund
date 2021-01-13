@@ -17,6 +17,13 @@
     <string name="Inportant">اهمیت</string>
     <string name="UserService">سرویس مرتبط</string>
     <string name="SendTicket">ارسال درخواست پشتیبانی</string>
+    <string name="mainCard1">واریز به سپرده</string>
+    <string name="mainCard2">انتقال سپرده به سپرده</string>
+    <string name="mainCard3">پرداخت اقساط از کارت</string>
+    <string name="mainCard4">پرداخت اقساط از سپرده</string>
+    <string name="mainCard5">درخواست نوبت وام</string>
+    <string name="mainCard6">گزارش اقساط وام</string>
+    <string name="mainCard7">گزارشات گردش سپرده</string>
 
     <string-array name="SpiinerDepartman">
         <item>فروش</item>

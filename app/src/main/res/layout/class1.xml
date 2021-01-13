@@ -8,11 +8,11 @@
     <include layout="@layout/app_toolbar_back" />
 
     <FrameLayout
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -42,11 +42,12 @@
             android:src="@drawable/account_number" />
     </FrameLayout>
 
-    <FrameLayout   android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -73,11 +74,12 @@
             android:src="@drawable/person_icon" />
     </FrameLayout>
 
-    <FrameLayout    android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -104,11 +106,12 @@
             android:src="@drawable/amount" />
     </FrameLayout>
 
-    <FrameLayout    android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp">
 
         <com.google.android.material.textfield.TextInputLayout
