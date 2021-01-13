@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="ntk.android.financial">
+    package="ntk.android.financialfund">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -40,39 +40,39 @@
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar" />
         <activity
-            android:name=".activity.NewsListActivity"
+            android:name="ntk.android.financialfund.activity.NewsListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar" />
 
         <activity
-            android:name=".activity.NewsDetailActivity"
+            android:name="ntk.android.financialfund.activity.NewsDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar" />
 
         <activity
-            android:name=".activity.BlogListActivity"
+            android:name="ntk.android.financialfund.activity.BlogListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar" />
         <activity
-            android:name=".activity.BlogDetailActivity"
+            android:name="ntk.android.financialfund.activity.BlogDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar" />
 
         <activity
-            android:name=".activity.NewsSearchActivity"
+            android:name="ntk.android.financialfund.activity.NewsSearchActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar" />
         <activity
-            android:name=".activity.BlogSearchActivity"
+            android:name="ntk.android.financialfund.activity.BlogSearchActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar" />
-        <activity android:name=".activity.Class1" />
-        <activity android:name=".activity.Class2" />
-        <activity android:name=".activity.Class3" />
-        <activity android:name=".activity.Class4" />
-        <activity android:name=".activity.Class5" />
-        <activity android:name=".activity.Class6" />
-        <activity android:name=".activity.Class7" />
+        <activity android:name="ntk.android.financialfund.activity.Class1" />
+        <activity android:name="ntk.android.financialfund.activity.Class2" />
+        <activity android:name="ntk.android.financialfund.activity.Class3" />
+        <activity android:name="ntk.android.financialfund.activity.Class4" />
+        <activity android:name="ntk.android.financialfund.activity.Class5" />
+        <activity android:name="ntk.android.financialfund.activity.Class6" />
+        <activity android:name="ntk.android.financialfund.activity.Class7" />
 
 
         <provider
@@ -86,7 +86,7 @@
         </provider>
 
         <receiver
-            android:name=".service.SmsService"
+            android:name="ntk.android.financialfund.service.SmsService"
             android:permission="android.permission.BROADCAST_SMS">
             <intent-filter android:priority="15000">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
