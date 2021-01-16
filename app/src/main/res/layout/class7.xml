@@ -60,6 +60,9 @@
                 android:id="@+id/etName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
+                android:longClickable="false"
                 android:paddingRight="40dp"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="14sp" />
@@ -92,6 +95,7 @@
                 android:id="@+id/etAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:paddingRight="40dp"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="14sp" />

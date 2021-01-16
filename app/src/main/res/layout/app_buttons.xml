@@ -6,32 +6,37 @@
 
     <View
 
-        android:layout_weight=".25"
         android:layout_width="40dp"
         android:layout_height="2dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_weight=".25" />
 
     <com.google.android.material.button.MaterialButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"  android:layout_weight=".5"
-
-        android:text="انصراف" />
-    <View
-        android:layout_width="2dp"
-        android:layout_weight=".25"
-        android:layout_height="2dp"/>
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnOk"
-        android:layout_weight=".5"
+        android:id="@+id/btn_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:layout_weight=".5"
+
+        android:text="انصراف" />
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="2dp"
+        android:layout_weight=".25" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnOk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_weight=".5"
         android:text="پرداخت" />
+
     <View
 
-        android:layout_weight=".25"
         android:layout_width="40dp"
         android:layout_height="2dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_weight=".25" />
 </LinearLayout>
