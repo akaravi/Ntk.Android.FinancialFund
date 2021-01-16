@@ -25,7 +25,7 @@
             app:hintEnabled="true">
 
             <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                android:id="@+id/etPaymentType"
+                android:id="@+id/etAccountId"
                 android:layout_width="match_parent"
 
                 android:layout_height="wrap_content"
@@ -60,9 +60,10 @@
                 android:id="@+id/etName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingRight="40dp"  android:clickable="false"
+                android:clickable="false"
                 android:focusable="false"
                 android:longClickable="false"
+                android:paddingRight="40dp"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="14sp" />
 
@@ -88,44 +89,13 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="از تاریخ :">
+            android:hint="مبلغ درخواستی تسهیلات">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etAmount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingRight="40dp"     android:inputType="number"
-                android:textColor="@color/colorTextPrimary"
-                android:textSize="14sp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_gravity="center_vertical|right"
-            android:layout_marginRight="4dp"
-            android:src="@drawable/date" />
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="8dp">
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="تا تاریخ : ">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etDetail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:inputType="number"
                 android:paddingRight="40dp"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="14sp" />
@@ -137,7 +107,7 @@
             android:layout_height="32dp"
             android:layout_gravity="center_vertical|right"
             android:layout_marginRight="4dp"
-            android:src="@drawable/date" />
+            android:src="@drawable/amount" />
     </FrameLayout>
 
     <include layout="@layout/app_buttons" />

@@ -26,20 +26,38 @@ public class Class5 extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.calss5);
-        ((Button) findViewById(R.id.btnOk)).setText("گزارش");
+        setContentView(R.layout.class5);
         ((TextView) findViewById(R.id.txtToolbar)).setText(getString(R.string.mainCard5));
         findViewById(R.id.btn_cancel).setOnClickListener(view -> finish());
         findViewById(R.id.back_button).setOnClickListener(view -> finish());
         getAccounts();
-        findViewById(R.id.btnOk).setOnClickListener(view -> callApi());
+        findViewById(R.id.btnOk).setOnClickListener(view -> checkData());
+    }
+
+    private void checkData() {
+        AutoCompleteTextView accountId = findViewById(R.id.etAccountId);
+        TextInputEditText amount = findViewById(R.id.etAmount);
+        if (accountId.getText().toString().equalsIgnoreCase(""))
+            Toasty.error(this, "لطفا حساب سپرده ی خود را انتخاب کنید").show();
+        else if (amount.getText().toString().equalsIgnoreCase(""))
+            Toasty.error(this, "مبلغ تسهیلات مورد نظر خود را مشخص نمایید").show();
+        else {
+            long price = 0;
+            try {
+                price = Long.parseLong(amount.getText().toString());
+            } catch (Exception e) {
+                Toasty.error(this, "مبلغ واریزی نا معتبر است").show();
+                return;
+            }
+            if (price < 100) {
+                Toasty.error(this, "حداقل مبلغ تسهیلات 100 ریال می باشد").show();
+            } else
+                callApi();
+        }
+
     }
 
     private void callApi() {
-        AutoCompleteTextView AccountId = (AutoCompleteTextView) findViewById(R.id.etPaymentType);
-        if (AccountId.getText().toString().equalsIgnoreCase(""))
-            Toasty.error(this, "لطفا حساب خود را انتخاب کنید").show();
-
 
     }
 
@@ -49,7 +67,7 @@ public class Class5 extends BaseActivity {
             @Override
             public void onNext(@NonNull ErrorException<AccountModel> accountModelErrorException) {
                 switcher.showContentView();
-                AutoCompleteTextView paymentType = (AutoCompleteTextView) findViewById(R.id.etPaymentType);
+                AutoCompleteTextView paymentType = (AutoCompleteTextView) findViewById(R.id.etAccountId);
                 TextInputEditText Name = findViewById(R.id.etName);
                 paymentType.setAdapter(new AccountSelectAdapter(Class5.this, accountModelErrorException.ListItems));
                 paymentType.setOnItemClickListener((adapterView, view12, i, l) -> {
