@@ -4,14 +4,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import ntk.android.base.activity.blog.BaseBlogDetail_1_Activity;
+import ntk.android.base.activity.article.BaseArticleDetail_1_Activity;
+import ntk.android.base.entitymodel.article.ArticleCommentModel;
+import ntk.android.base.entitymodel.article.ArticleContentOtherInfoModel;
 import ntk.android.base.entitymodel.blog.BlogCommentModel;
 import ntk.android.base.entitymodel.blog.BlogContentOtherInfoModel;
 import ntk.android.financialfund.R;
 import ntk.android.financialfund.adapter.ArticleCommentAdapter;
 import ntk.android.financialfund.adapter.TabArticleAdapter;
 
-public class ArticleDetailActivity extends BaseBlogDetail_1_Activity {
+public class ArticleDetailActivity extends BaseArticleDetail_1_Activity {
     @Override
     protected void initChild() {
         favoriteDrawableId = R.drawable.ic_fav_full;
@@ -19,13 +21,13 @@ public class ArticleDetailActivity extends BaseBlogDetail_1_Activity {
     }
 
     @Override
-    public RecyclerView.Adapter createCommentAdapter(List<BlogCommentModel> listItems) {
-        return new ArticleCommentAdapter(this, null);
+    public RecyclerView.Adapter createCommentAdapter(List<ArticleCommentModel> listItems) {
+        return new ArticleCommentAdapter(this, listItems);
     }
 
     @Override
-    protected RecyclerView.Adapter createOtherInfoAdapter(List<BlogContentOtherInfoModel> info) {
-        return new TabArticleAdapter(this, null);
+    protected RecyclerView.Adapter createOtherInfoAdapter(List<ArticleContentOtherInfoModel> info) {
+        return new TabArticleAdapter(this, info);
     }
 }
 
