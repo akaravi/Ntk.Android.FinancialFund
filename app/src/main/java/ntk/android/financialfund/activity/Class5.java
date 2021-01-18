@@ -28,6 +28,7 @@ public class Class5 extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.class5);
         ((TextView) findViewById(R.id.txtToolbar)).setText(getString(R.string.mainCard5));
+        ((Button) findViewById(R.id.btnOk)).setText("ارسال درخواست");
         findViewById(R.id.btn_cancel).setOnClickListener(view -> finish());
         findViewById(R.id.back_button).setOnClickListener(view -> finish());
         getAccounts();
