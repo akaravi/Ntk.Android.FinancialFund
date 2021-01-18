@@ -8,10 +8,10 @@ import ntk.android.base.activity.blog.BaseBlogDetail_1_Activity;
 import ntk.android.base.entitymodel.blog.BlogCommentModel;
 import ntk.android.base.entitymodel.blog.BlogContentOtherInfoModel;
 import ntk.android.financialfund.R;
-import ntk.android.financialfund.adapter.BlogCommentAdapter;
-import ntk.android.financialfund.adapter.TabBlogAdapter;
+import ntk.android.financialfund.adapter.ArticleCommentAdapter;
+import ntk.android.financialfund.adapter.TabArticleAdapter;
 
-public class BlogDetailActivity extends BaseBlogDetail_1_Activity {
+public class ArticleDetailActivity extends BaseBlogDetail_1_Activity {
     @Override
     protected void initChild() {
         favoriteDrawableId = R.drawable.ic_fav_full;
@@ -20,12 +20,12 @@ public class BlogDetailActivity extends BaseBlogDetail_1_Activity {
 
     @Override
     public RecyclerView.Adapter createCommentAdapter(List<BlogCommentModel> listItems) {
-        return new BlogCommentAdapter(this, listItems);
+        return new ArticleCommentAdapter(this, null);
     }
 
     @Override
     protected RecyclerView.Adapter createOtherInfoAdapter(List<BlogContentOtherInfoModel> info) {
-        return new TabBlogAdapter(this, info);
+        return new TabArticleAdapter(this, null);
     }
 }
 

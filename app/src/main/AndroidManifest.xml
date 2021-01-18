@@ -47,11 +47,11 @@
             android:theme="@style/NoActionBar" />
 
         <activity
-            android:name=".activity.BlogListActivity"
+            android:name=".activity.ArticleListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar" />
         <activity
-            android:name=".activity.BlogDetailActivity"
+            android:name=".activity.ArticleDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar" />
 
@@ -60,7 +60,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar" />
         <activity
-            android:name=".activity.BlogSearchActivity"
+            android:name=".activity.ArticleSearchActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBar" />
         <activity android:name=".activity.Class1" />
@@ -74,7 +74,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="ntk.android.financialfund.APPNTK"
+            android:authorities="ntk.android.financialfund.APP88"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

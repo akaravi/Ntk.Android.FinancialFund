@@ -20,32 +20,32 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ntk.android.base.Extras;
 import ntk.android.base.adapter.BaseRecyclerAdapter;
+import ntk.android.base.entitymodel.article.ArticleContentModel;
 import ntk.android.base.entitymodel.blog.BlogContentModel;
 import ntk.android.base.services.base.CmsApiScoreApi;
 import ntk.android.base.utill.FontManager;
 import ntk.android.financialfund.R;
-import ntk.android.financialfund.activity.BlogDetailActivity;
+import ntk.android.financialfund.activity.ArticleDetailActivity;
 
-public class BlogAdapter extends BaseRecyclerAdapter<BlogContentModel, BlogAdapter.ViewHolder> {
-
+public class ArticleAdapter extends BaseRecyclerAdapter<ArticleContentModel, ArticleAdapter.ViewHolder> {
 
     private final Context context;
 
-    public BlogAdapter(Context context, List<BlogContentModel> arrayList) {
+    public ArticleAdapter(Context context, List<ArticleContentModel> arrayList) {
         super(arrayList);
-
         this.context = context;
+        drawable=R.drawable.article_place_holder;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_recycler_blog, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_recycler_article, viewGroup, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        BlogContentModel item = getItem(position);
+        ArticleContentModel item = getItem(position);
         holder.LblTitle.setText(item.Title);
         holder.LblDescrption.setText(item.Description);
         holder.LblLike.setText(String.valueOf(item.ViewCount));
@@ -53,11 +53,12 @@ public class BlogAdapter extends BaseRecyclerAdapter<BlogContentModel, BlogAdapt
         double rating = CmsApiScoreApi.CONVERT_TO_RATE(item.ViewCount, item.ScoreSumPercent);
         holder.Rate.setRating((float) rating);
         holder.Root.setOnClickListener(view -> {
-            Intent intent = new Intent(context, BlogDetailActivity.class);
+            Intent intent = new Intent(context, ArticleDetailActivity.class);
             intent.putExtra(Extras.EXTRA_FIRST_ARG, (item.Id));
             context.startActivity(intent);
         });
     }
+
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {

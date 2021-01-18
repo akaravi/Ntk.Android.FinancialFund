@@ -277,7 +277,7 @@ public class MainActivity extends AbstractMainActivity {
 
     @OnClick(R.id.blogBtn)
     public void onBlogClick() {
-        this.startActivity(new Intent(this, BlogListActivity.class));
+        this.startActivity(new Intent(this, ArticleListActivity.class));
     }
 
     @OnClick(R.id.aboutUsBtn)
