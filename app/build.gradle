@@ -6,8 +6,8 @@ android {
     compileSdkVersion 28
     defaultConfig {
 //        applicationId "ntk.android.ticketing"//change for packagename for api
-//        applicationId "ntk.android.financialfund.APPNTK"//change for packagename for api
-        applicationId "ntk.android.financialfund.App88"//change for packagename for api
+        applicationId "ntk.android.financialfund.APPNTK"//change for packagename for api
+//        applicationId "ntk.android.financialfund.App88"//change for packagename for api
         minSdkVersion 17
         targetSdkVersion 27
         multiDexEnabled true

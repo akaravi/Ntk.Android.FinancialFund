@@ -74,7 +74,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="ntk.android.financialfund.APP88"
+            android:authorities="ntk.android.financialfund.APPNTK"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
