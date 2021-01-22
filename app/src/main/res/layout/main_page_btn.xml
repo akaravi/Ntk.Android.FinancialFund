@@ -30,6 +30,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+
                 android:layout_weight="0.6"
                 android:src="@drawable/search" />
 
@@ -59,18 +60,18 @@
                 android:id="@+id/txtCard1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.4"
+                android:layout_weight="0.45"
                 android:gravity="center"
                 android:text="@string/mainCard1"
                 android:textColor="#000"
-                android:textSize="18sp" />
+                android:textSize="17sp" />
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:layout_weight="0.3"
+                android:layout_weight="0.25"
                 android:src="@drawable/support" />
         </LinearLayout>
     </LinearLayout>
@@ -109,12 +110,12 @@
                 <TextView
                     android:id="@+id/txtCard4"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="0.35"
                     android:gravity="center"
                     android:text="@string/mainCard4"
                     android:textColor="#000"
-                    android:textSize="18sp" />
+                    android:textSize="17sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -132,18 +133,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="8dp"
-                    android:layout_weight="0.6"
+                    android:layout_weight="0.65"
                     android:src="@drawable/question" />
 
                 <TextView
                     android:id="@+id/txtCard6"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="0.35"
                     android:gravity="center"
                     android:text="@string/mainCard6"
                     android:textColor="#000"
-                    android:textSize="18sp" />
+                    android:textSize="17sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -174,13 +175,13 @@
                 <TextView
                     android:id="@+id/txtCard3"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="0.35"
                     android:gravity="center"
                     android:text="@string/mainCard3"
 
                     android:textColor="#000"
-                    android:textSize="18sp" />
+                    android:textSize="17sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -204,12 +205,12 @@
                 <TextView
                     android:id="@+id/txtCard5"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="0.35"
                     android:gravity="center"
                     android:text="@string/mainCard5"
                     android:textColor="#000"
-                    android:textSize="18sp" />
+                    android:textSize="17sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -224,21 +225,23 @@
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingLeft="4dp"
-        android:paddingRight="4dp">
+        android:paddingRight="4dp"
+        android:weightSum="1">
 
         <TextView
             android:id="@+id/txtCard7"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-
+            android:layout_weight=".1"
             android:gravity="center"
             android:text="@string/mainCard7"
             android:textColor="#000"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
 
         <ImageView
-            android:layout_width="63dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_weight=".25"
             android:src="@drawable/question" />
 
 
@@ -248,9 +251,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.25"
-        android:gravity="center"     android:paddingLeft="4dp"
-        android:paddingRight="4dp"
+        android:gravity="center"
         android:orientation="horizontal"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
         android:weightSum="1">
 
         <LinearLayout
@@ -280,7 +284,7 @@
                 android:gravity="center"
                 android:text="صندوق پیام"
                 android:textColor="#000"
-                android:textSize="18sp" />
+                android:textSize="17sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -305,7 +309,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="تیکت یاب"
+                android:text="پیگیری"
                 android:textColor="#000"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -330,7 +334,7 @@
                 android:gravity="center"
                 android:text="پشتیبانی"
                 android:textColor="#000"
-                android:textSize="18sp" />
+                android:textSize="17sp" />
 
             <ImageView
                 android:layout_width="0dp"
@@ -381,7 +385,7 @@
                     android:gravity="center"
                     android:text="پرسش های متداول"
                     android:textColor="#000"
-                    android:textSize="18sp" />
+                    android:textSize="17sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -409,7 +413,7 @@
                         android:gravity="center"
                         android:text="راهنما"
                         android:textColor="#000"
-                        android:textSize="18sp" />
+                        android:textSize="17sp" />
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -450,7 +454,7 @@
                             android:gravity="center"
                             android:text="مجلات"
                             android:textColor="#000"
-                            android:textSize="18sp" />
+                            android:textSize="17sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -472,7 +476,7 @@
                             android:gravity="center"
                             android:text="درباره ما"
                             android:textColor="#000"
-                            android:textSize="18sp" />
+                            android:textSize="17sp" />
 
                         <ImageView
                             android:layout_width="match_parent"
@@ -517,7 +521,7 @@
                         android:gravity="center"
                         android:text="بازخورد"
                         android:textColor="#000"
-                        android:textSize="18sp" />
+                        android:textSize="17sp" />
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -552,7 +556,7 @@
                             android:gravity="right"
                             android:text="اخبار"
                             android:textColor="#000"
-                            android:textSize="18sp" />
+                            android:textSize="17sp" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -588,7 +592,7 @@
                             android:gravity="center"
                             android:text="نظرسنجی"
                             android:textColor="#000"
-                            android:textSize="18sp" />
+                            android:textSize="17sp" />
 
                         <ImageView
                             android:layout_width="match_parent"
@@ -625,7 +629,7 @@
                     android:gravity="center"
                     android:text="دعوت از دوستان"
                     android:textColor="#000"
-                    android:textSize="18sp" />
+                    android:textSize="17sp" />
             </LinearLayout>
         </LinearLayout>
 

@@ -42,6 +42,7 @@ import ntk.android.base.entitymodel.base.FilterDataModel;
 import ntk.android.base.entitymodel.news.NewsContentModel;
 import ntk.android.base.services.news.NewsContentService;
 import ntk.android.base.utill.FontManager;
+import ntk.android.base.view.NViewUtils;
 import ntk.android.financialfund.R;
 import ntk.android.financialfund.adapter.CoreImageAdapter;
 import ntk.android.financialfund.event.toolbar.EVSearchClick;
@@ -113,11 +114,15 @@ public class MainActivity extends AbstractMainActivity {
     private void fixViewSize() {
         int screenHeight = BaseRecyclerAdapter.getScreenHeight();
         findViewById(R.id.linear).getLayoutParams().height = (int) (screenHeight * .35);
-        findViewById(R.id.panelButtons).getLayoutParams().height = (int) (screenHeight);
-
-
-//        findViewById(R.id.remainView).getLayoutParams().height= (int) ((remainSpace * .75)+(screenHeight * .65)/2);
-        findViewById(R.id.mainRv).getLayoutParams().height = (screenHeight + (int) (screenHeight * .35));
+        int minimumHeight = NViewUtils.dpToPx(this, 640);
+        if (screenHeight >= minimumHeight)
+            findViewById(R.id.panelButtons).getLayoutParams().height = (int) (screenHeight);
+        else
+            findViewById(R.id.panelButtons).getLayoutParams().height = (int) (minimumHeight);
+        if (screenHeight >= minimumHeight)
+            findViewById(R.id.mainRv).getLayoutParams().height = (screenHeight + (int) (screenHeight * .35));
+        else
+            findViewById(R.id.mainRv).getLayoutParams().height = (minimumHeight + (int) (screenHeight * .35));
     }
 
     private void init() {
@@ -177,7 +182,7 @@ public class MainActivity extends AbstractMainActivity {
                     @Override
                     public void onNext(ErrorException<NewsContentModel> newsContentResponse) {
                         if (newsContentResponse.IsSuccess) {
-                            if (newsContentResponse.ListItems.size()>0) {
+                            if (newsContentResponse.ListItems.size() > 0) {
                                 findViewById(R.id.linear).setVisibility(View.VISIBLE);
                                 findViewById(R.id.linear).setBackground(null);
                                 SnapHelper snapHelper = new PagerSnapHelper();
@@ -188,7 +193,7 @@ public class MainActivity extends AbstractMainActivity {
                                 Slider.setAdapter(adapter);
                                 snapHelper.attachToRecyclerView(Slider);
                                 adapter.notifyDataSetChanged();
-                            }else{
+                            } else {
                                 findViewById(R.id.linear).setVisibility(View.GONE);
                             }
                         }
