@@ -21,7 +21,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:supportsRtl">
-        <activity android:name=".activity.SplashActivity"  >
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -29,8 +29,7 @@
         </activity>
         <activity
             android:name=".activity.MainActivity"
-            android:screenOrientation="portrait"
-           />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.AboutUsActivity"
             android:screenOrientation="portrait"
@@ -72,6 +71,11 @@
         <activity android:name=".activity.Class7" />
 
 
+        <!--        <provider-->
+        <!--            android:name="androidx.core.content.FileProvider"-->
+        <!--            android:authorities="ntk.android.financialfund.appidin88"-->
+        <!--            android:exported="false"-->
+        <!--            android:grantUriPermissions="true">-->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="ntk.android.financialfund.APPNTK"
