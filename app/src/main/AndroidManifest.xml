@@ -38,30 +38,30 @@
         <activity
             android:name=".activity.NewsListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar" />
+          />
 
         <activity
             android:name=".activity.NewsDetailActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar" />
+             />
 
         <activity
             android:name=".activity.ArticleListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar" />
+         />
         <activity
             android:name=".activity.ArticleDetailActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar" />
+             />
 
         <activity
             android:name=".activity.NewsSearchActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar" />
+      />
         <activity
             android:name=".activity.ArticleSearchActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/NoActionBar" />
+            />
         <activity android:name=".activity.Class1" />
         <activity android:name=".activity.Class2" />
         <activity android:name=".activity.Class3" />
