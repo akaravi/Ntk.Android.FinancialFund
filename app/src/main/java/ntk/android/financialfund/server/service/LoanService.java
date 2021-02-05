@@ -8,7 +8,7 @@ import java.util.Map;
 import io.reactivex.Observable;
 import ntk.android.base.config.ConfigRestHeader;
 import ntk.android.base.entitymodel.base.ErrorException;
-import ntk.android.base.entitymodel.base.FilterDataModel;
+import ntk.android.base.entitymodel.base.FilterModel;
 import ntk.android.financialfund.server.model.LoanModel;
 
 public class LoanService {
@@ -22,7 +22,7 @@ public class LoanService {
         this.headers = (new ConfigRestHeader()).GetHeaders(context);
     }
 
-    public Observable<ErrorException<LoanModel>> getAll(FilterDataModel request) {
+    public Observable<ErrorException<LoanModel>> getAll(FilterModel request) {
         return Observable.create(emitter -> {
             Thread.sleep(2000);
             ErrorException<LoanModel> model = new ErrorException<>();

@@ -8,7 +8,7 @@ import java.util.Map;
 import io.reactivex.Observable;
 import ntk.android.base.config.ConfigRestHeader;
 import ntk.android.base.entitymodel.base.ErrorException;
-import ntk.android.base.entitymodel.base.FilterDataModel;
+import ntk.android.base.entitymodel.base.FilterModel;
 import ntk.android.financialfund.server.model.AccountModel;
 
 public class AccountService {
@@ -22,7 +22,7 @@ public class AccountService {
         this.headers = (new ConfigRestHeader()).GetHeaders(context);
     }
 
-    public Observable<ErrorException<AccountModel>> getAll(FilterDataModel request) {
+    public Observable<ErrorException<AccountModel>> getAll(FilterModel request) {
         return Observable.create(emitter -> {
             Thread.sleep(2000);
             ErrorException<AccountModel> model = new ErrorException<>();
@@ -49,7 +49,7 @@ public class AccountService {
     }
 
 
-    public Observable<ErrorException<AccountModel>> getPopularDestinationsAccount(FilterDataModel request) {
+    public Observable<ErrorException<AccountModel>> getPopularDestinationsAccount(FilterModel request) {
         return Observable.create(emitter -> {
             Thread.sleep(2000);
             ErrorException<AccountModel> model = new ErrorException<>();

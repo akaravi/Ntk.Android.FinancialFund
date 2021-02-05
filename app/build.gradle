@@ -118,10 +118,12 @@ dependencies {
     implementation 'com.github.codekidX:storage-chooser:2.0.4.2'
     //for functional codding
     implementation 'net.sourceforge.streamsupport:android-retrostreams:1.7.2'
+    //for datePicker
+    implementation 'com.mohamadamin:persianmaterialdatetimepicker:1.2.1'
     //base of project
-    api 'com.github.akaravi:Ntk.Android.BaseActivity:1.4.107'
-
-//    api project(path: ':baseActivity')
+//    api 'com.github.akaravi:Ntk.Android.BaseActivity:1.4.107'
+//
+    api project(path: ':baseActivity')
 //    implementation project(path: ':baseApi')
 
 }

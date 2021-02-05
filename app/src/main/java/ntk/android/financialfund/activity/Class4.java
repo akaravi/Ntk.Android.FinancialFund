@@ -14,7 +14,7 @@ import ntk.android.base.activity.BaseActivity;
 import ntk.android.base.config.NtkObserver;
 import ntk.android.base.config.ServiceExecute;
 import ntk.android.base.entitymodel.base.ErrorException;
-import ntk.android.base.entitymodel.base.FilterDataModel;
+import ntk.android.base.entitymodel.base.FilterModel;
 import ntk.android.financialfund.R;
 import ntk.android.financialfund.adapter.AccountSelectAdapter;
 import ntk.android.financialfund.adapter.LoanSelectAdapter;
@@ -69,7 +69,7 @@ public class Class4 extends BaseActivity {
 
     private void getAccounts() {
         switcher.showProgressView();
-        ServiceExecute.execute(new AccountService(this).getAll(new FilterDataModel())).subscribe(new NtkObserver<ErrorException<AccountModel>>() {
+        ServiceExecute.execute(new AccountService(this).getAll(new FilterModel())).subscribe(new NtkObserver<ErrorException<AccountModel>>() {
             @Override
             public void onNext(@NonNull ErrorException<AccountModel> accountModelErrorException) {
                 switcher.showContentView();
@@ -96,7 +96,7 @@ public class Class4 extends BaseActivity {
 
     private void getLoans() {
         switcher.showProgressView();
-        ServiceExecute.execute(new LoanService(this).getAll(new FilterDataModel())).subscribe(new NtkObserver<ErrorException<LoanModel>>() {
+        ServiceExecute.execute(new LoanService(this).getAll(new FilterModel())).subscribe(new NtkObserver<ErrorException<LoanModel>>() {
             @Override
             public void onNext(@NonNull ErrorException<LoanModel> accountModelErrorException) {
                 switcher.showContentView();
