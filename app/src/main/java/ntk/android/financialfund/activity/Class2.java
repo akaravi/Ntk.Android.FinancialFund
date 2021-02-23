@@ -72,11 +72,11 @@ public class Class2 extends BaseActivity {
         TextInputEditText amount = findViewById(R.id.etAmount);
         TextInputEditText description = findViewById(R.id.etDetail);
         AccountToAccountModel req = new AccountToAccountModel();
-        req.fromFundBranchAccountId=source.id;
-        req.toFundBranchAccountId=destination.id;
-        req.description=description.getText().toString();
+        req.fromFundBranchAccountId = source.id;
+        req.toFundBranchAccountId = destination.id;
+        req.description = description.getText().toString();
         req.amount = Long.parseLong(amount.getEditableText().toString());
-        new AccountFundsService(this).accountToAccount(req).subscribe(new ErrorExceptionObserver<FundBranchAccount>() {
+        new AccountFundsService(this).accountToAccount(req).subscribe(new ErrorExceptionObserver<FundBranchAccount>(switcher::showErrorView) {
             @Override
             protected void SuccessResponse(ErrorException<FundBranchAccount> accountModelErrorException) {
                 switcher.showContentView();
