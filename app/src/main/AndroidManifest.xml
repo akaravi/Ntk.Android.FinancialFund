@@ -69,6 +69,7 @@
         <activity android:name=".activity.Class5" />
         <activity android:name=".activity.Class6" />
         <activity android:name=".activity.Class7" />
+        <activity android:name=".dialog.CheckTokenDialog" />
 
 
         <!--        <provider-->

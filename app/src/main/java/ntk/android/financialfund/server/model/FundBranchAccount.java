@@ -2,19 +2,8 @@ package ntk.android.financialfund.server.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class FundBranchAccount {
-    @SerializedName("id")
-    public long id;
-    @SerializedName("createdDate")
-    public String createdDate;
-    @SerializedName("createdBy")
-    public String createdBy;
-    @SerializedName("updatedDate")
-    public String updatedDate;
-    @SerializedName("updatedBy")
-    public long updatedBy;
-    @SerializedName("recordStatus")
-    public long recordStatus;
+public class FundBranchAccount extends BaseFundEntity<Long> {
+    public static final long LIMIT_PRISE = 1000;
     @SerializedName("branchGuidKey")
     public String branchGuidKey;
     @SerializedName("accountKey")
@@ -49,5 +38,4 @@ public class FundBranchAccount {
     public long loanInstallmentDelayPrice;
     @SerializedName("loanStatusAlert")
     public long loanStatusAlert;
-
 }

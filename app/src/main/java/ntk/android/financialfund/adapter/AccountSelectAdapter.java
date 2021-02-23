@@ -12,19 +12,19 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 import ntk.android.financialfund.R;
-import ntk.android.financialfund.server.model.AccountModel;
+import ntk.android.financialfund.server.model.FundBranchAccount;
 
-public class AccountSelectAdapter extends ArrayAdapter<AccountModel> {
+public class AccountSelectAdapter extends ArrayAdapter<FundBranchAccount> {
 
-    private final List<AccountModel> list;
+    private final List<FundBranchAccount> list;
 
-    public AccountSelectAdapter(@NonNull Context context, List<AccountModel> arrayList) {
+    public AccountSelectAdapter(@NonNull Context context, List<FundBranchAccount> arrayList) {
         super(context, R.layout.row_account_bank, arrayList);
         list = arrayList;
     }
 
     @Override
-    public AccountModel getItem(int position) {
+    public FundBranchAccount getItem(int position) {
         return list.get(position);
     }
 
@@ -40,7 +40,7 @@ public class AccountSelectAdapter extends ArrayAdapter<AccountModel> {
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.row_account_bank, parent, false);
         }
-        ((TextView) view.findViewById(R.id.textView)).setText(getItem(position).AccountId + "-" + getItem(position).AccountType);
+        ((TextView) view.findViewById(R.id.textView)).setText(getItem(position).accountNumber + "-");
         return view;
     }
 }

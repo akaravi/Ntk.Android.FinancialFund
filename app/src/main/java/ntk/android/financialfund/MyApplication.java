@@ -45,6 +45,12 @@ public class MyApplication extends NTKApplication {
                 .setToastTypeface(FontManager.GetTypeface(getApplicationContext(), FontManager.IranSans))
                 .setTextSize(14).apply();
         applicationStyle = new ApplicationStyle() {
+
+            @Override
+            public void Init() {
+                show_notInterestedBtn = false;
+            }
+
             @Override
             public ViewController getViewController() {
                 ViewController vc = new ViewController() {

@@ -45,6 +45,7 @@ import ntk.android.base.utill.FontManager;
 import ntk.android.base.view.NViewUtils;
 import ntk.android.financialfund.R;
 import ntk.android.financialfund.adapter.CoreImageAdapter;
+import ntk.android.financialfund.dialog.CheckTokenDialog;
 import ntk.android.financialfund.event.toolbar.EVSearchClick;
 
 public class MainActivity extends AbstractMainActivity {
@@ -207,7 +208,7 @@ public class MainActivity extends AbstractMainActivity {
 
     @OnClick(R.id.mainCard1)
     public void oncard1() {
-        this.startActivity(new Intent(this, Class1.class));
+        this.startActivity(new Intent(this, CheckTokenDialog.class));
     }
 
     @OnClick(R.id.mainCard2)

@@ -12,19 +12,19 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 import ntk.android.financialfund.R;
-import ntk.android.financialfund.server.model.LoanModel;
+import ntk.android.financialfund.server.model.TestAccountModel;
 
-public class LoanSelectAdapter extends ArrayAdapter<LoanModel> {
+public class TestAccountSelectAdapter extends ArrayAdapter<TestAccountModel> {
 
-    private final List<LoanModel> list;
+    private final List<TestAccountModel> list;
 
-    public LoanSelectAdapter(@NonNull Context context, List<LoanModel> arrayList) {
+    public TestAccountSelectAdapter(@NonNull Context context, List<TestAccountModel> arrayList) {
         super(context, R.layout.row_account_bank, arrayList);
         list = arrayList;
     }
 
     @Override
-    public LoanModel getItem(int position) {
+    public TestAccountModel getItem(int position) {
         return list.get(position);
     }
 
@@ -40,7 +40,7 @@ public class LoanSelectAdapter extends ArrayAdapter<LoanModel> {
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.row_account_bank, parent, false);
         }
-        ((TextView) view.findViewById(R.id.textView)).setText(getItem(position).AccountId + "-" + getItem(position).Name);
+        ((TextView) view.findViewById(R.id.textView)).setText(getItem(position).AccountId + "-" + getItem(position).AccountType);
         return view;
     }
 }

@@ -16,9 +16,9 @@ import ntk.android.base.config.ServiceExecute;
 import ntk.android.base.entitymodel.base.ErrorException;
 import ntk.android.base.entitymodel.base.FilterModel;
 import ntk.android.financialfund.R;
-import ntk.android.financialfund.adapter.AccountSelectAdapter;
+import ntk.android.financialfund.adapter.TestAccountSelectAdapter;
 import ntk.android.financialfund.adapter.LoanSelectAdapter;
-import ntk.android.financialfund.server.model.AccountModel;
+import ntk.android.financialfund.server.model.TestAccountModel;
 import ntk.android.financialfund.server.model.LoanModel;
 import ntk.android.financialfund.server.service.AccountService;
 import ntk.android.financialfund.server.service.LoanService;
@@ -69,17 +69,17 @@ public class Class4 extends BaseActivity {
 
     private void getAccounts() {
         switcher.showProgressView();
-        ServiceExecute.execute(new AccountService(this).getAll(new FilterModel())).subscribe(new NtkObserver<ErrorException<AccountModel>>() {
+        ServiceExecute.execute(new AccountService(this).getAll(new FilterModel())).subscribe(new NtkObserver<ErrorException<TestAccountModel>>() {
             @Override
-            public void onNext(@NonNull ErrorException<AccountModel> accountModelErrorException) {
+            public void onNext(@NonNull ErrorException<TestAccountModel> accountModelErrorException) {
                 switcher.showContentView();
                 AutoCompleteTextView account = (AutoCompleteTextView) findViewById(R.id.etAccountId);
                 TextInputEditText Name = findViewById(R.id.etName);
-                account.setAdapter(new AccountSelectAdapter(Class4.this, accountModelErrorException.ListItems));
+                account.setAdapter(new TestAccountSelectAdapter(Class4.this, accountModelErrorException.ListItems));
                 account.setOnItemClickListener((adapterView, view12, i, l) -> {
                     if (i >= 0) {
-                        account.setText(((AccountModel) adapterView.getItemAtPosition(i)).AccountId);
-                        Name.setText(((AccountModel) adapterView.getItemAtPosition(i)).Name);
+                        account.setText(((TestAccountModel) adapterView.getItemAtPosition(i)).AccountId);
+                        Name.setText(((TestAccountModel) adapterView.getItemAtPosition(i)).Name);
                     } else {
                         account.setText("");
                         Name.setText("");
