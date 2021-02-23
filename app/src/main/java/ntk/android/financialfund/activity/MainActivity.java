@@ -213,7 +213,7 @@ public class MainActivity extends AbstractMainActivity {
 
     @OnClick(R.id.mainCard2)
     public void oncard2() {
-        this.startActivity(new Intent(this, Class2.class));
+        this.startActivity(new Intent(this, AccountToAccountActivity.class));
     }
 
     @OnClick(R.id.mainCard3)

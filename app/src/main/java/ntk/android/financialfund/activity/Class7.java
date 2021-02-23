@@ -12,13 +12,17 @@ import com.google.android.material.textfield.TextInputEditText;
 import es.dmoral.toasty.Toasty;
 import io.reactivex.annotations.NonNull;
 import ntk.android.base.activity.BaseActivity;
+import ntk.android.base.config.ErrorExceptionObserver;
 import ntk.android.base.config.NtkObserver;
 import ntk.android.base.config.ServiceExecute;
 import ntk.android.base.entitymodel.base.ErrorException;
 import ntk.android.base.entitymodel.base.FilterModel;
 import ntk.android.financialfund.R;
+import ntk.android.financialfund.adapter.AccountSelectAdapter;
 import ntk.android.financialfund.adapter.TestAccountSelectAdapter;
+import ntk.android.financialfund.server.model.FundBranchAccount;
 import ntk.android.financialfund.server.model.TestAccountModel;
+import ntk.android.financialfund.server.service.AccountFundsService;
 import ntk.android.financialfund.server.service.AccountService;
 
 public class Class7 extends BaseActivity {
@@ -55,28 +59,31 @@ public class Class7 extends BaseActivity {
 
     private void getAccounts() {
         switcher.showProgressView();
-        ServiceExecute.execute(new AccountService(this).getAll(new FilterModel())).subscribe(new NtkObserver<ErrorException<TestAccountModel>>() {
+        ServiceExecute.execute(new AccountFundsService(this).getList()).subscribe(new ErrorExceptionObserver<FundBranchAccount>(switcher::showErrorView) {
             @Override
-            public void onNext(@NonNull ErrorException<TestAccountModel> accountModelErrorException) {
+            protected void SuccessResponse(ErrorException<FundBranchAccount> accountModelErrorException) {
                 switcher.showContentView();
-                AutoCompleteTextView paymentType = (AutoCompleteTextView) findViewById(R.id.etAccountId);
-                TextInputEditText Name = findViewById(R.id.etName);
-                paymentType.setAdapter(new TestAccountSelectAdapter(Class7.this, accountModelErrorException.ListItems));
-                paymentType.setOnItemClickListener((adapterView, view12, i, l) -> {
+                AutoCompleteTextView sourceAccount = (AutoCompleteTextView) findViewById(R.id.etAccountId);
+
+                TextInputEditText SourceName = findViewById(R.id.etName);
+                sourceAccount.setAdapter(new AccountSelectAdapter(Class7.this, accountModelErrorException.ListItems));
+                sourceAccount.setOnItemClickListener((adapterView, view12, i, l) -> {
                     if (i >= 0) {
-                        paymentType.setText(((TestAccountModel) adapterView.getItemAtPosition(i)).AccountId);
-                        Name.setText(((TestAccountModel) adapterView.getItemAtPosition(i)).Name);
+                        sourceAccount.setText(((TestAccountModel) adapterView.getItemAtPosition(i)).AccountId);
+                        SourceName.setText(((TestAccountModel) adapterView.getItemAtPosition(i)).Name);
                     } else {
-                        paymentType.setText("");
-                        Name.setText("");
+                        sourceAccount.setText("");
+                        SourceName.setText("");
                     }
                 });
+
             }
 
             @Override
-            public void onError(@NonNull Throwable e) {
-                switcher.showErrorView(e.getMessage(), Class7.this::getAccounts);
+            protected Runnable tryAgainMethod() {
+                return null;
             }
         });
+
     }
 }

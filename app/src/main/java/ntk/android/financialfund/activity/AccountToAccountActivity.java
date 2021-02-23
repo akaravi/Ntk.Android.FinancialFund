@@ -20,15 +20,15 @@ import ntk.android.financialfund.server.model.FundBranchAccount;
 import ntk.android.financialfund.server.model.TestAccountModel;
 import ntk.android.financialfund.server.service.AccountFundsService;
 
-public class Class2 extends BaseActivity {
+public class AccountToAccountActivity extends BaseActivity {
     FundBranchAccount source;
     FundBranchAccount destination;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.class2);
-        ((TextView) findViewById(R.id.txtToolbar)).setText(getString(R.string.mainCard2));
+        setContentView(R.layout.account_to_account_activity);
+        ((TextView) findViewById(R.id.txtToolbar)).setText(getString(R.string.accountToaccount));
         findViewById(R.id.btn_cancel).setOnClickListener(view -> finish());
         findViewById(R.id.back_button).setOnClickListener(view -> finish());
         getAccounts();
@@ -99,7 +99,7 @@ public class Class2 extends BaseActivity {
                 AutoCompleteTextView sourceAccount = (AutoCompleteTextView) findViewById(R.id.etAccountId);
 
                 TextInputEditText SourceName = findViewById(R.id.etName);
-                sourceAccount.setAdapter(new AccountSelectAdapter(Class2.this, accountModelErrorException.ListItems));
+                sourceAccount.setAdapter(new AccountSelectAdapter(AccountToAccountActivity.this, accountModelErrorException.ListItems));
                 sourceAccount.setOnItemClickListener((adapterView, view12, i, l) -> {
                     if (i >= 0) {
                         sourceAccount.setText(((TestAccountModel) adapterView.getItemAtPosition(i)).AccountId);
@@ -111,7 +111,7 @@ public class Class2 extends BaseActivity {
                 });
                 AutoCompleteTextView destinationAccount = (AutoCompleteTextView) findViewById(R.id.etAccountDestId);
                 TextInputEditText destinationName = findViewById(R.id.etDestName);
-                destinationAccount.setAdapter(new AccountSelectAdapter(Class2.this, accountModelErrorException.ListItems));
+                destinationAccount.setAdapter(new AccountSelectAdapter(AccountToAccountActivity.this, accountModelErrorException.ListItems));
                 destinationAccount.setOnItemClickListener((adapterView, view12, i, l) -> {
                     if (i >= 0) {
                         destinationAccount.setText(((TestAccountModel) adapterView.getItemAtPosition(i)).AccountId);
