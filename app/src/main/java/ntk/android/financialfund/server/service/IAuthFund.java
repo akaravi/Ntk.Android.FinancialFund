@@ -6,6 +6,7 @@ import io.reactivex.Observable;
 import ntk.android.base.entitymodel.base.CaptchaModel;
 import ntk.android.base.entitymodel.base.ErrorException;
 import ntk.android.base.entitymodel.base.ErrorExceptionBase;
+import ntk.android.financialfund.server.model.ClientTokenModel;
 import ntk.android.financialfund.server.model.FundCaptchaModel;
 import ntk.android.financialfund.server.model.GetTokenRequest;
 import ntk.android.financialfund.server.model.OrderTokenRequestModel;
@@ -35,6 +36,6 @@ interface IAuthFund {
 
     @POST("/api/v1/Auth/CheckToken")
     @Headers({"content-type: application/json"})
-    Observable<ErrorExceptionBase> CheckToken(@HeaderMap Map<String, String> headers, @Body GetTokenRequest body);
+    Observable<ErrorException<ClientTokenModel>> CheckToken(@HeaderMap Map<String, String> headers, @Body GetTokenRequest body);
 
 }

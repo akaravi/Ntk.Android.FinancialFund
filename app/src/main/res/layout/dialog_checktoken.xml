@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
+<include layout="@layout/sub_auth_loading" android:id="@+id/sub_auth_loading"/>
         <include
             android:id="@+id/sub_auth_mobile"
             layout="@layout/sub_checktoken_mobile" />

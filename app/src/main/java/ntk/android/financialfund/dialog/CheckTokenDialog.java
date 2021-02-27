@@ -11,9 +11,10 @@ import ntk.android.base.activity.BaseActivity;
 import ntk.android.base.config.ErrorExceptionObserver;
 import ntk.android.base.config.ServiceExecute;
 import ntk.android.base.entitymodel.base.ErrorException;
-import ntk.android.base.view.CaptchaView;
 import ntk.android.financialfund.R;
 import ntk.android.financialfund.db.FoundInfo;
+import ntk.android.financialfund.server.model.ClientTokenModel;
+import ntk.android.financialfund.server.model.GetTokenRequest;
 import ntk.android.financialfund.server.model.OrderTokenRequestModel;
 import ntk.android.financialfund.server.model.OrderUserToken;
 import ntk.android.financialfund.server.service.AuthFundsService;
@@ -38,16 +39,43 @@ public class CheckTokenDialog extends BaseActivity {
 
 
     private void checkToken() {
-
+        findViewById(R.id.sub_auth_mobile).setVisibility(View.GONE);
+        findViewById(R.id.sub_auth_sms).setVisibility(View.GONE);
+        findViewById(R.id.sub_auth_loading).setVisibility(View.VISIBLE);
+        checkTokenApi();
     }
 
     private void OrderToken() {
         findViewById(R.id.sub_auth_mobile).setVisibility(View.VISIBLE);
         findViewById(R.id.sub_auth_sms).setVisibility(View.GONE);
+        findViewById(R.id.sub_auth_loading).setVisibility(View.GONE);
         findViewById(R.id.btnSend).setOnClickListener(view -> OrderTokenApi());
 
     }
+    private void checkTokenApi(){
+        GetTokenRequest req=new GetTokenRequest();
+        req.token= new FoundInfo(this).getToken();
+        ServiceExecute.execute(
+                new AuthFundsService(this).checkToken(req)).
+                subscribe(new ErrorExceptionObserver<ClientTokenModel>(switcher::showErrorView) {
+                    @Override
+                    protected void SuccessResponse(ErrorException<ClientTokenModel> orderUserTokenErrorException) {
+                        //todo startActivity
+                    }
 
+                    @Override
+                    protected void failResponse(ErrorException<ClientTokenModel> orderUserTokenErrorException) {
+                        //todo renew Captcha
+                        super.failResponse(orderUserTokenErrorException);
+                    }
+
+                    @Override
+                    protected Runnable tryAgainMethod() {
+                        return null;
+                    }
+
+                });
+    }
     private void OrderTokenApi() {
         EditText mobileTxt = findViewById(R.id.txtActRegister);
         FundCaptchaView captcha = findViewById(R.id.fundCaptchaView);
@@ -57,7 +85,7 @@ public class CheckTokenDialog extends BaseActivity {
         } else if (!mobileTxt.getText().toString().startsWith("09")) {
             Toasty.warning(this, "شماره تلفن همراه را به صورت صحیح وارد کنید", Toasty.LENGTH_LONG, true).show();
             return;
-        } else if (captcha.getCaptchaText().equalsIgnoreCase("")) {
+        } else if (captcha.getCaptchaText().length() != 11) {
             Toasty.warning(this, "شماره تلفن همراه را به صورت صحیح وارد کنید", Toasty.LENGTH_LONG, true).show();
             return;
         }
@@ -71,7 +99,7 @@ public class CheckTokenDialog extends BaseActivity {
                 subscribe(new ErrorExceptionObserver<OrderUserToken>(switcher::showErrorView) {
                     @Override
                     protected void SuccessResponse(ErrorException<OrderUserToken> orderUserTokenErrorException) {
-
+                        //todo go to sms sending
                     }
 
                     @Override
