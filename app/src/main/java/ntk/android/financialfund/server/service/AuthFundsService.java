@@ -15,6 +15,7 @@ import ntk.android.financialfund.server.model.ClientTokenModel;
 import ntk.android.financialfund.server.model.GetTokenRequest;
 import ntk.android.financialfund.server.model.OrderTokenRequestModel;
 import ntk.android.financialfund.server.model.OrderUserToken;
+import ntk.android.financialfund.server.model.UserToken;
 
 public class AuthFundsService extends BaseFundService {
     public AuthFundsService(Context context) {
@@ -81,6 +82,33 @@ public class AuthFundsService extends BaseFundService {
     public Observable<ErrorException<ClientTokenModel>>  checkToken(GetTokenRequest req) {
         BehaviorSubject<ErrorException<ClientTokenModel>> mMovieCache = BehaviorSubject.create();
         getRetrofit(IAuthFund.class).CheckToken(headers,req)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io()).subscribe(new Observer<ErrorException<ClientTokenModel>>() {
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(@NonNull ErrorException<ClientTokenModel> model) {
+                mMovieCache.onNext(model);
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                mMovieCache.onError(e);
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
+        return mMovieCache;
+    }
+    public Observable<ErrorException<ClientTokenModel>>  getToken(UserToken req) {
+        BehaviorSubject<ErrorException<ClientTokenModel>> mMovieCache = BehaviorSubject.create();
+        getRetrofit(IAuthFund.class).GetToken(headers,req)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io()).subscribe(new Observer<ErrorException<ClientTokenModel>>() {
             @Override

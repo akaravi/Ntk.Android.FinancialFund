@@ -1,13 +1,24 @@
 package ntk.android.financialfund.server.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ClientTokenModel {
-   public String guidKey;
-   public String orgin;
-   public String packageName;
-   public String expireDate;
-   public String token;
-   public UserToken user;
-   public AppToken app;
-   public DeviceToken device;
-   public boolean smsIsChecked;
+    @SerializedName("guidKey")
+    public String guidKey;
+    @SerializedName("orgin")
+    public String orgin;
+    @SerializedName("packageName")
+    public String packageName;
+    @SerializedName("expireDate")
+    public String expireDate;
+    @SerializedName("token")
+    public String token;
+    @SerializedName("user")
+    public UserToken user;
+    @SerializedName("app")
+    public AppToken app;
+    @SerializedName("device")
+    public DeviceToken device;
+    @SerializedName("smsIsChecked")
+    public boolean smsIsChecked;
 }

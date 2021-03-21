@@ -17,6 +17,7 @@ import ntk.android.financialfund.server.model.ClientTokenModel;
 import ntk.android.financialfund.server.model.GetTokenRequest;
 import ntk.android.financialfund.server.model.OrderTokenRequestModel;
 import ntk.android.financialfund.server.model.OrderUserToken;
+import ntk.android.financialfund.server.model.UserToken;
 import ntk.android.financialfund.server.service.AuthFundsService;
 import ntk.android.financialfund.view.FundCaptchaView;
 
@@ -54,6 +55,10 @@ public class CheckTokenDialog extends BaseActivity {
     }
     private void checkTokenApi(){
         GetTokenRequest req=new GetTokenRequest();
+        req.mobileNumber="09999999999";
+        req.smsValue="11111";
+        req.captchaValue="22222";
+        req.captchaKey="4a7sU_aLetQ37MqS0S-7lg";
         req.token= new FoundInfo(this).getToken();
         ServiceExecute.execute(
                 new AuthFundsService(this).checkToken(req)).
@@ -85,13 +90,17 @@ public class CheckTokenDialog extends BaseActivity {
         } else if (!mobileTxt.getText().toString().startsWith("09")) {
             Toasty.warning(this, "شماره تلفن همراه را به صورت صحیح وارد کنید", Toasty.LENGTH_LONG, true).show();
             return;
-        } else if (captcha.getCaptchaText().length() != 11) {
+        }  else if (mobileTxt.getText().toString().length() != 11) {
             Toasty.warning(this, "شماره تلفن همراه را به صورت صحیح وارد کنید", Toasty.LENGTH_LONG, true).show();
+            return;
+        }else if (captcha.getCaptchaText().trim().equalsIgnoreCase("")) {
+            Toasty.warning(this, "متن تصویر را وارد کنید", Toasty.LENGTH_LONG, true).show();
             return;
         }
 
         OrderTokenRequestModel req = new OrderTokenRequestModel();
         req.mobileNumber = mobileTxt.getText().toString();
+        req.mobileNumber = "09999999999";
         req.captchaKey = captcha.getCaptchaKey();
         req.captchaValue = captcha.getCaptchaText();
         ServiceExecute.execute(
@@ -100,10 +109,39 @@ public class CheckTokenDialog extends BaseActivity {
                     @Override
                     protected void SuccessResponse(ErrorException<OrderUserToken> orderUserTokenErrorException) {
                         //todo go to sms sending
+                        getTokenApi();
                     }
 
                     @Override
                     protected void failResponse(ErrorException<OrderUserToken> orderUserTokenErrorException) {
+                        //todo renew Captcha
+                        super.failResponse(orderUserTokenErrorException);
+                    }
+
+                    @Override
+                    protected Runnable tryAgainMethod() {
+                        return null;
+                    }
+
+                });
+    }
+
+    private void getTokenApi() {
+        UserToken req=new UserToken();
+        req.mobileNumber="09999999999";
+        req.smsValue="11111";
+        req.captchaValue="22222";
+        req.captchaKey="5SJ-4aaDfJxV2PZ5r8hD5w";
+        ServiceExecute.execute(
+                new AuthFundsService(this).getToken(req)).
+                subscribe(new ErrorExceptionObserver<ClientTokenModel>(switcher::showErrorView) {
+                    @Override
+                    protected void SuccessResponse(ErrorException<ClientTokenModel> orderUserTokenErrorException) {
+                        //todo startActivity
+                    }
+
+                    @Override
+                    protected void failResponse(ErrorException<ClientTokenModel> orderUserTokenErrorException) {
                         //todo renew Captcha
                         super.failResponse(orderUserTokenErrorException);
                     }

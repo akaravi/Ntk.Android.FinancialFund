@@ -11,6 +11,7 @@ import ntk.android.financialfund.server.model.FundCaptchaModel;
 import ntk.android.financialfund.server.model.GetTokenRequest;
 import ntk.android.financialfund.server.model.OrderTokenRequestModel;
 import ntk.android.financialfund.server.model.OrderUserToken;
+import ntk.android.financialfund.server.model.UserToken;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.HeaderMap;
@@ -32,7 +33,7 @@ interface IAuthFund {
 
     @POST("/api/v1/Auth/GetToken")
     @Headers({"content-type: application/json"})
-    Observable<ErrorExceptionBase> GetToken(@HeaderMap Map<String, String> headers, @Body GetTokenRequest body);
+    Observable<ErrorException<ClientTokenModel >> GetToken(@HeaderMap Map<String, String> headers, @Body UserToken body);
 
     @POST("/api/v1/Auth/CheckToken")
     @Headers({"content-type: application/json"})
