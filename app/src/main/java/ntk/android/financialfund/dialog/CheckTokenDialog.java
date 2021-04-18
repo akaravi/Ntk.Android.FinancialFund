@@ -157,8 +157,11 @@ public class CheckTokenDialog extends BaseActivity {
                     @Override
                     protected void SuccessResponse(ErrorException<ClientTokenModel> orderUserTokenErrorException) {
                         //todo startActivity
-                        if (orderUserTokenErrorException.IsSuccess)
+                        if (orderUserTokenErrorException.IsSuccess) {
+                            finish();
                             startActivity(new Intent(CheckTokenDialog.this, activity));
+
+                        }
                     }
 
                     @Override
