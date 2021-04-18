@@ -5,14 +5,13 @@
     android:orientation="vertical">
 
     <include layout="@layout/app_toolbar_back" />
+<RelativeLayout
+    android:layout_width="match_parent"
 
-    <RelativeLayout
+    android:layout_height="wrap_content">
+    <RelativeLayout     android:id="@+id/relative"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <include
-            android:id="@+id/sub_auth_loading"
-            layout="@layout/sub_auth_loading" />
 
         <include
             android:id="@+id/sub_auth_mobile"
@@ -21,5 +20,15 @@
         <include
             android:id="@+id/sub_auth_sms"
             layout="@layout/sub_checktoken_sms" />
+    </RelativeLayout>
+    <include
+        android:id="@+id/sub_auth_loading"
+        layout="@layout/sub_auth_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@+id/relative"
+        android:layout_alignRight="@+id/relative"
+        android:layout_alignLeft="@+id/relative"
+        android:layout_alignBottom="@+id/relative" />
     </RelativeLayout>
 </LinearLayout>

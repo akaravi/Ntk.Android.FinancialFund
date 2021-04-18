@@ -35,6 +35,7 @@ public class CheckTokenDialog extends BaseActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_checktoken);
+        findViewById(R.id.back_button).setOnClickListener(view -> finish());
         ((TextView) findViewById(R.id.txtToolbar)).setText("احراز هویت");
         activity = (Class) getIntent().getExtras().get(EXTRA_CLASSNAME);
 
@@ -46,7 +47,6 @@ public class CheckTokenDialog extends BaseActivity {
         }
 
     }
-
 
     private void checkToken() {
         findViewById(R.id.sub_auth_mobile).setVisibility(View.GONE);
@@ -109,7 +109,7 @@ public class CheckTokenDialog extends BaseActivity {
             Toasty.warning(this, "متن تصویر را وارد کنید", Toasty.LENGTH_LONG, true).show();
             return;
         }
-
+        findViewById(R.id.sub_auth_loading).setVisibility(View.VISIBLE);
         OrderTokenRequestModel req = new OrderTokenRequestModel();
         req.mobileNumber = mobileNumber = mobileTxt.getText().toString();
         req.captchaKey = captcha.getCaptchaKey();
@@ -119,12 +119,14 @@ public class CheckTokenDialog extends BaseActivity {
                 subscribe(new NtkObserver<ErrorException<OrderUserToken>>() {
                     @Override
                     public void onNext(@NonNull ErrorException<OrderUserToken> orderUserTokenErrorException) {
+                        findViewById(R.id.sub_auth_loading).setVisibility(View.GONE);
                         if (orderUserTokenErrorException.IsSuccess)
                             getToken();
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
+                        findViewById(R.id.sub_auth_loading).setVisibility(View.GONE);
                         switcher.showErrorView("خطا رخ داد" + "\n" + e.getCause(), () -> OrderTokenApi());
                     }
 
@@ -147,6 +149,7 @@ public class CheckTokenDialog extends BaseActivity {
             Toasty.warning(this, "کد اعتبار سنجی که برایتان ارسال شده را وارد کنید", Toasty.LENGTH_LONG, true).show();
             return;
         }
+        findViewById(R.id.sub_auth_loading).setVisibility(View.VISIBLE);
         UserToken req = new UserToken();
         req.packageName = "Test";// ConfigFundsHeaders.GET_PACKAGENAME();
         req.mobileNumber = mobileNumber;
@@ -155,11 +158,11 @@ public class CheckTokenDialog extends BaseActivity {
         req.captchaKey = captcha.getCaptchaKey();
         ServiceExecute.execute(
                 new AuthFundsService(this).getToken(req)).
-                subscribe(new ErrorExceptionObserver<ClientTokenModel>(switcher::showErrorView) {
+                subscribe(new NtkObserver<ErrorException<ClientTokenModel>>() {
                     @Override
-                    protected void SuccessResponse(ErrorException<ClientTokenModel> orderUserTokenErrorException) {
-                        //todo startActivity
-                        if (orderUserTokenErrorException.IsSuccess) {
+                    public void onNext(@NonNull ErrorException<ClientTokenModel> response) {
+                        findViewById(R.id.sub_auth_loading).setVisibility(View.GONE);
+                        if (response.IsSuccess) {
                             finish();
                             startActivity(new Intent(CheckTokenDialog.this, activity));
 
@@ -167,15 +170,11 @@ public class CheckTokenDialog extends BaseActivity {
                     }
 
                     @Override
-                    protected void failResponse(ErrorException<ClientTokenModel> orderUserTokenErrorException) {
-                        //todo renew Captcha
-                        super.failResponse(orderUserTokenErrorException);
+                    public void onError(@NonNull Throwable e) {
+                        findViewById(R.id.sub_auth_loading).setVisibility(View.GONE);
+                        switcher.showErrorView("خطا رخ داد" + "\n" + e.getCause(), () -> OrderTokenApi());
                     }
 
-                    @Override
-                    protected Runnable tryAgainMethod() {
-                        return () -> getTokenApi();
-                    }
                 });
     }
 

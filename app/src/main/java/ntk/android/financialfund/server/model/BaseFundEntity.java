@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Date;
 
 public class BaseFundEntity<TKey> {
-    @SerializedName("id")
+    @SerializedName("Id")
     public TKey id;
     @SerializedName("createdDate")
     public Date createdDate;

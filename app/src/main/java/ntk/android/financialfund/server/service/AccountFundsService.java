@@ -16,18 +16,19 @@ import io.reactivex.subjects.BehaviorSubject;
 import ntk.android.base.config.ListOfJson;
 import ntk.android.base.entitymodel.base.ErrorException;
 import ntk.android.financialfund.server.model.AccountToAccountModel;
+import ntk.android.financialfund.server.model.FundAccountReport;
 import ntk.android.financialfund.server.model.FundBranchAccount;
 
 public class AccountFundsService extends BaseFundService {
-    Class<FundBranchAccount> teClass = FundBranchAccount.class;
+
 
     public AccountFundsService(Context context) {
         super(context, "Account");
     }
 
-    public Observable<ErrorException<String>> getOne(Long Id) {
-        BehaviorSubject<ErrorException<String>> mMovieCache = BehaviorSubject.create();
-        Observable<ErrorException<String>> getone = getRetrofit(IAccountFund.class).GetOne(baseUrl + controlerUrl + "/" + Id, headers);
+    public Observable<ErrorException<FundAccountReport>> getOne(Long Id) {
+        BehaviorSubject<ErrorException<FundAccountReport>> mMovieCache = BehaviorSubject.create();
+        Observable<ErrorException<FundAccountReport>> getone = getRetrofit(IAccountFund.class).GetOne(baseUrl + controlerUrl + "/" + Id, headers);
         getone.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io()).subscribe(new Observer<ErrorException>() {
             @Override
@@ -38,13 +39,13 @@ public class AccountFundsService extends BaseFundService {
             @Override
             public void onNext(@NonNull ErrorException o) {
                 ErrorException a = new ErrorException();
-//                Gson gson = new GsonBuilder()
-//                        .enableComplexMapKeySerialization()
-//                        .setDateFormat("yyyy-MM-dd'T'hh:mm:ss").serializeNulls()
-//                        .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES)
-//                        .create();
-//                o.Item = gson.fromJson(gson.toJson(o.Item), teClass);
-//                o.ListItems = gson.fromJson(gson.toJson(o.ListItems), new ListOfJson<FundBranchAccount>(teClass));
+                Gson gson = new GsonBuilder()
+                        .enableComplexMapKeySerialization()
+                        .setDateFormat("yyyy-MM-dd'T'hh:mm:ss").serializeNulls()
+                        .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES)
+                        .create();
+                o.Item = gson.fromJson(gson.toJson(o.Item), FundAccountReport.class);
+                o.ListItems = gson.fromJson(gson.toJson(o.ListItems), new ListOfJson<FundAccountReport>(FundAccountReport.class));
                 mMovieCache.onNext(o);
             }
 
@@ -79,8 +80,8 @@ public class AccountFundsService extends BaseFundService {
                         .setDateFormat("yyyy-MM-dd'T'hh:mm:ss").serializeNulls()
                         .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES)
                         .create();
-                o.Item = gson.fromJson(gson.toJson(o.Item), teClass);
-                o.ListItems = gson.fromJson(gson.toJson(o.ListItems), new ListOfJson<FundBranchAccount>(teClass));
+                o.Item = gson.fromJson(gson.toJson(o.Item), FundBranchAccount.class);
+                o.ListItems = gson.fromJson(gson.toJson(o.ListItems), new ListOfJson<FundBranchAccount>(FundBranchAccount.class));
                 mMovieCache.onNext(o);
             }
 
@@ -115,8 +116,8 @@ public class AccountFundsService extends BaseFundService {
                         .setDateFormat("yyyy-MM-dd'T'hh:mm:ss").serializeNulls()
                         .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES)
                         .create();
-                o.Item = gson.fromJson(gson.toJson(o.Item), teClass);
-                o.ListItems = gson.fromJson(gson.toJson(o.ListItems), new ListOfJson<FundBranchAccount>(teClass));
+                o.Item = gson.fromJson(gson.toJson(o.Item), FundBranchAccount.class);
+                o.ListItems = gson.fromJson(gson.toJson(o.ListItems), new ListOfJson<FundBranchAccount>(FundBranchAccount.class));
                 mMovieCache.onNext(o);
             }
 

@@ -10,20 +10,25 @@ import androidx.annotation.Nullable;
 import com.google.android.material.textfield.TextInputEditText;
 
 import es.dmoral.toasty.Toasty;
+import io.reactivex.annotations.NonNull;
 import ntk.android.base.activity.BaseActivity;
 import ntk.android.base.config.ErrorExceptionObserver;
+import ntk.android.base.config.NtkObserver;
 import ntk.android.base.config.ServiceExecute;
 import ntk.android.base.entitymodel.base.ErrorException;
 import ntk.android.financialfund.R;
 import ntk.android.financialfund.adapter.AccountSelectAdapter;
+import ntk.android.financialfund.server.model.FundAccountReport;
 import ntk.android.financialfund.server.model.FundBranchAccount;
 import ntk.android.financialfund.server.service.AccountFundsService;
 
 public class AccountReportActivity extends BaseActivity {
+    private FundBranchAccount source;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.class7);
+        setContentView(R.layout.acount_report_activity);
         ((TextView) findViewById(R.id.txtToolbar)).setText(getString(R.string.mainCard7));
         ((Button) findViewById(R.id.btnOk)).setText("گزارش");
         findViewById(R.id.btn_cancel).setOnClickListener(view -> finish());
@@ -36,31 +41,24 @@ public class AccountReportActivity extends BaseActivity {
         AutoCompleteTextView accountId = findViewById(R.id.etAccountId);
         TextInputEditText fromDate = findViewById(R.id.etFromDate);
         TextInputEditText toDate = findViewById(R.id.etToDate);
-        if (accountId.getText().toString().equalsIgnoreCase(""))
+        if (accountId.getText().toString().equalsIgnoreCase("")) {
             Toasty.error(this, "لطفا حساب سپرده ی خود را انتخاب کنید").show();
-        else if (fromDate.getText().toString().equalsIgnoreCase(""))
-            Toasty.error(this, "لطفا ابتدای بازی زمانی خود را انتخاب نمایید").show();
-        else if (toDate.getText().toString().equalsIgnoreCase(""))
-            Toasty.error(this, "لطفا انتهای بازی زمانی خود را انتخاب نمایید").show();
-        else
-            callApi(54L);
-
-    }
-
-    private void callApi(Long integer) {
-        ServiceExecute.execute(new AccountFundsService(this).getOne(integer))
-                .subscribe(new ErrorExceptionObserver<String>(switcher::showErrorView) {
+            return;
+        }
+        ServiceExecute.execute(new AccountFundsService(this).getOne(source.id))
+                .subscribe(new NtkObserver<ErrorException<FundAccountReport>>() {
                     @Override
-                    protected void SuccessResponse(ErrorException<String> stringErrorException) {
+                    public void onNext(@NonNull ErrorException<FundAccountReport> fundAccountReportErrorException) {
                         switcher.showContentView();
                     }
 
                     @Override
-                    protected Runnable tryAgainMethod() {
-                        return ()->callApi(integer);
+                    public void onError(@NonNull Throwable e) {
+
                     }
                 });
         ;
+
     }
 
     private void getAccounts() {
@@ -75,7 +73,8 @@ public class AccountReportActivity extends BaseActivity {
                 sourceAccount.setAdapter(new AccountSelectAdapter(AccountReportActivity.this, accountModelErrorException.ListItems));
                 sourceAccount.setOnItemClickListener((adapterView, view12, i, l) -> {
                     if (i >= 0) {
-                        sourceAccount.setText(((FundBranchAccount) adapterView.getItemAtPosition(i)).id + "");
+                        source = (((FundBranchAccount) adapterView.getItemAtPosition(i)));
+                        sourceAccount.setText(((FundBranchAccount) adapterView.getItemAtPosition(i)).accountKey + "");
                         SourceName.setText(((FundBranchAccount) adapterView.getItemAtPosition(i)).accountClientDescription);
                     } else {
                         sourceAccount.setText("");
