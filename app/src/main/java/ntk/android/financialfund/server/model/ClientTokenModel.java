@@ -11,7 +11,7 @@ public class ClientTokenModel {
     public String packageName;
     @SerializedName("expireDate")
     public String expireDate;
-    @SerializedName("token")
+    @SerializedName("Token")
     public String token;
     @SerializedName("user")
     public UserToken user;

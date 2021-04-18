@@ -10,18 +10,19 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.HeaderMap;
 import retrofit2.http.Headers;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 interface IAccountFund {
     @GET("{cpath}")
-    @Headers({"content-type: application/json"})
-    Observable<ErrorException<FundBranchAccount>> GetOne(@Path(value = "cpath",encoded = true) String cpath, @HeaderMap Map<String, String> headers);
+    @Headers({"content-type: application/json"})//FundAccountReport
+    Observable<ErrorException<String>> GetOne(@Path(value = "cpath",encoded = true) String cpath, @HeaderMap Map<String, String> headers);
 
     @GET("{cpath}")
-    @Headers({"content-type: application/json"})
+    @Headers({"content-type: application/json"})//todo
     Observable<ErrorException<FundBranchAccount>> GetList(@Path(value = "cpath",encoded = true) String cpath, @HeaderMap Map<String, String> headers);
 
-  @GET("{cpath}")
+  @POST("{cpath}")
     @Headers({"content-type: application/json"})
     Observable<ErrorException<FundBranchAccount>> AccountToAccount(@Path(value = "cpath",encoded = true) String cpath, @HeaderMap Map<String, String> headers, @Body AccountToAccountModel body);
 

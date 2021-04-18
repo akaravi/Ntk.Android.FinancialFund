@@ -17,7 +17,6 @@ import ntk.android.financialfund.R;
 import ntk.android.financialfund.adapter.AccountSelectAdapter;
 import ntk.android.financialfund.server.model.AccountToAccountModel;
 import ntk.android.financialfund.server.model.FundBranchAccount;
-import ntk.android.financialfund.server.model.TestAccountModel;
 import ntk.android.financialfund.server.service.AccountFundsService;
 
 public class AccountToAccountActivity extends BaseActivity {
@@ -39,7 +38,7 @@ public class AccountToAccountActivity extends BaseActivity {
     private void checkData() {
         AutoCompleteTextView accountId = findViewById(R.id.etAccountId);
         TextInputEditText amount = findViewById(R.id.etAmount);
-        AutoCompleteTextView accountDestId = findViewById(R.id.etAccountId);
+        AutoCompleteTextView accountDestId = findViewById(R.id.etAccountDestId);
         if (accountId.getText().toString().equalsIgnoreCase(""))
             Toasty.error(this, "لطفا حساب سپرده ی مبدا را انتخاب کنید").show();
         else if (accountDestId.getText().toString().equalsIgnoreCase(""))
@@ -65,6 +64,7 @@ public class AccountToAccountActivity extends BaseActivity {
     }
 
     private void confirmDilaog() {
+        //todo open dialog
         callApi();
     }
 
@@ -85,7 +85,7 @@ public class AccountToAccountActivity extends BaseActivity {
 
             @Override
             protected Runnable tryAgainMethod() {
-                return null;
+                return () -> callApi();
             }
         });
     }
@@ -102,8 +102,9 @@ public class AccountToAccountActivity extends BaseActivity {
                 sourceAccount.setAdapter(new AccountSelectAdapter(AccountToAccountActivity.this, accountModelErrorException.ListItems));
                 sourceAccount.setOnItemClickListener((adapterView, view12, i, l) -> {
                     if (i >= 0) {
-                        sourceAccount.setText(((TestAccountModel) adapterView.getItemAtPosition(i)).AccountId);
-                        SourceName.setText(((TestAccountModel) adapterView.getItemAtPosition(i)).Name);
+                        source = (((FundBranchAccount) adapterView.getItemAtPosition(i)));
+                        sourceAccount.setText(((FundBranchAccount) adapterView.getItemAtPosition(i)).id + "");
+                        SourceName.setText(((FundBranchAccount) adapterView.getItemAtPosition(i)).accountClientDescription);
                     } else {
                         sourceAccount.setText("");
                         SourceName.setText("");
@@ -114,8 +115,9 @@ public class AccountToAccountActivity extends BaseActivity {
                 destinationAccount.setAdapter(new AccountSelectAdapter(AccountToAccountActivity.this, accountModelErrorException.ListItems));
                 destinationAccount.setOnItemClickListener((adapterView, view12, i, l) -> {
                     if (i >= 0) {
-                        destinationAccount.setText(((TestAccountModel) adapterView.getItemAtPosition(i)).AccountId);
-                        destinationName.setText(((TestAccountModel) adapterView.getItemAtPosition(i)).Name);
+                        destination = (((FundBranchAccount) adapterView.getItemAtPosition(i)));
+                        destinationAccount.setText(((FundBranchAccount) adapterView.getItemAtPosition(i)).id + "");
+                        destinationName.setText(((FundBranchAccount) adapterView.getItemAtPosition(i)).accountClientDescription);
                     } else {
                         destinationAccount.setText("");
                         destinationName.setText("");
@@ -125,7 +127,7 @@ public class AccountToAccountActivity extends BaseActivity {
 
             @Override
             protected Runnable tryAgainMethod() {
-                return null;
+                return () -> getAccounts();
             }
         });
     }

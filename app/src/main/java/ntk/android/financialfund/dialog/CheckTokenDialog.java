@@ -1,5 +1,6 @@
 package ntk.android.financialfund.dialog;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -7,8 +8,10 @@ import android.widget.EditText;
 import androidx.annotation.Nullable;
 
 import es.dmoral.toasty.Toasty;
+import io.reactivex.annotations.NonNull;
 import ntk.android.base.activity.BaseActivity;
 import ntk.android.base.config.ErrorExceptionObserver;
+import ntk.android.base.config.NtkObserver;
 import ntk.android.base.config.ServiceExecute;
 import ntk.android.base.entitymodel.base.ErrorException;
 import ntk.android.financialfund.R;
@@ -22,13 +25,17 @@ import ntk.android.financialfund.server.service.AuthFundsService;
 import ntk.android.financialfund.view.FundCaptchaView;
 
 public class CheckTokenDialog extends BaseActivity {
+    public static final String EXTRA_CLASSNAME = "Extra_className";
     Class activity;
     private Runnable runnable;
+    private String mobileNumber;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_checktoken);
+        activity = (Class) getIntent().getExtras().get(EXTRA_CLASSNAME);
+
         String token = new FoundInfo(this).getToken();
         if (token.equalsIgnoreCase("")) {
             OrderToken();
@@ -46,20 +53,13 @@ public class CheckTokenDialog extends BaseActivity {
         checkTokenApi();
     }
 
-    private void OrderToken() {
-        findViewById(R.id.sub_auth_mobile).setVisibility(View.VISIBLE);
-        findViewById(R.id.sub_auth_sms).setVisibility(View.GONE);
-        findViewById(R.id.sub_auth_loading).setVisibility(View.GONE);
-        findViewById(R.id.btnSend).setOnClickListener(view -> OrderTokenApi());
-
-    }
-    private void checkTokenApi(){
-        GetTokenRequest req=new GetTokenRequest();
-        req.mobileNumber="09999999999";
-        req.smsValue="11111";
-        req.captchaValue="22222";
-        req.captchaKey="4a7sU_aLetQ37MqS0S-7lg";
-        req.token= new FoundInfo(this).getToken();
+    private void checkTokenApi() {
+        GetTokenRequest req = new GetTokenRequest();
+        req.mobileNumber = "09999999999";
+        req.smsValue = "11111";
+        req.captchaValue = "22222";
+        req.captchaKey = "MvMdPzaoa6-sl8q8R4HFiw";
+        req.token = new FoundInfo(this).getToken();
         ServiceExecute.execute(
                 new AuthFundsService(this).checkToken(req)).
                 subscribe(new ErrorExceptionObserver<ClientTokenModel>(switcher::showErrorView) {
@@ -81,6 +81,16 @@ public class CheckTokenDialog extends BaseActivity {
 
                 });
     }
+
+    private void OrderToken() {
+        findViewById(R.id.sub_auth_mobile).setVisibility(View.VISIBLE);
+        findViewById(R.id.sub_auth_sms).setVisibility(View.GONE);
+        findViewById(R.id.sub_auth_loading).setVisibility(View.GONE);
+        ((FundCaptchaView) findViewById(R.id.fundCaptchaView)).getNewCaptcha();
+        findViewById(R.id.btnSend).setOnClickListener(view -> OrderTokenApi());
+
+    }
+
     private void OrderTokenApi() {
         EditText mobileTxt = findViewById(R.id.txtActRegister);
         FundCaptchaView captcha = findViewById(R.id.fundCaptchaView);
@@ -90,54 +100,65 @@ public class CheckTokenDialog extends BaseActivity {
         } else if (!mobileTxt.getText().toString().startsWith("09")) {
             Toasty.warning(this, "شماره تلفن همراه را به صورت صحیح وارد کنید", Toasty.LENGTH_LONG, true).show();
             return;
-        }  else if (mobileTxt.getText().toString().length() != 11) {
+        } else if (mobileTxt.getText().toString().length() != 11) {
             Toasty.warning(this, "شماره تلفن همراه را به صورت صحیح وارد کنید", Toasty.LENGTH_LONG, true).show();
             return;
-        }else if (captcha.getCaptchaText().trim().equalsIgnoreCase("")) {
+        } else if (captcha.getCaptchaText().trim().equalsIgnoreCase("")) {
             Toasty.warning(this, "متن تصویر را وارد کنید", Toasty.LENGTH_LONG, true).show();
             return;
         }
 
         OrderTokenRequestModel req = new OrderTokenRequestModel();
-        req.mobileNumber = mobileTxt.getText().toString();
-        req.mobileNumber = "09999999999";
+        req.mobileNumber = mobileNumber = mobileTxt.getText().toString();
         req.captchaKey = captcha.getCaptchaKey();
         req.captchaValue = captcha.getCaptchaText();
         ServiceExecute.execute(
                 new AuthFundsService(this).orderToken(req)).
-                subscribe(new ErrorExceptionObserver<OrderUserToken>(switcher::showErrorView) {
+                subscribe(new NtkObserver<ErrorException<OrderUserToken>>() {
                     @Override
-                    protected void SuccessResponse(ErrorException<OrderUserToken> orderUserTokenErrorException) {
-                        //todo go to sms sending
-                        getTokenApi();
+                    public void onNext(@NonNull ErrorException<OrderUserToken> orderUserTokenErrorException) {
+                        if (orderUserTokenErrorException.IsSuccess)
+                            getToken();
                     }
 
                     @Override
-                    protected void failResponse(ErrorException<OrderUserToken> orderUserTokenErrorException) {
-                        //todo renew Captcha
-                        super.failResponse(orderUserTokenErrorException);
-                    }
-
-                    @Override
-                    protected Runnable tryAgainMethod() {
-                        return null;
+                    public void onError(@NonNull Throwable e) {
+                        switcher.showErrorView("خطا رخ داد" + "\n" + e.getCause(), () -> OrderTokenApi());
                     }
 
                 });
     }
 
+    private void getToken() {
+        findViewById(R.id.sub_auth_sms).setVisibility(View.VISIBLE);
+        findViewById(R.id.sub_auth_mobile).setVisibility(View.GONE);
+        findViewById(R.id.sub_auth_loading).setVisibility(View.GONE);
+        ((FundCaptchaView) findViewById(R.id.fundCaptchaSmsView)).getNewCaptcha();
+        findViewById(R.id.btnSendSms).setOnClickListener(view -> getTokenApi());
+    }
+
     private void getTokenApi() {
-        UserToken req=new UserToken();
-        req.mobileNumber="09999999999";
-        req.smsValue="11111";
-        req.captchaValue="22222";
-        req.captchaKey="5SJ-4aaDfJxV2PZ5r8hD5w";
+        //create Ui
+        EditText smsValue = findViewById(R.id.txtSmsValue);
+        FundCaptchaView captcha = findViewById(R.id.fundCaptchaSmsView);
+        if (smsValue.getText().toString().equalsIgnoreCase("")) {
+            Toasty.warning(this, "کد اعتبار سنجی که برایتان ارسال شده را وارد کنید", Toasty.LENGTH_LONG, true).show();
+            return;
+        }
+        UserToken req = new UserToken();
+        req.packageName = "Test";// ConfigFundsHeaders.GET_PACKAGENAME();
+        req.mobileNumber = mobileNumber;
+        req.smsValue = smsValue.getText().toString();
+        req.captchaValue = captcha.getCaptchaText();
+        req.captchaKey = captcha.getCaptchaKey();
         ServiceExecute.execute(
                 new AuthFundsService(this).getToken(req)).
                 subscribe(new ErrorExceptionObserver<ClientTokenModel>(switcher::showErrorView) {
                     @Override
                     protected void SuccessResponse(ErrorException<ClientTokenModel> orderUserTokenErrorException) {
                         //todo startActivity
+                        if (orderUserTokenErrorException.IsSuccess)
+                            startActivity(new Intent(CheckTokenDialog.this, activity));
                     }
 
                     @Override
@@ -148,9 +169,8 @@ public class CheckTokenDialog extends BaseActivity {
 
                     @Override
                     protected Runnable tryAgainMethod() {
-                        return null;
+                        return () -> getTokenApi();
                     }
-
                 });
     }
 

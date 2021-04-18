@@ -25,9 +25,9 @@ public class AccountFundsService extends BaseFundService {
         super(context, "Account");
     }
 
-    public Observable<ErrorException<FundBranchAccount>> getOne(Long Id) {
-        BehaviorSubject<ErrorException<FundBranchAccount>> mMovieCache = BehaviorSubject.create();
-        Observable<ErrorException<FundBranchAccount>> getone = getRetrofit(IAccountFund.class).GetOne(baseUrl + controlerUrl + "/" + Id, headers);
+    public Observable<ErrorException<String>> getOne(Long Id) {
+        BehaviorSubject<ErrorException<String>> mMovieCache = BehaviorSubject.create();
+        Observable<ErrorException<String>> getone = getRetrofit(IAccountFund.class).GetOne(baseUrl + controlerUrl + "/" + Id, headers);
         getone.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io()).subscribe(new Observer<ErrorException>() {
             @Override
@@ -38,13 +38,13 @@ public class AccountFundsService extends BaseFundService {
             @Override
             public void onNext(@NonNull ErrorException o) {
                 ErrorException a = new ErrorException();
-                Gson gson = new GsonBuilder()
-                        .enableComplexMapKeySerialization()
-                        .setDateFormat("yyyy-MM-dd'T'hh:mm:ss").serializeNulls()
-                        .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES)
-                        .create();
-                o.Item = gson.fromJson(gson.toJson(o.Item), teClass);
-                o.ListItems = gson.fromJson(gson.toJson(o.ListItems), new ListOfJson<FundBranchAccount>(teClass));
+//                Gson gson = new GsonBuilder()
+//                        .enableComplexMapKeySerialization()
+//                        .setDateFormat("yyyy-MM-dd'T'hh:mm:ss").serializeNulls()
+//                        .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES)
+//                        .create();
+//                o.Item = gson.fromJson(gson.toJson(o.Item), teClass);
+//                o.ListItems = gson.fromJson(gson.toJson(o.ListItems), new ListOfJson<FundBranchAccount>(teClass));
                 mMovieCache.onNext(o);
             }
 

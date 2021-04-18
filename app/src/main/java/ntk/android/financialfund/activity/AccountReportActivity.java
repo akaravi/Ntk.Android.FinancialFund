@@ -10,22 +10,16 @@ import androidx.annotation.Nullable;
 import com.google.android.material.textfield.TextInputEditText;
 
 import es.dmoral.toasty.Toasty;
-import io.reactivex.annotations.NonNull;
 import ntk.android.base.activity.BaseActivity;
 import ntk.android.base.config.ErrorExceptionObserver;
-import ntk.android.base.config.NtkObserver;
 import ntk.android.base.config.ServiceExecute;
 import ntk.android.base.entitymodel.base.ErrorException;
-import ntk.android.base.entitymodel.base.FilterModel;
 import ntk.android.financialfund.R;
 import ntk.android.financialfund.adapter.AccountSelectAdapter;
-import ntk.android.financialfund.adapter.TestAccountSelectAdapter;
 import ntk.android.financialfund.server.model.FundBranchAccount;
-import ntk.android.financialfund.server.model.TestAccountModel;
 import ntk.android.financialfund.server.service.AccountFundsService;
-import ntk.android.financialfund.server.service.AccountService;
 
-public class Class7 extends BaseActivity {
+public class AccountReportActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,12 +43,24 @@ public class Class7 extends BaseActivity {
         else if (toDate.getText().toString().equalsIgnoreCase(""))
             Toasty.error(this, "لطفا انتهای بازی زمانی خود را انتخاب نمایید").show();
         else
-            callApi();
+            callApi(54L);
 
     }
 
-    private void callApi() {
+    private void callApi(Long integer) {
+        ServiceExecute.execute(new AccountFundsService(this).getOne(integer))
+                .subscribe(new ErrorExceptionObserver<String>(switcher::showErrorView) {
+                    @Override
+                    protected void SuccessResponse(ErrorException<String> stringErrorException) {
+                        switcher.showContentView();
+                    }
 
+                    @Override
+                    protected Runnable tryAgainMethod() {
+                        return ()->callApi(integer);
+                    }
+                });
+        ;
     }
 
     private void getAccounts() {
@@ -66,11 +72,11 @@ public class Class7 extends BaseActivity {
                 AutoCompleteTextView sourceAccount = (AutoCompleteTextView) findViewById(R.id.etAccountId);
 
                 TextInputEditText SourceName = findViewById(R.id.etName);
-                sourceAccount.setAdapter(new AccountSelectAdapter(Class7.this, accountModelErrorException.ListItems));
+                sourceAccount.setAdapter(new AccountSelectAdapter(AccountReportActivity.this, accountModelErrorException.ListItems));
                 sourceAccount.setOnItemClickListener((adapterView, view12, i, l) -> {
                     if (i >= 0) {
-                        sourceAccount.setText(((TestAccountModel) adapterView.getItemAtPosition(i)).AccountId);
-                        SourceName.setText(((TestAccountModel) adapterView.getItemAtPosition(i)).Name);
+                        sourceAccount.setText(((FundBranchAccount) adapterView.getItemAtPosition(i)).id + "");
+                        SourceName.setText(((FundBranchAccount) adapterView.getItemAtPosition(i)).accountClientDescription);
                     } else {
                         sourceAccount.setText("");
                         SourceName.setText("");
@@ -81,7 +87,7 @@ public class Class7 extends BaseActivity {
 
             @Override
             protected Runnable tryAgainMethod() {
-                return null;
+                return () -> getAccounts();
             }
         });
 

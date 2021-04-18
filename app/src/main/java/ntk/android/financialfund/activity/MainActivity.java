@@ -129,7 +129,7 @@ public class MainActivity extends AbstractMainActivity {
     private void init() {
         setAnimation();
         for (int i = 0; i < lbl.size(); i++) {
-            lbl.get(i).setTypeface(FontManager.GetTypeface(this, FontManager.DastNevis));
+            lbl.get(i).setTypeface(FontManager.T2_Typeface(this));
         }
         HandelSlider();
     }
@@ -208,7 +208,9 @@ public class MainActivity extends AbstractMainActivity {
 
     @OnClick(R.id.mainCard1)
     public void oncard1() {
-        this.startActivity(new Intent(this, CheckTokenDialog.class));
+        Intent i = new Intent(this, CheckTokenDialog.class);
+        i.putExtra(CheckTokenDialog.EXTRA_CLASSNAME,AccountToAccountActivity.class);
+        this.startActivity(i);
     }
 
     @OnClick(R.id.mainCard2)
@@ -238,7 +240,9 @@ public class MainActivity extends AbstractMainActivity {
 
     @OnClick(R.id.mainCard7)
     public void oncard7() {
-        this.startActivity(new Intent(this, Class7.class));
+        Intent i = new Intent(this, CheckTokenDialog.class);
+        i.putExtra(CheckTokenDialog.EXTRA_CLASSNAME,AccountReportActivity.class);
+        this.startActivity(i);
     }
 
     @OnClick(R.id.supportBtn)

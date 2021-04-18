@@ -20,19 +20,19 @@ import ntk.android.base.entitymodel.news.NewsContentOtherInfoModel;
 import ntk.android.base.utill.FontManager;
 import ntk.android.financialfund.R;
 
-public class TabNewsAdapter extends BaseRecyclerAdapter<NewsContentOtherInfoModel,TabNewsAdapter.ViewHolder> {
+public class TabNewsAdapter extends BaseRecyclerAdapter<NewsContentOtherInfoModel, TabNewsAdapter.ViewHolder> {
 
     private final Context context;
 
     public TabNewsAdapter(Context context, List<NewsContentOtherInfoModel> arrayList) {
-       super(arrayList);
+        super(arrayList);
         this.context = context;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View view = inflate(viewGroup,R.layout.row_recycler_tab);
+        View view = inflate(viewGroup, R.layout.row_recycler_tab);
         return new ViewHolder(view);
     }
 
@@ -60,7 +60,7 @@ public class TabNewsAdapter extends BaseRecyclerAdapter<NewsContentOtherInfoMode
         public ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
-            Btn.setTypeface(FontManager.GetTypeface(context, FontManager.IranSans));
+            Btn.setTypeface(FontManager.T1_Typeface(context));
             webView.getSettings().setJavaScriptEnabled(true);
             webView.getSettings().setBuiltInZoomControls(true);
         }

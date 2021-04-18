@@ -42,7 +42,7 @@ public class MyApplication extends NTKApplication {
         ImageLoader.getInstance().init(config);
 
         Toasty.Config.getInstance()
-                .setToastTypeface(FontManager.GetTypeface(getApplicationContext(), FontManager.IranSans))
+                .setToastTypeface(FontManager.T1_Typeface(getApplicationContext()))
                 .setTextSize(14).apply();
         applicationStyle = new ApplicationStyle() {
 
@@ -89,7 +89,7 @@ public class MyApplication extends NTKApplication {
     @Override
     protected ApplicationStaticParameter getConfig() {
         ApplicationStaticParameter applicationStaticParameter = new ApplicationStaticParameter();
-//        ApplicationStaticParameter.URL = "https://597b124a7f42.ngrok.io";
+//        ApplicationStaticParameter.URL = "http://52d21137cc37.ngrok.io";
         return applicationStaticParameter;
     }
 

@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <include layout="@layout/app_toolbar_back" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-<include layout="@layout/sub_auth_loading" android:id="@+id/sub_auth_loading"/>
+
+        <include
+            android:id="@+id/sub_auth_loading"
+            layout="@layout/sub_auth_loading" />
+
         <include
             android:id="@+id/sub_auth_mobile"
             layout="@layout/sub_checktoken_mobile" />

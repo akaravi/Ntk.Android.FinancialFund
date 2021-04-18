@@ -11,22 +11,33 @@ import ntk.android.base.ApplicationStaticParameter;
 import ntk.android.base.BaseNtkApplication;
 import ntk.android.base.utill.AppUtill;
 import ntk.android.base.utill.prefrense.Preferences;
+import ntk.android.financialfund.MyApplication;
 
 public class ConfigFundsHeaders {
+    static String TOKEN = "";
+
+    public static void SET_TOKEN(String token) {
+        Context c = BaseNtkApplication.get();
+        TOKEN = token;
+    }
+
     public Map<String, String> GetHeaders(Context context) {
 
         TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         Map<String, String> headers = new HashMap<>();
         String staticToken = BaseNtkApplication.get().staticConfig().TONEN;
-        if (!staticToken.equalsIgnoreCase("")) {
-            headers.put("Token", staticToken);
-            headers.put("Authorization", staticToken);
-        } else{
-            String auth = Preferences.with(context).tokenInfo().authorizationToken();
-
-            headers.put("Token", auth);
-            headers.put("Authorization", auth);
-        }
+//        if (!staticToken.equalsIgnoreCase("")) {
+//            headers.put("Token", staticToken);
+//            headers.put("Authorization", staticToken);
+//        } else {
+//            String auth = Preferences.with(context).tokenInfo().authorizationToken();
+//
+//            headers.put("Token", auth);
+//            headers.put("Authorization", auth);
+//        }
+        if(TOKEN==null)
+            TOKEN="";
+        headers.put("Token", TOKEN);
         String staticDevice_token = ApplicationStaticParameter.DEVICE_TOKEN;
         if (!staticDevice_token.equalsIgnoreCase(""))
             headers.put("DeviceToken", staticDevice_token);
@@ -35,6 +46,7 @@ public class ConfigFundsHeaders {
             if (!prevToken.equalsIgnoreCase(""))
                 headers.put("DeviceToken", prevToken);
         }
+        //todo package
 //        String staticPackageName = ApplicationStaticParameter.PACKAGE_NAME;
 //        if (staticPackageName.equalsIgnoreCase(""))
 //            headers.put("PackageName", BaseNtkApplication.get().getApplicationParameter().PACKAGE_NAME());
@@ -58,5 +70,9 @@ public class ConfigFundsHeaders {
             BaseNtkApplication.get().bindFireBase();
         }
         return headers;
+    }
+
+    public static String GET_PACKAGENAME() {
+        return MyApplication.get().getApplicationParameter().PACKAGE_NAME();
     }
 }

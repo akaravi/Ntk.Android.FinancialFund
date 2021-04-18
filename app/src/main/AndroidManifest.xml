@@ -68,8 +68,8 @@
         <activity android:name=".activity.Class4" />
         <activity android:name=".activity.Class5" />
         <activity android:name=".activity.Class6" />
-        <activity android:name=".activity.Class7" />
-        <activity android:name=".dialog.CheckTokenDialog" />
+        <activity android:name=".activity.AccountReportActivity" />
+        <activity android:name=".dialog.CheckTokenDialog" android:theme="@style/AppTheme.Dialog"/>
 
 
         <!--        <provider-->

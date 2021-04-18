@@ -4,38 +4,38 @@ import com.google.gson.annotations.SerializedName;
 
 public class FundBranchAccount extends BaseFundEntity<Long> {
     public static final long LIMIT_PRISE = 1000;
-    @SerializedName("branchGuidKey")
+    @SerializedName("BranchGuidKey")
     public String branchGuidKey;
-    @SerializedName("accountKey")
+    @SerializedName("AccountKey")
     public String accountKey;
-    @SerializedName("accountTypeId")
+    @SerializedName("AccountTypeId")
     public long accountTypeId;
-    @SerializedName("accountTypeDescription")
+    @SerializedName("AccountTypeDescription")
     public String accountTypeDescription;
-    @SerializedName("isShared")
+    @SerializedName("IsShared")
     public boolean isShared;
-    @SerializedName("accountNumber")
+    @SerializedName("AccountNumber")
     public boolean accountNumber;
-    @SerializedName("isLoanAccount")
+    @SerializedName("IsLoanAccount")
     public boolean isLoanAccount;
-    @SerializedName("description")
+    @SerializedName("Description")
     public String description;
-    @SerializedName("accountClientDescription")
+    @SerializedName("AccountClientDescription")
     public String accountClientDescription;
-    @SerializedName("score")
+    @SerializedName("Score")
     public long score;
-    @SerializedName("isActive")
+    @SerializedName("IsActive")
     public boolean isActive;
-    @SerializedName("inventory")
+    @SerializedName("Inventory")
     public long inventory;
-    @SerializedName("loanInstallmentRemain")
+    @SerializedName("LoanInstallmentRemain")
     public long loanInstallmentRemain;
-    @SerializedName("loanInstallmentPrice")
+    @SerializedName("LoanInstallmentPrice")
     public long loanInstallmentPrice;
-    @SerializedName("loanInstallmentDelayCount")
+    @SerializedName("LoanInstallmentDelayCount")
     public long loanInstallmentDelayCount;
-    @SerializedName("loanInstallmentDelayPrice")
+    @SerializedName("LoanInstallmentDelayPrice")
     public long loanInstallmentDelayPrice;
-    @SerializedName("loanStatusAlert")
+    @SerializedName("LoanStatusAlert")
     public long loanStatusAlert;
 }

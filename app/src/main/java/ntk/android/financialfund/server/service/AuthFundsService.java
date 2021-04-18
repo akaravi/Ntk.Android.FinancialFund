@@ -118,6 +118,7 @@ public class AuthFundsService extends BaseFundService {
 
             @Override
             public void onNext(@NonNull ErrorException<ClientTokenModel> model) {
+                ConfigFundsHeaders.SET_TOKEN(model.Item.token);
                 mMovieCache.onNext(model);
             }
 

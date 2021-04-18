@@ -7,8 +7,8 @@ import java.util.Map;
 import ntk.android.base.config.RetrofitManager;
 
 class BaseFundService{
-//    public static final String FUND_URL = "https://e-hasanat.ir/";
-    public static final String FUND_URL = "http://7ffccc9f0e27.ngrok.io";
+    public static final String FUND_URL = "https://e-hasanat.ir/";
+//    public static final String FUND_URL = "http://5548ad2746f1.ngrok.io";
     protected final String baseUrl = "api/v1/";
     protected final String controlerUrl;
     protected Context context;
