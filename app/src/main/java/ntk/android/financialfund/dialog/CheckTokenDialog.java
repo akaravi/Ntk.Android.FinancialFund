@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
@@ -34,6 +35,7 @@ public class CheckTokenDialog extends BaseActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_checktoken);
+        ((TextView) findViewById(R.id.txtToolbar)).setText("احراز هویت");
         activity = (Class) getIntent().getExtras().get(EXTRA_CLASSNAME);
 
         String token = new FoundInfo(this).getToken();

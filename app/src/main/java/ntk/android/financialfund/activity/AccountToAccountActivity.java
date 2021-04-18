@@ -1,12 +1,16 @@
 package ntk.android.financialfund.activity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.text.DecimalFormat;
 
 import es.dmoral.toasty.Toasty;
 import ntk.android.base.activity.BaseActivity;
@@ -30,8 +34,41 @@ public class AccountToAccountActivity extends BaseActivity {
         ((TextView) findViewById(R.id.txtToolbar)).setText(getString(R.string.accountToaccount));
         findViewById(R.id.btn_cancel).setOnClickListener(view -> finish());
         findViewById(R.id.back_button).setOnClickListener(view -> finish());
-        getAccounts();
+//        getAccounts();
         findViewById(R.id.btnOk).setOnClickListener(view -> checkData());
+        ((TextInputEditText) findViewById(R.id.etAmount)).addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                String input = s.toString();
+
+                if (!input.isEmpty()) {
+
+                    input = input.replace(",", "");
+
+                    DecimalFormat format = new DecimalFormat("###,###,###,###");
+                    String newPrice = format.format(Double.parseDouble(input));
+
+                    TextInputEditText myEditText=  findViewById(R.id.etAmount);
+                    myEditText.removeTextChangedListener(this); //To Prevent from Infinite Loop
+                    myEditText.setText(newPrice);
+                    myEditText.setSelection(newPrice.length()); //Move Cursor to end of String
+                    myEditText.addTextChangedListener(this);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+
+
+        });
     }
 
 
@@ -103,7 +140,7 @@ public class AccountToAccountActivity extends BaseActivity {
                 sourceAccount.setOnItemClickListener((adapterView, view12, i, l) -> {
                     if (i >= 0) {
                         source = (((FundBranchAccount) adapterView.getItemAtPosition(i)));
-                        sourceAccount.setText(((FundBranchAccount) adapterView.getItemAtPosition(i)).id + "");
+                        sourceAccount.setText(((FundBranchAccount) adapterView.getItemAtPosition(i)).accountKey + "");
                         SourceName.setText(((FundBranchAccount) adapterView.getItemAtPosition(i)).accountClientDescription);
                     } else {
                         sourceAccount.setText("");
@@ -116,7 +153,7 @@ public class AccountToAccountActivity extends BaseActivity {
                 destinationAccount.setOnItemClickListener((adapterView, view12, i, l) -> {
                     if (i >= 0) {
                         destination = (((FundBranchAccount) adapterView.getItemAtPosition(i)));
-                        destinationAccount.setText(((FundBranchAccount) adapterView.getItemAtPosition(i)).id + "");
+                        destinationAccount.setText(((FundBranchAccount) adapterView.getItemAtPosition(i)).accountKey + "");
                         destinationName.setText(((FundBranchAccount) adapterView.getItemAtPosition(i)).accountClientDescription);
                     } else {
                         destinationAccount.setText("");

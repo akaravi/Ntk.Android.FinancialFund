@@ -40,8 +40,8 @@ public class AccountSelectAdapter extends ArrayAdapter<FundBranchAccount> {
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.row_account_bank, parent, false);
         }
-        ((TextView) view.findViewById(R.id.textView)).setText(getItem(position).accountKey + "شماره حساب :");
-        ((TextView) view.findViewById(R.id.textView1)).setText(getItem(position).accountClientDescription );
+        ((TextView) view.findViewById(R.id.textView)).setText("شماره حساب : " + getItem(position).accountKey);
+        ((TextView) view.findViewById(R.id.textView1)).setText(getItem(position).description);
         return view;
     }
 }
