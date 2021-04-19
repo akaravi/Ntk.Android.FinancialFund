@@ -6,6 +6,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -17,6 +19,7 @@ import ntk.android.base.config.NtkObserver;
 import ntk.android.base.config.ServiceExecute;
 import ntk.android.base.entitymodel.base.ErrorException;
 import ntk.android.financialfund.R;
+import ntk.android.financialfund.adapter.AccountReportAdapter;
 import ntk.android.financialfund.adapter.AccountSelectAdapter;
 import ntk.android.financialfund.server.model.FundAccountReport;
 import ntk.android.financialfund.server.model.FundBranchAccount;
@@ -48,13 +51,21 @@ public class AccountReportActivity extends BaseActivity {
         ServiceExecute.execute(new AccountFundsService(this).getOne(source.id))
                 .subscribe(new NtkObserver<ErrorException<FundAccountReport>>() {
                     @Override
-                    public void onNext(@NonNull ErrorException<FundAccountReport> fundAccountReportErrorException) {
+                    public void onNext(@NonNull ErrorException<FundAccountReport> response) {
                         switcher.showContentView();
+                        if (response.IsSuccess) {
+                            AccountReportAdapter adapter = new AccountReportAdapter(response.ListItems);
+                            RecyclerView rc = (RecyclerView) findViewById(R.id.rc);
+                            rc.setLayoutManager(new LinearLayoutManager(AccountReportActivity.this, RecyclerView.VERTICAL, false));
+                            rc.setAdapter(adapter);
+                        } else {
+                            Toasty.error(AccountReportActivity.this, response.ErrorMessage, Toasty.LENGTH_LONG).show();
+                        }
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-
+                        switcher.showErrorView();
                     }
                 });
         ;

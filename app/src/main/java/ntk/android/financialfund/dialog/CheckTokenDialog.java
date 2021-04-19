@@ -122,6 +122,8 @@ public class CheckTokenDialog extends BaseActivity {
                         findViewById(R.id.sub_auth_loading).setVisibility(View.GONE);
                         if (orderUserTokenErrorException.IsSuccess)
                             getToken();
+                        else
+                            Toasty.error(CheckTokenDialog.this,orderUserTokenErrorException.ErrorMessage,Toasty.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -166,6 +168,8 @@ public class CheckTokenDialog extends BaseActivity {
                             finish();
                             startActivity(new Intent(CheckTokenDialog.this, activity));
 
+                        }else{
+                            Toasty.error(CheckTokenDialog.this,response.ErrorMessage,Toasty.LENGTH_LONG).show();
                         }
                     }
 
