@@ -13,21 +13,26 @@
             android:id="@+id/title_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical|right"
             android:padding="8dp"
+            android:textColor="@color/colorTextPrimary"
             android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorTextPrimary" />
+            android:textStyle="bold" />
 
         <include
             android:id="@+id/it1"
             layout="@layout/sub_row_account_report" />
 
         <include
-            android:id="@+id/it1"
+            android:id="@+id/it2"
             layout="@layout/sub_row_account_report" />
 
         <include
-            android:id="@+id/it1"
+            android:id="@+id/it3"
+            layout="@layout/sub_row_account_report" />
+
+        <include
+            android:id="@+id/it4"
             layout="@layout/sub_row_account_report" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

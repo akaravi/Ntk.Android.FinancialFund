@@ -34,7 +34,7 @@ public class AccountToAccountActivity extends BaseActivity {
         ((TextView) findViewById(R.id.txtToolbar)).setText(getString(R.string.accountToaccount));
         findViewById(R.id.btn_cancel).setOnClickListener(view -> finish());
         findViewById(R.id.back_button).setOnClickListener(view -> finish());
-//        getAccounts();
+        getAccounts();
         findViewById(R.id.btnOk).setOnClickListener(view -> checkData());
         ((TextInputEditText) findViewById(R.id.etAmount)).addTextChangedListener(new TextWatcher() {
             @Override
@@ -87,7 +87,8 @@ public class AccountToAccountActivity extends BaseActivity {
         else {
             long price = 0;
             try {
-                price = Long.parseLong(amount.getText().toString());
+               String input = amount.getText().toString().replace(",", "");
+                price = Long.parseLong(input);
             } catch (Exception e) {
                 Toasty.error(this, "مبلغ واریزی نا معتبر است").show();
                 return;

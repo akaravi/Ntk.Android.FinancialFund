@@ -72,11 +72,7 @@
         <activity android:name=".dialog.CheckTokenDialog" android:theme="@style/AppTheme.Dialog"/>
 
 
-        <!--        <provider-->
-        <!--            android:name="androidx.core.content.FileProvider"-->
-        <!--            android:authorities="ntk.android.financialfund.appidin88"-->
-        <!--            android:exported="false"-->
-        <!--            android:grantUriPermissions="true">-->
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="ntk.android.financialfund.APPNTK"
