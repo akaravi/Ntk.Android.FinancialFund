@@ -208,14 +208,14 @@ public class MainActivity extends AbstractMainActivity {
 
     @OnClick(R.id.mainCard1)
     public void oncard1() {
-        Intent i = new Intent(this, CheckTokenDialog.class);
-        i.putExtra(CheckTokenDialog.EXTRA_CLASSNAME,AccountToAccountActivity.class);
-        this.startActivity(i);
+        this.startActivity(new Intent(this, Class1.class));
     }
 
     @OnClick(R.id.mainCard2)
     public void oncard2() {
-        this.startActivity(new Intent(this, AccountToAccountActivity.class));
+        Intent i = new Intent(this, CheckTokenDialog.class);
+        i.putExtra(CheckTokenDialog.EXTRA_CLASSNAME, AccountToAccountActivity.class);
+        this.startActivity(i);
     }
 
     @OnClick(R.id.mainCard3)
@@ -225,7 +225,9 @@ public class MainActivity extends AbstractMainActivity {
 
     @OnClick(R.id.mainCard4)
     public void oncard4() {
-        this.startActivity(new Intent(this, Class4.class));
+        Intent i = new Intent(this, CheckTokenDialog.class);
+        i.putExtra(CheckTokenDialog.EXTRA_CLASSNAME, AccountToLoanActivity.class);
+        this.startActivity(i);
     }
 
     @OnClick(R.id.mainCard5)
@@ -235,13 +237,15 @@ public class MainActivity extends AbstractMainActivity {
 
     @OnClick(R.id.mainCard6)
     public void oncard6() {
-        this.startActivity(new Intent(this, Class6.class));
+        Intent i = new Intent(this, CheckTokenDialog.class);
+        i.putExtra(CheckTokenDialog.EXTRA_CLASSNAME, LoanReportActivity.class);
+        this.startActivity(i);
     }
 
     @OnClick(R.id.mainCard7)
     public void oncard7() {
         Intent i = new Intent(this, CheckTokenDialog.class);
-        i.putExtra(CheckTokenDialog.EXTRA_CLASSNAME,AccountReportActivity.class);
+        i.putExtra(CheckTokenDialog.EXTRA_CLASSNAME, AccountReportActivity.class);
         this.startActivity(i);
     }
 

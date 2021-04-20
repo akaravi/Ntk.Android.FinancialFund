@@ -65,9 +65,9 @@
         <activity android:name=".activity.Class1" />
         <activity android:name=".activity.AccountToAccountActivity" />
         <activity android:name=".activity.Class3" />
-        <activity android:name=".activity.Class4" />
+        <activity android:name=".activity.AccountToLoanActivity" />
         <activity android:name=".activity.Class5" />
-        <activity android:name=".activity.Class6" />
+        <activity android:name=".activity.LoanReportActivity" />
         <activity android:name=".activity.AccountReportActivity" />
         <activity android:name=".dialog.CheckTokenDialog" android:theme="@style/AppTheme.Dialog"/>
 

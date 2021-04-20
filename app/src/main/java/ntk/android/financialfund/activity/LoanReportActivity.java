@@ -16,7 +16,6 @@ import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 import io.reactivex.annotations.NonNull;
-import ntk.android.base.activity.BaseActivity;
 import ntk.android.base.config.ErrorExceptionObserver;
 import ntk.android.base.config.NtkObserver;
 import ntk.android.base.config.ServiceExecute;
@@ -28,39 +27,38 @@ import ntk.android.financialfund.server.model.FundAccountReport;
 import ntk.android.financialfund.server.model.FundBranchAccount;
 import ntk.android.financialfund.server.service.AccountFundsService;
 
-public class AccountReportActivity extends BaseActivity {
+public class LoanReportActivity extends AccountReportActivity {
     private FundBranchAccount source;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.account_report_activity);
-        ((TextView) findViewById(R.id.txtToolbar)).setText(getString(R.string.mainCard7));
+        setContentView(R.layout.loan_report_activity);
+        ((TextView) findViewById(R.id.txtToolbar)).setText(getString(R.string.mainCard6));
         ((Button) findViewById(R.id.btnOk)).setText("گزارش");
         findViewById(R.id.btn_cancel).setOnClickListener(view -> finish());
         findViewById(R.id.back_button).setOnClickListener(view -> finish());
-        getAccounts();
+        getLoans();
         findViewById(R.id.btnOk).setOnClickListener(view -> checkData());
     }
 
-    private void getAccounts() {
+    private void getLoans() {
         switcher.showProgressView();
         ServiceExecute.execute(new AccountFundsService(this).getList()).subscribe(new ErrorExceptionObserver<FundBranchAccount>(switcher::showErrorView) {
             @Override
             protected void SuccessResponse(ErrorException<FundBranchAccount> accountModelErrorException) {
                 switcher.showContentView();
-                AutoCompleteTextView sourceAccount = (AutoCompleteTextView) findViewById(R.id.etAccountId);
-                TextInputEditText SourceName = findViewById(R.id.etName);
+                AutoCompleteTextView sourceAccount = (AutoCompleteTextView) findViewById(R.id.etLoan);
                 List<FundBranchAccount> newList = new ArrayList<>();
                 for (int i = 0; i < accountModelErrorException.ListItems.size(); i++) {
-                    if (!accountModelErrorException.ListItems.get(i).isLoanAccount)
+                    if (accountModelErrorException.ListItems.get(i).isLoanAccount)
                         newList.add(accountModelErrorException.ListItems.get(i));
                 }
                 if (newList.size() == 0) {
                     switcher.showEmptyView();
-                }
-                {
-                    sourceAccount.setAdapter(new AccountSelectAdapter(AccountReportActivity.this, newList));
+                } else {
+                    TextInputEditText SourceName = findViewById(R.id.etName);
+                    sourceAccount.setAdapter(new AccountSelectAdapter(LoanReportActivity.this, newList));
                     sourceAccount.setOnItemClickListener((adapterView, view12, i, l) -> {
                         if (i >= 0) {
                             source = (((FundBranchAccount) adapterView.getItemAtPosition(i)));
@@ -76,16 +74,16 @@ public class AccountReportActivity extends BaseActivity {
 
             @Override
             protected Runnable tryAgainMethod() {
-                return () -> getAccounts();
+                return () -> getLoans();
             }
         });
-
     }
 
     private void checkData() {
-        AutoCompleteTextView accountId = findViewById(R.id.etAccountId);
-        if (accountId.getText().toString().equalsIgnoreCase("")) {
-            Toasty.error(this, "لطفا حساب سپرده ی خود را انتخاب کنید").show();
+        AutoCompleteTextView loanEt = findViewById(R.id.etLoan);
+
+        if (loanEt.getText().toString().equalsIgnoreCase("")) {
+            Toasty.error(this, "لطفا وام خود را انتخاب کنید").show();
             return;
         }
         ServiceExecute.execute(new AccountFundsService(this).getOne(source.id))
@@ -96,10 +94,10 @@ public class AccountReportActivity extends BaseActivity {
                         if (response.IsSuccess) {
                             AccountReportAdapter adapter = new AccountReportAdapter(response.ListItems);
                             RecyclerView rc = (RecyclerView) findViewById(R.id.rc);
-                            rc.setLayoutManager(new LinearLayoutManager(AccountReportActivity.this, RecyclerView.VERTICAL, false));
+                            rc.setLayoutManager(new LinearLayoutManager(LoanReportActivity.this, RecyclerView.VERTICAL, false));
                             rc.setAdapter(adapter);
                         } else {
-                            Toasty.error(AccountReportActivity.this, response.ErrorMessage, Toasty.LENGTH_LONG).show();
+                            Toasty.error(LoanReportActivity.this, response.ErrorMessage, Toasty.LENGTH_LONG).show();
                         }
                     }
 
@@ -108,7 +106,8 @@ public class AccountReportActivity extends BaseActivity {
                         switcher.showErrorView();
                     }
                 });
-        ;
-
     }
 }
+
+
+
