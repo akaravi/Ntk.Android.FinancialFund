@@ -73,7 +73,7 @@ public class ConfigFundsHeaders {
     }
 
     public static String GET_PACKAGENAME() {
-//        return "ntk.android.financialfund.app88";
-        return MyApplication.get().getApplicationParameter().PACKAGE_NAME();
+        return "ntk.android.financialfund.app88";
+//        return MyApplication.get().getApplicationParameter().PACKAGE_NAME();
     }
 }

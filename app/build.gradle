@@ -122,7 +122,7 @@ dependencies {
     //for datePicker
     implementation 'com.mohamadamin:persianmaterialdatetimepicker:1.2.1'
     //base of project
-    api 'com.github.akaravi:Ntk.Android.BaseActivity:1.4.127'
+    api 'com.github.akaravi:Ntk.Android.BaseActivity:1.4.128'
 //
 //    api project(path: ':baseActivity')
 

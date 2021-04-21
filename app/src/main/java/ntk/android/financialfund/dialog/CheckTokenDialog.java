@@ -15,6 +15,7 @@ import ntk.android.base.config.ErrorExceptionObserver;
 import ntk.android.base.config.NtkObserver;
 import ntk.android.base.config.ServiceExecute;
 import ntk.android.base.entitymodel.base.ErrorException;
+import ntk.android.base.utill.prefrense.Preferences;
 import ntk.android.financialfund.R;
 import ntk.android.financialfund.db.FoundInfo;
 import ntk.android.financialfund.server.model.ClientTokenModel;
@@ -89,6 +90,9 @@ public class CheckTokenDialog extends BaseActivity {
         findViewById(R.id.sub_auth_mobile).setVisibility(View.VISIBLE);
         findViewById(R.id.sub_auth_sms).setVisibility(View.GONE);
         findViewById(R.id.sub_auth_loading).setVisibility(View.GONE);
+        String mobile = Preferences.with(CheckTokenDialog.this).UserInfo().mobile();
+        if (mobile != null)
+            ((EditText) findViewById(R.id.txtActRegister)).setText(mobile);
         ((FundCaptchaView) findViewById(R.id.fundCaptchaView)).getNewCaptcha();
         findViewById(R.id.btnSend).setOnClickListener(view -> OrderTokenApi());
 
@@ -124,7 +128,7 @@ public class CheckTokenDialog extends BaseActivity {
                         if (orderUserTokenErrorException.IsSuccess)
                             getToken();
                         else
-                            Toasty.error(CheckTokenDialog.this,orderUserTokenErrorException.ErrorMessage,Toasty.LENGTH_LONG).show();
+                            Toasty.error(CheckTokenDialog.this, orderUserTokenErrorException.ErrorMessage, Toasty.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -154,7 +158,7 @@ public class CheckTokenDialog extends BaseActivity {
         }
         findViewById(R.id.sub_auth_loading).setVisibility(View.VISIBLE);
         UserToken req = new UserToken();
-        req.packageName =  ConfigFundsHeaders.GET_PACKAGENAME();
+        req.packageName = ConfigFundsHeaders.GET_PACKAGENAME();
         req.mobileNumber = mobileNumber;
         req.smsValue = smsValue.getText().toString();
         req.captchaValue = captcha.getCaptchaText();
@@ -169,8 +173,8 @@ public class CheckTokenDialog extends BaseActivity {
                             finish();
                             startActivity(new Intent(CheckTokenDialog.this, activity));
 
-                        }else{
-                            Toasty.error(CheckTokenDialog.this,response.ErrorMessage,Toasty.LENGTH_LONG).show();
+                        } else {
+                            Toasty.error(CheckTokenDialog.this, response.ErrorMessage, Toasty.LENGTH_LONG).show();
                         }
                     }
 
