@@ -108,9 +108,9 @@ public class AccountToLoanActivity extends BaseActivity {
                         }
                     });
                     AutoCompleteTextView loanAccount = (AutoCompleteTextView) findViewById(R.id.etLoan);
-                    TextInputEditText loanName = findViewById(R.id.etLoan);
-                    sourceAccount.setAdapter(new AccountSelectAdapter(AccountToLoanActivity.this, loans));
-                    sourceAccount.setOnItemClickListener((adapterView, view12, i, l) -> {
+                    TextInputEditText loanName = findViewById(R.id.etLoanName);
+                    loanAccount.setAdapter(new AccountSelectAdapter(AccountToLoanActivity.this, loans));
+                    loanAccount.setOnItemClickListener((adapterView, view12, i, l) -> {
                         if (i >= 0) {
                             loan = (((FundBranchAccount) adapterView.getItemAtPosition(i)));
                             loanAccount.setText(((FundBranchAccount) adapterView.getItemAtPosition(i)).accountKey + "");
@@ -170,7 +170,9 @@ public class AccountToLoanActivity extends BaseActivity {
         req.fromFundBranchAccountId = source.id;
         req.toFundBranchAccountId = loan.id;
         req.description = "";
-        req.amount = Long.parseLong(amount.getEditableText().toString());
+
+        req.amount = Long.parseLong(amount.getEditableText().toString().replace(",", ""));
+        switcher.showProgressView();
         new AccountFundsService(this).accountToAccount(req).subscribe(new ErrorExceptionObserver<FundBranchAccount>(switcher::showErrorView) {
             @Override
             protected void SuccessResponse(ErrorException<FundBranchAccount> accountModelErrorException) {

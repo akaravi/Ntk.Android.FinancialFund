@@ -23,6 +23,7 @@ import ntk.android.financialfund.server.model.OrderTokenRequestModel;
 import ntk.android.financialfund.server.model.OrderUserToken;
 import ntk.android.financialfund.server.model.UserToken;
 import ntk.android.financialfund.server.service.AuthFundsService;
+import ntk.android.financialfund.server.service.ConfigFundsHeaders;
 import ntk.android.financialfund.view.FundCaptchaView;
 
 public class CheckTokenDialog extends BaseActivity {
@@ -153,7 +154,7 @@ public class CheckTokenDialog extends BaseActivity {
         }
         findViewById(R.id.sub_auth_loading).setVisibility(View.VISIBLE);
         UserToken req = new UserToken();
-        req.packageName = "Test";// ConfigFundsHeaders.GET_PACKAGENAME();
+        req.packageName =  ConfigFundsHeaders.GET_PACKAGENAME();
         req.mobileNumber = mobileNumber;
         req.smsValue = smsValue.getText().toString();
         req.captchaValue = captcha.getCaptchaText();

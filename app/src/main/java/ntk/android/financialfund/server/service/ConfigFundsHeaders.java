@@ -11,7 +11,6 @@ import ntk.android.base.ApplicationStaticParameter;
 import ntk.android.base.BaseNtkApplication;
 import ntk.android.base.utill.AppUtill;
 import ntk.android.base.utill.prefrense.Preferences;
-import ntk.android.financialfund.MyApplication;
 
 public class ConfigFundsHeaders {
     static String TOKEN = "";
@@ -35,8 +34,8 @@ public class ConfigFundsHeaders {
 //            headers.put("Token", auth);
 //            headers.put("Authorization", auth);
 //        }
-        if(TOKEN==null)
-            TOKEN="";
+        if (TOKEN == null)
+            TOKEN = "";
         headers.put("Token", TOKEN);
         String staticDevice_token = ApplicationStaticParameter.DEVICE_TOKEN;
         if (!staticDevice_token.equalsIgnoreCase(""))
@@ -52,7 +51,7 @@ public class ConfigFundsHeaders {
 //            headers.put("PackageName", BaseNtkApplication.get().getApplicationParameter().PACKAGE_NAME());
 //        else
 //            headers.put("PackageName", staticPackageName);
-        headers.put("PackageName", "ntk.android.financialfund.app88");
+        headers.put("PackageName", GET_PACKAGENAME());
 
         headers.put("LocationLong", "0");
         headers.put("LocationLat", "0");
@@ -73,6 +72,7 @@ public class ConfigFundsHeaders {
     }
 
     public static String GET_PACKAGENAME() {
-        return MyApplication.get().getApplicationParameter().PACKAGE_NAME();
+        return "ntk.android.financialfund.app88";
+//        return MyApplication.get().getApplicationParameter().PACKAGE_NAME();
     }
 }

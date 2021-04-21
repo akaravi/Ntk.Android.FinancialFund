@@ -88,6 +88,7 @@ public class AccountReportActivity extends BaseActivity {
             Toasty.error(this, "لطفا حساب سپرده ی خود را انتخاب کنید").show();
             return;
         }
+        switcher.showProgressView();
         ServiceExecute.execute(new AccountFundsService(this).getOne(source.id))
                 .subscribe(new NtkObserver<ErrorException<FundAccountReport>>() {
                     @Override

@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 import io.reactivex.annotations.NonNull;
+import ntk.android.base.activity.BaseActivity;
 import ntk.android.base.config.ErrorExceptionObserver;
 import ntk.android.base.config.NtkObserver;
 import ntk.android.base.config.ServiceExecute;
@@ -27,7 +29,7 @@ import ntk.android.financialfund.server.model.FundAccountReport;
 import ntk.android.financialfund.server.model.FundBranchAccount;
 import ntk.android.financialfund.server.service.AccountFundsService;
 
-public class LoanReportActivity extends AccountReportActivity {
+public class LoanReportActivity extends BaseActivity {
     private FundBranchAccount source;
 
     @Override
@@ -48,17 +50,17 @@ public class LoanReportActivity extends AccountReportActivity {
             @Override
             protected void SuccessResponse(ErrorException<FundBranchAccount> accountModelErrorException) {
                 switcher.showContentView();
-                AutoCompleteTextView sourceAccount = (AutoCompleteTextView) findViewById(R.id.etLoan);
-                List<FundBranchAccount> newList = new ArrayList<>();
+                MaterialAutoCompleteTextView sourceAccount = (MaterialAutoCompleteTextView) findViewById(R.id.etLoan);
+                List<FundBranchAccount> loans = new ArrayList<>();
                 for (int i = 0; i < accountModelErrorException.ListItems.size(); i++) {
                     if (accountModelErrorException.ListItems.get(i).isLoanAccount)
-                        newList.add(accountModelErrorException.ListItems.get(i));
+                        loans.add(accountModelErrorException.ListItems.get(i));
                 }
-                if (newList.size() == 0) {
+                if (loans.size() == 0) {
                     switcher.showEmptyView();
                 } else {
                     TextInputEditText SourceName = findViewById(R.id.etName);
-                    sourceAccount.setAdapter(new AccountSelectAdapter(LoanReportActivity.this, newList));
+                    sourceAccount.setAdapter(new AccountSelectAdapter(LoanReportActivity.this, loans));
                     sourceAccount.setOnItemClickListener((adapterView, view12, i, l) -> {
                         if (i >= 0) {
                             source = (((FundBranchAccount) adapterView.getItemAtPosition(i)));
@@ -80,12 +82,13 @@ public class LoanReportActivity extends AccountReportActivity {
     }
 
     private void checkData() {
-        AutoCompleteTextView loanEt = findViewById(R.id.etLoan);
+        MaterialAutoCompleteTextView loanEt = findViewById(R.id.etLoan);
 
         if (loanEt.getText().toString().equalsIgnoreCase("")) {
             Toasty.error(this, "لطفا وام خود را انتخاب کنید").show();
             return;
         }
+        switcher.showProgressView();
         ServiceExecute.execute(new AccountFundsService(this).getOne(source.id))
                 .subscribe(new NtkObserver<ErrorException<FundAccountReport>>() {
                     @Override

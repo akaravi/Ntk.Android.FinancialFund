@@ -53,7 +53,7 @@ public class AccountToAccountActivity extends BaseActivity {
                     DecimalFormat format = new DecimalFormat("###,###,###,###");
                     String newPrice = format.format(Double.parseDouble(input));
 
-                    TextInputEditText myEditText=  findViewById(R.id.etAmount);
+                    TextInputEditText myEditText = findViewById(R.id.etAmount);
                     myEditText.removeTextChangedListener(this); //To Prevent from Infinite Loop
                     myEditText.setText(newPrice);
                     myEditText.setSelection(newPrice.length()); //Move Cursor to end of String
@@ -87,7 +87,7 @@ public class AccountToAccountActivity extends BaseActivity {
         else {
             long price = 0;
             try {
-               String input = amount.getText().toString().replace(",", "");
+                String input = amount.getText().toString().replace(",", "");
                 price = Long.parseLong(input);
             } catch (Exception e) {
                 Toasty.error(this, "مبلغ واریزی نا معتبر است").show();
@@ -113,7 +113,8 @@ public class AccountToAccountActivity extends BaseActivity {
         req.fromFundBranchAccountId = source.id;
         req.toFundBranchAccountId = destination.id;
         req.description = description.getText().toString();
-        req.amount = Long.parseLong(amount.getEditableText().toString());
+        req.amount = Long.parseLong(amount.getEditableText().toString().replace(",", ""));
+        switcher.showProgressView();
         new AccountFundsService(this).accountToAccount(req).subscribe(new ErrorExceptionObserver<FundBranchAccount>(switcher::showErrorView) {
             @Override
             protected void SuccessResponse(ErrorException<FundBranchAccount> accountModelErrorException) {
