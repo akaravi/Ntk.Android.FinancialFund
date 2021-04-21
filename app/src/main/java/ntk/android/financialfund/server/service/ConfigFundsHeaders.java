@@ -52,7 +52,7 @@ public class ConfigFundsHeaders {
 //            headers.put("PackageName", BaseNtkApplication.get().getApplicationParameter().PACKAGE_NAME());
 //        else
 //            headers.put("PackageName", staticPackageName);
-        headers.put("PackageName", "Test");
+        headers.put("PackageName", "ntk.android.financialfund.app88");
 
         headers.put("LocationLong", "0");
         headers.put("LocationLat", "0");
