@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.DecimalFormat;
@@ -17,6 +18,7 @@ import ntk.android.base.activity.BaseActivity;
 import ntk.android.base.config.ErrorExceptionObserver;
 import ntk.android.base.config.ServiceExecute;
 import ntk.android.base.entitymodel.base.ErrorException;
+import ntk.android.base.utill.FontManager;
 import ntk.android.financialfund.R;
 import ntk.android.financialfund.adapter.AccountSelectAdapter;
 import ntk.android.financialfund.server.model.AccountToAccountModel;
@@ -31,6 +33,7 @@ public class AccountToAccountActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account_to_account_activity);
+        setTypeFaces();
         ((TextView) findViewById(R.id.txtToolbar)).setText(getString(R.string.accountToaccount));
         findViewById(R.id.btn_cancel).setOnClickListener(view -> finish());
         findViewById(R.id.back_button).setOnClickListener(view -> finish());
@@ -69,6 +72,18 @@ public class AccountToAccountActivity extends BaseActivity {
 
 
         });
+    }
+
+    private void setTypeFaces() {
+        ((TextView) findViewById(R.id.txtToolbar)).setTypeface(FontManager.T1_Typeface(this));
+        ((TextInputEditText) findViewById(R.id.etAmount)).setTypeface(FontManager.T1_Typeface(this));
+        ((AutoCompleteTextView) findViewById(R.id.etAccountId)).setTypeface(FontManager.T1_Typeface(this));
+        ((TextInputEditText) findViewById(R.id.etName)).setTypeface(FontManager.T1_Typeface(this));
+        ((AutoCompleteTextView) findViewById(R.id.etAccountDestId)).setTypeface(FontManager.T1_Typeface(this));
+        ((TextInputEditText) findViewById(R.id.etDestName)).setTypeface(FontManager.T1_Typeface(this));
+        ((TextInputEditText) findViewById(R.id.etDetail)).setTypeface(FontManager.T1_Typeface(this));
+        ((MaterialButton) findViewById(R.id.btnOk)).setTypeface(FontManager.T1_Typeface(this));
+        ((MaterialButton) findViewById(R.id.btn_cancel)).setTypeface(FontManager.T1_Typeface(this));
     }
 
 

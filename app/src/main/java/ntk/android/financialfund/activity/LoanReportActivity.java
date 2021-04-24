@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -22,6 +23,7 @@ import ntk.android.base.config.ErrorExceptionObserver;
 import ntk.android.base.config.NtkObserver;
 import ntk.android.base.config.ServiceExecute;
 import ntk.android.base.entitymodel.base.ErrorException;
+import ntk.android.base.utill.FontManager;
 import ntk.android.financialfund.R;
 import ntk.android.financialfund.adapter.AccountReportAdapter;
 import ntk.android.financialfund.adapter.AccountSelectAdapter;
@@ -36,6 +38,7 @@ public class LoanReportActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loan_report_activity);
+        setTypeFaces();
         ((TextView) findViewById(R.id.txtToolbar)).setText(getString(R.string.mainCard6));
         ((Button) findViewById(R.id.btnOk)).setText("گزارش");
         findViewById(R.id.btn_cancel).setOnClickListener(view -> finish());
@@ -43,6 +46,14 @@ public class LoanReportActivity extends BaseActivity {
         getLoans();
         findViewById(R.id.btnOk).setOnClickListener(view -> checkData());
     }
+
+        private void setTypeFaces() {
+            ((TextView) findViewById(R.id.txtToolbar)).setTypeface(FontManager.T1_Typeface(this));
+            ((AutoCompleteTextView) findViewById(R.id.etLoan)).setTypeface(FontManager.T1_Typeface(this));
+            ((TextInputEditText) findViewById(R.id.etName)).setTypeface(FontManager.T1_Typeface(this));
+            ((MaterialButton) findViewById(R.id.btnOk)).setTypeface(FontManager.T1_Typeface(this));
+            ((MaterialButton) findViewById(R.id.btn_cancel)).setTypeface(FontManager.T1_Typeface(this));
+        }
 
     private void getLoans() {
         switcher.showProgressView();

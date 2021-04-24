@@ -1,5 +1,6 @@
 package ntk.android.financialfund.adapter;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import ntk.android.base.adapter.BaseRecyclerAdapter;
+import ntk.android.base.utill.FontManager;
 import ntk.android.financialfund.R;
 import ntk.android.financialfund.server.model.FundAccountReport;
 
@@ -45,16 +47,19 @@ public class AccountReportAdapter extends BaseRecyclerAdapter<FundAccountReport,
         public VH(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title_text);
+            setTypeface(itemView.getContext(), title);
             {
                 date = itemView.findViewById(R.id.it1).findViewById(R.id.txtDesc);
                 TextView tv = itemView.findViewById(R.id.it1).findViewById(R.id.txtTv);
                 tv.setText("تاریخ:");
+                setTypeface(itemView.getContext(), date, tv);
                 ((ImageView) itemView.findViewById(R.id.it1).findViewById(R.id.icon)).setImageResource(R.drawable.date_icon);
             }
             {
                 desc = itemView.findViewById(R.id.it2).findViewById(R.id.txtDesc);
                 TextView tv = itemView.findViewById(R.id.it2).findViewById(R.id.txtTv);
                 tv.setText("توضیح:");
+                setTypeface(itemView.getContext(), desc, tv);
                 ((ImageView) itemView.findViewById(R.id.it2).findViewById(R.id.icon)).setImageResource(R.drawable.description);
             }
 
@@ -62,15 +67,23 @@ public class AccountReportAdapter extends BaseRecyclerAdapter<FundAccountReport,
                 debit = itemView.findViewById(R.id.it3).findViewById(R.id.txtDesc);
                 TextView tv = itemView.findViewById(R.id.it3).findViewById(R.id.txtTv);
                 tv.setText("بستانکار:");
+                setTypeface(itemView.getContext(), debit, tv);
                 ((ImageView) itemView.findViewById(R.id.it3).findViewById(R.id.icon)).setImageResource(R.drawable.debit);
             }
             {
                 credit = itemView.findViewById(R.id.it4).findViewById(R.id.txtDesc);
                 TextView tv = itemView.findViewById(R.id.it4).findViewById(R.id.txtTv);
                 tv.setText("بدهکار:");
+                setTypeface(itemView.getContext(), credit, tv);
                 ((ImageView) itemView.findViewById(R.id.it4).findViewById(R.id.icon)).setImageResource(R.drawable.debit);
             }
 
+        }
+
+        private void setTypeface(Context c, TextView... tvs) {
+            for (TextView t : tvs) {
+                t.setTypeface(FontManager.T1_Typeface(c));
+            }
         }
     }
 }

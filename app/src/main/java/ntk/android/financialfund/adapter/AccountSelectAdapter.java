@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 
 import java.util.List;
 
+import ntk.android.base.utill.FontManager;
 import ntk.android.financialfund.R;
 import ntk.android.financialfund.server.model.FundBranchAccount;
 
@@ -42,6 +43,8 @@ public class AccountSelectAdapter extends ArrayAdapter<FundBranchAccount> {
         }
         ((TextView) view.findViewById(R.id.textView)).setText("شماره حساب : " + getItem(position).accountKey);
         ((TextView) view.findViewById(R.id.textView1)).setText(getItem(position).description);
+        ((TextView) view.findViewById(R.id.textView)).setTypeface(FontManager.T1_Typeface(view.getContext()));
+        ((TextView) view.findViewById(R.id.textView1)).setTypeface(FontManager.T1_Typeface(view.getContext()));
         return view;
     }
 }
