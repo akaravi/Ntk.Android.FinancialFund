@@ -91,32 +91,22 @@ public class CheckTokenDialog extends BaseActivity {
         findViewById(R.id.sub_auth_sms).setVisibility(View.GONE);
         findViewById(R.id.sub_auth_loading).setVisibility(View.GONE);
         String mobile = Preferences.with(CheckTokenDialog.this).UserInfo().mobile();
-        if (mobile != null)
-            ((EditText) findViewById(R.id.txtActRegister)).setText(mobile);
+        ((TextView) findViewById(R.id.tvMobile)).setText("به شماره ی" + mobile + " کد تایید عملیات ارسال می شود");
         ((FundCaptchaView) findViewById(R.id.fundCaptchaView)).getNewCaptcha();
         findViewById(R.id.btnSend).setOnClickListener(view -> OrderTokenApi());
 
     }
 
     private void OrderTokenApi() {
-        EditText mobileTxt = findViewById(R.id.txtActRegister);
         FundCaptchaView captcha = findViewById(R.id.fundCaptchaView);
-        if (mobileTxt.getText().toString().equalsIgnoreCase("")) {
-            Toasty.warning(this, "شماره تلفن همراه را وارد کنید", Toasty.LENGTH_LONG, true).show();
-            return;
-        } else if (!mobileTxt.getText().toString().startsWith("09")) {
-            Toasty.warning(this, "شماره تلفن همراه را به صورت صحیح وارد کنید", Toasty.LENGTH_LONG, true).show();
-            return;
-        } else if (mobileTxt.getText().toString().length() != 11) {
-            Toasty.warning(this, "شماره تلفن همراه را به صورت صحیح وارد کنید", Toasty.LENGTH_LONG, true).show();
-            return;
-        } else if (captcha.getCaptchaText().trim().equalsIgnoreCase("")) {
+
+        if (captcha.getCaptchaText().trim().equalsIgnoreCase("")) {
             Toasty.warning(this, "متن تصویر را وارد کنید", Toasty.LENGTH_LONG, true).show();
             return;
         }
         findViewById(R.id.sub_auth_loading).setVisibility(View.VISIBLE);
         OrderTokenRequestModel req = new OrderTokenRequestModel();
-        req.mobileNumber = mobileNumber = mobileTxt.getText().toString();
+        req.mobileNumber = mobileNumber =Preferences.with(CheckTokenDialog.this).UserInfo().mobile();
         req.captchaKey = captcha.getCaptchaKey();
         req.captchaValue = captcha.getCaptchaText();
         ServiceExecute.execute(

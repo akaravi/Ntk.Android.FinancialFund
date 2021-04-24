@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"    android:background="#fff"
+    android:layout_height="wrap_content"
+    android:background="#fff"
 
     android:orientation="vertical">
 
@@ -19,26 +20,14 @@
         android:textStyle="bold"
         tools:ignore="HardcodedText" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="340dp"
-        android:layout_height="55dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        app:cardCornerRadius="5dp"
-        app:cardElevation="5dp">
-
-        <EditText
-            android:id="@+id/txtActRegister"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@null"
-            android:gravity="center"
-            android:hint="_   _   _   _   _   _   _   _   _   _"
-            android:inputType="phone"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            tools:ignore="HardcodedText" />
-    </androidx.cardview.widget.CardView>
+    <TextView
+        android:id="@+id/tvMobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:padding="8dp"
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="13sp" />
 
 
     <androidx.cardview.widget.CardView
