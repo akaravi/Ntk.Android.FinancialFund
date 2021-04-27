@@ -56,7 +56,7 @@ public class ConfigFundsHeaders {
 
         headers.put("LocationLong", "0");
         headers.put("LocationLat", "0");
-        headers.put("DeviceId", Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID));
+        headers.put("DeviceId",GET_DEVICE_ID(context));
         headers.put("DeviceBrand", AppUtill.GetDeviceName());
         headers.put("Country", "IR");
         headers.put("Language", "FA");
@@ -75,5 +75,9 @@ public class ConfigFundsHeaders {
     public static String GET_PACKAGENAME() {
         return "ntk.android.financialfund.app88";
 //        return MyApplication.get().getApplicationParameter().PACKAGE_NAME();
+    }
+
+    public static String GET_DEVICE_ID(Context context){
+       return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 }

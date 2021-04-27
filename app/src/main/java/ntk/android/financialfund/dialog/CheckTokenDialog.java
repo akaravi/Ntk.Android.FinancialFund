@@ -109,6 +109,7 @@ public class CheckTokenDialog extends BaseActivity {
         req.mobileNumber = mobileNumber =Preferences.with(CheckTokenDialog.this).UserInfo().mobile();
         req.captchaKey = captcha.getCaptchaKey();
         req.captchaValue = captcha.getCaptchaText();
+        req.uniqueDeviceId=ConfigFundsHeaders.GET_DEVICE_ID(this);
         ServiceExecute.execute(
                 new AuthFundsService(this).orderToken(req)).
                 subscribe(new NtkObserver<ErrorException<OrderUserToken>>() {
@@ -153,6 +154,7 @@ public class CheckTokenDialog extends BaseActivity {
         req.smsValue = smsValue.getText().toString();
         req.captchaValue = captcha.getCaptchaText();
         req.captchaKey = captcha.getCaptchaKey();
+        req.uniqueDeviceId=ConfigFundsHeaders.GET_DEVICE_ID(this);
         ServiceExecute.execute(
                 new AuthFundsService(this).getToken(req)).
                 subscribe(new NtkObserver<ErrorException<ClientTokenModel>>() {
