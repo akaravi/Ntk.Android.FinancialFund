@@ -10,7 +10,7 @@ import ntk.android.base.utill.prefrense.Preferences;
 
 public class BaseFundService {
     public static String FUND_URL = "https://e-hasanat.ir/";
-    //    public static final String FUND_URL = "http://5548ad2746f1.ngrok.io";
+//        public static  String FUND_URL = "http://308bbd281096.ngrok.io";
     protected final String baseUrl = "api/v1/";
     protected final String controlerUrl;
     protected Context context;

@@ -42,6 +42,7 @@ import ntk.android.base.entitymodel.base.FilterModel;
 import ntk.android.base.entitymodel.news.NewsContentModel;
 import ntk.android.base.services.news.NewsContentService;
 import ntk.android.base.utill.FontManager;
+import ntk.android.base.utill.prefrense.Preferences;
 import ntk.android.base.view.NViewUtils;
 import ntk.android.financialfund.R;
 import ntk.android.financialfund.adapter.CoreImageAdapter;
@@ -110,6 +111,7 @@ public class MainActivity extends AbstractMainActivity {
         fixViewSize();
         ButterKnife.bind(this);
         init();
+//        Preferences.with(MainActivity.this).UserInfo().setMobile("09132131542");
     }
 
     private void fixViewSize() {
