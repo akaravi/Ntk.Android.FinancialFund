@@ -91,7 +91,7 @@ public class CheckTokenDialog extends BaseActivity {
         findViewById(R.id.sub_auth_sms).setVisibility(View.GONE);
         findViewById(R.id.sub_auth_loading).setVisibility(View.GONE);
         String mobile = Preferences.with(CheckTokenDialog.this).UserInfo().mobile();
-        ((TextView) findViewById(R.id.tvMobile)).setText("به شماره ی" + mobile + " کد تایید عملیات ارسال می شود");
+        ((TextView) findViewById(R.id.tvMobile)).setText("به شماره ی " + mobile + " کد تایید عملیات ارسال می شود");
         ((FundCaptchaView) findViewById(R.id.fundCaptchaView)).getNewCaptcha();
         findViewById(R.id.btnSend).setOnClickListener(view -> OrderTokenApi());
 

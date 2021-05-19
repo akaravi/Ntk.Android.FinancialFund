@@ -27,23 +27,6 @@ public class MyApplication extends NTKApplication {
 
     @Override
     public void onCreate() {
-        super.onCreate();
-        DEBUG = true;
-        if (!new File(getCacheDir(), "image").exists()) {
-            new File(getCacheDir(), "image").mkdirs();
-        }
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
-                .diskCache(new UnlimitedDiskCache(new File(getCacheDir(), "image")))
-                .diskCacheFileNameGenerator(imageUri -> {
-                    String[] Url = imageUri.split("/");
-                    return Url[Url.length];
-                })
-                .build();
-        ImageLoader.getInstance().init(config);
-
-        Toasty.Config.getInstance()
-                .setToastTypeface(FontManager.T1_Typeface(getApplicationContext()))
-                .setTextSize(14).apply();
         applicationStyle = new ApplicationStyle() {
 
             @Override
@@ -78,6 +61,24 @@ public class MyApplication extends NTKApplication {
 //                return v;
 //            }
         };
+        super.onCreate();
+        DEBUG = true;
+        if (!new File(getCacheDir(), "image").exists()) {
+            new File(getCacheDir(), "image").mkdirs();
+        }
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
+                .diskCache(new UnlimitedDiskCache(new File(getCacheDir(), "image")))
+                .diskCacheFileNameGenerator(imageUri -> {
+                    String[] Url = imageUri.split("/");
+                    return Url[Url.length];
+                })
+                .build();
+        ImageLoader.getInstance().init(config);
+
+        Toasty.Config.getInstance()
+                .setToastTypeface(FontManager.T1_Typeface(getApplicationContext()))
+                .setTextSize(14).apply();
+
     }
 
     @Override

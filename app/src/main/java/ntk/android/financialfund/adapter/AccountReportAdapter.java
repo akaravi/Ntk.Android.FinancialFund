@@ -33,8 +33,8 @@ public class AccountReportAdapter extends BaseRecyclerAdapter<FundAccountReport,
         holder.title.setText(item.Title);
         holder.desc.setText(item.Description);
         holder.date.setText(item.PersianActionDate);
-        holder.debit.setText(item.Debtor + "");
-        holder.credit.setText(item.Creditor + "");
+        holder.debit.setText(String.format("%.0f", item.Debtor) );
+        holder.credit.setText(String.format("%.0f",item.Creditor) );
     }
 
     public class VH extends RecyclerView.ViewHolder {

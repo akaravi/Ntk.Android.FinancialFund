@@ -2,16 +2,18 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
+def BaseVersion='1.4.137'
+
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "ntk.android.financialfund.APPNTK"//change for packagename for api
 //        applicationId "ntk.android.financialfund.App88"//change for packagename for api
         minSdkVersion 17
-        targetSdkVersion 27
+        targetSdkVersion 29
         multiDexEnabled true
         versionCode 1  //Build Version NTK
-        versionName "1.0"//Splash Version Lable
+        versionName "${BaseVersion}"//Splash Version Lable
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables {
             useSupportLibrary = true
@@ -122,7 +124,7 @@ dependencies {
     //for datePicker
     implementation 'com.mohamadamin:persianmaterialdatetimepicker:1.2.1'
     //base of project
-    api 'com.github.akaravi:Ntk.Android.BaseActivity:1.4.128'
+    api "com.github.akaravi:Ntk.Android.BaseActivity:${BaseVersion}"
 //
 //    api project(path: ':baseActivity')
 
