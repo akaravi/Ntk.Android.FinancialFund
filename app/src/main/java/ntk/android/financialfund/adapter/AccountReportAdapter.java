@@ -66,14 +66,14 @@ public class AccountReportAdapter extends BaseRecyclerAdapter<FundAccountReport,
             {
                 debit = itemView.findViewById(R.id.it3).findViewById(R.id.txtDesc);
                 TextView tv = itemView.findViewById(R.id.it3).findViewById(R.id.txtTv);
-                tv.setText("بستانکار:");
+                tv.setText("واریز:");
                 setTypeface(itemView.getContext(), debit, tv);
                 ((ImageView) itemView.findViewById(R.id.it3).findViewById(R.id.icon)).setImageResource(R.drawable.debit);
             }
             {
                 credit = itemView.findViewById(R.id.it4).findViewById(R.id.txtDesc);
                 TextView tv = itemView.findViewById(R.id.it4).findViewById(R.id.txtTv);
-                tv.setText("بدهکار:");
+                tv.setText("برداشت:");
                 setTypeface(itemView.getContext(), credit, tv);
                 ((ImageView) itemView.findViewById(R.id.it4).findViewById(R.id.icon)).setImageResource(R.drawable.debit);
             }

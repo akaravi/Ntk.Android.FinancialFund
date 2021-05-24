@@ -106,10 +106,10 @@ public class CheckTokenDialog extends BaseActivity {
         }
         findViewById(R.id.sub_auth_loading).setVisibility(View.VISIBLE);
         OrderTokenRequestModel req = new OrderTokenRequestModel();
-        req.mobileNumber = mobileNumber =Preferences.with(CheckTokenDialog.this).UserInfo().mobile();
+        req.mobileNumber = mobileNumber = Preferences.with(CheckTokenDialog.this).UserInfo().mobile();
         req.captchaKey = captcha.getCaptchaKey();
         req.captchaValue = captcha.getCaptchaText();
-        req.uniqueDeviceId=ConfigFundsHeaders.GET_DEVICE_ID(this);
+        req.uniqueDeviceId = ConfigFundsHeaders.GET_DEVICE_ID(this);
         ServiceExecute.execute(
                 new AuthFundsService(this).orderToken(req)).
                 subscribe(new NtkObserver<ErrorException<OrderUserToken>>() {
@@ -118,12 +118,15 @@ public class CheckTokenDialog extends BaseActivity {
                         findViewById(R.id.sub_auth_loading).setVisibility(View.GONE);
                         if (orderUserTokenErrorException.IsSuccess)
                             getToken();
-                        else
+                        else {
+                            ((FundCaptchaView) findViewById(R.id.fundCaptchaView)).getNewCaptcha();
                             Toasty.error(CheckTokenDialog.this, orderUserTokenErrorException.ErrorMessage, Toasty.LENGTH_LONG).show();
+                        }
                     }
 
                     @Override
                     public void onError(@NonNull Throwable e) {
+                        ((FundCaptchaView) findViewById(R.id.fundCaptchaView)).getNewCaptcha();
                         findViewById(R.id.sub_auth_loading).setVisibility(View.GONE);
                         switcher.showErrorView("خطا رخ داد" + "\n" + e.getCause(), () -> OrderTokenApi());
                     }
@@ -154,7 +157,7 @@ public class CheckTokenDialog extends BaseActivity {
         req.smsValue = smsValue.getText().toString();
         req.captchaValue = captcha.getCaptchaText();
         req.captchaKey = captcha.getCaptchaKey();
-        req.uniqueDeviceId=ConfigFundsHeaders.GET_DEVICE_ID(this);
+        req.uniqueDeviceId = ConfigFundsHeaders.GET_DEVICE_ID(this);
         ServiceExecute.execute(
                 new AuthFundsService(this).getToken(req)).
                 subscribe(new NtkObserver<ErrorException<ClientTokenModel>>() {
@@ -166,6 +169,7 @@ public class CheckTokenDialog extends BaseActivity {
                             startActivity(new Intent(CheckTokenDialog.this, activity));
 
                         } else {
+                            ((FundCaptchaView) findViewById(R.id.fundCaptchaSmsView)).getNewCaptcha();
                             Toasty.error(CheckTokenDialog.this, response.ErrorMessage, Toasty.LENGTH_LONG).show();
                         }
                     }
@@ -173,6 +177,7 @@ public class CheckTokenDialog extends BaseActivity {
                     @Override
                     public void onError(@NonNull Throwable e) {
                         findViewById(R.id.sub_auth_loading).setVisibility(View.GONE);
+                        ((FundCaptchaView) findViewById(R.id.fundCaptchaSmsView)).getNewCaptcha();
                         switcher.showErrorView("خطا رخ داد" + "\n" + e.getCause(), () -> OrderTokenApi());
                     }
 
