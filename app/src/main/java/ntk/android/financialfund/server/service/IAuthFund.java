@@ -35,8 +35,8 @@ interface IAuthFund {
     @Headers({"content-type: application/json"})
     Observable<ErrorException<ClientTokenModel >> GetToken(@HeaderMap Map<String, String> headers, @Body UserToken body);
 
-    @POST("/api/v1/Auth/CheckToken")
+    @GET("/api/v1/Auth/CheckToken")
     @Headers({"content-type: application/json"})
-    Observable<ErrorException<ClientTokenModel>> CheckToken(@HeaderMap Map<String, String> headers, @Body GetTokenRequest body);
+    Observable<ErrorException<ClientTokenModel>> CheckToken(@HeaderMap Map<String, String> headers);
 
 }

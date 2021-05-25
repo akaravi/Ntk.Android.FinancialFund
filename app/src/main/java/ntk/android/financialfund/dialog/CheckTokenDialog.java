@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 import es.dmoral.toasty.Toasty;
 import io.reactivex.annotations.NonNull;
 import ntk.android.base.activity.BaseActivity;
-import ntk.android.base.config.ErrorExceptionObserver;
 import ntk.android.base.config.NtkObserver;
 import ntk.android.base.config.ServiceExecute;
 import ntk.android.base.entitymodel.base.ErrorException;
@@ -19,7 +18,6 @@ import ntk.android.base.utill.prefrense.Preferences;
 import ntk.android.financialfund.R;
 import ntk.android.financialfund.db.FoundInfo;
 import ntk.android.financialfund.server.model.ClientTokenModel;
-import ntk.android.financialfund.server.model.GetTokenRequest;
 import ntk.android.financialfund.server.model.OrderTokenRequestModel;
 import ntk.android.financialfund.server.model.OrderUserToken;
 import ntk.android.financialfund.server.model.UserToken;
@@ -53,41 +51,36 @@ public class CheckTokenDialog extends BaseActivity {
     private void checkToken() {
         findViewById(R.id.sub_auth_mobile).setVisibility(View.GONE);
         findViewById(R.id.sub_auth_sms).setVisibility(View.GONE);
-        findViewById(R.id.sub_auth_loading).setVisibility(View.VISIBLE);
+        findViewById(R.id.sub_auth_loading).setVisibility(View.GONE);
+        findViewById(R.id.sub_get_token).setVisibility(View.VISIBLE);
         checkTokenApi();
     }
 
+
     private void checkTokenApi() {
-        GetTokenRequest req = new GetTokenRequest();
-        req.mobileNumber = "09999999999";
-        req.smsValue = "11111";
-        req.captchaValue = "22222";
-        req.captchaKey = "MvMdPzaoa6-sl8q8R4HFiw";
-        req.token = new FoundInfo(this).getToken();
         ServiceExecute.execute(
-                new AuthFundsService(this).checkToken(req)).
-                subscribe(new ErrorExceptionObserver<ClientTokenModel>(switcher::showErrorView) {
+                new AuthFundsService(this).checkToken()).
+                subscribe(new NtkObserver<ErrorException<ClientTokenModel>>() {
                     @Override
-                    protected void SuccessResponse(ErrorException<ClientTokenModel> orderUserTokenErrorException) {
-                        //todo startActivity
+                    public void onNext(@NonNull ErrorException<ClientTokenModel> response) {
+                        if (response.IsSuccess)
+                            startActivity(new Intent(CheckTokenDialog.this, activity));
+                        else {
+                            OrderToken();
+                        }
+
                     }
 
                     @Override
-                    protected void failResponse(ErrorException<ClientTokenModel> orderUserTokenErrorException) {
-                        //todo renew Captcha
-                        super.failResponse(orderUserTokenErrorException);
+                    public void onError(@NonNull Throwable e) {
+                        switcher.showErrorView("خطا رخ داد" + "\n" + e.getCause(), () -> checkTokenApi());
                     }
-
-                    @Override
-                    protected Runnable tryAgainMethod() {
-                        return null;
-                    }
-
                 });
     }
 
     private void OrderToken() {
         findViewById(R.id.sub_auth_mobile).setVisibility(View.VISIBLE);
+        findViewById(R.id.sub_get_token).setVisibility(View.GONE);
         findViewById(R.id.sub_auth_sms).setVisibility(View.GONE);
         findViewById(R.id.sub_auth_loading).setVisibility(View.GONE);
         String mobile = Preferences.with(CheckTokenDialog.this).UserInfo().mobile();

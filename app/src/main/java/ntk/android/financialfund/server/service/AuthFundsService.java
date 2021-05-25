@@ -79,9 +79,9 @@ public class AuthFundsService extends BaseFundService {
         return mMovieCache;
     }
 
-    public Observable<ErrorException<ClientTokenModel>>  checkToken(GetTokenRequest req) {
+    public Observable<ErrorException<ClientTokenModel>>  checkToken() {
         BehaviorSubject<ErrorException<ClientTokenModel>> mMovieCache = BehaviorSubject.create();
-        getRetrofit(IAuthFund.class).CheckToken(headers,req)
+        getRetrofit(IAuthFund.class).CheckToken(headers)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io()).subscribe(new Observer<ErrorException<ClientTokenModel>>() {
             @Override
@@ -91,6 +91,8 @@ public class AuthFundsService extends BaseFundService {
 
             @Override
             public void onNext(@NonNull ErrorException<ClientTokenModel> model) {
+                if (!model.IsSuccess)
+                    ConfigFundsHeaders.SET_TOKEN("");
                 mMovieCache.onNext(model);
             }
 

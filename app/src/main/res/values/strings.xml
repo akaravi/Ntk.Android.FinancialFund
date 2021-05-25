@@ -8,5 +8,6 @@
     <string name="mainCard5">درخواست نوبت وام</string>
     <string name="mainCard6">گزارش اقساط وام</string>
     <string name="mainCard7">گزارشات گردش سپرده</string>
+    <string name="getToken">"در حال احراز هویت مجدد"</string>
 
 </resources>

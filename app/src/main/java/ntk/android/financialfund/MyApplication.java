@@ -91,6 +91,7 @@ public class MyApplication extends NTKApplication {
     protected ApplicationStaticParameter getConfig() {
         ApplicationStaticParameter applicationStaticParameter = new ApplicationStaticParameter();
 //        ApplicationStaticParameter.URL = "http://52d21137cc37.ngrok.io";
+        ApplicationStaticParameter.PACKAGE_NAME = "ntk.android.financialfund.App88";
         return applicationStaticParameter;
     }
 

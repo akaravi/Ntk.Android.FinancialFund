@@ -11,14 +11,14 @@ import ntk.android.base.ApplicationStaticParameter;
 import ntk.android.base.BaseNtkApplication;
 import ntk.android.base.utill.AppUtill;
 import ntk.android.base.utill.prefrense.Preferences;
-import ntk.android.financialfund.MyApplication;
+import ntk.android.financialfund.db.FoundInfo;
 
 public class ConfigFundsHeaders {
-    static String TOKEN = "";
+
 
     public static void SET_TOKEN(String token) {
         Context c = BaseNtkApplication.get();
-        TOKEN = token;
+        new FoundInfo(c).setToken(token);
     }
 
     public Map<String, String> GetHeaders(Context context) {
@@ -35,6 +35,7 @@ public class ConfigFundsHeaders {
 //            headers.put("Token", auth);
 //            headers.put("Authorization", auth);
 //        }
+         String TOKEN =  new FoundInfo(context).getToken();
         if (TOKEN == null)
             TOKEN = "";
         headers.put("Token", TOKEN);
@@ -56,7 +57,7 @@ public class ConfigFundsHeaders {
 
         headers.put("LocationLong", "0");
         headers.put("LocationLat", "0");
-        headers.put("DeviceId",GET_DEVICE_ID(context));
+        headers.put("DeviceId", GET_DEVICE_ID(context));
         headers.put("DeviceBrand", AppUtill.GetDeviceName());
         headers.put("Country", "IR");
         headers.put("Language", "FA");
@@ -77,7 +78,7 @@ public class ConfigFundsHeaders {
 //        return MyApplication.get().getApplicationParameter().PACKAGE_NAME();
     }
 
-    public static String GET_DEVICE_ID(Context context){
-       return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+    public static String GET_DEVICE_ID(Context context) {
+        return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 }
