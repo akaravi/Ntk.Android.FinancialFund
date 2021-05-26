@@ -28,7 +28,7 @@ import ntk.android.financialfund.view.FundCaptchaView;
 public class CheckTokenDialog extends BaseActivity {
     public static final String EXTRA_CLASSNAME = "Extra_className";
     Class activity;
-    private Runnable runnable;
+
     private String mobileNumber;
 
     @Override
