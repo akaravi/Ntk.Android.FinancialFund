@@ -113,6 +113,7 @@ public class CheckTokenDialog extends BaseActivity {
                             getToken();
                         else {
                             ((FundCaptchaView) findViewById(R.id.fundCaptchaView)).getNewCaptcha();
+                            captcha.clearCaptchaText();
                             Toasty.error(CheckTokenDialog.this, orderUserTokenErrorException.ErrorMessage, Toasty.LENGTH_LONG).show();
                         }
                     }
@@ -162,6 +163,7 @@ public class CheckTokenDialog extends BaseActivity {
                             startActivity(new Intent(CheckTokenDialog.this, activity));
 
                         } else {
+                            captcha.clearCaptchaText();
                             ((FundCaptchaView) findViewById(R.id.fundCaptchaSmsView)).getNewCaptcha();
                             Toasty.error(CheckTokenDialog.this, response.ErrorMessage, Toasty.LENGTH_LONG).show();
                         }

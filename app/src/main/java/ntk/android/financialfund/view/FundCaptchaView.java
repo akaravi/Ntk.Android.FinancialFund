@@ -66,4 +66,8 @@ public class FundCaptchaView extends FrameLayout {
             return captcha.Key;
         return "";
     }
+
+    public void clearCaptchaText() {
+        ((EditText) findViewById(ntk.android.base.R.id.txtCaptcha)).setText("");
+    }
 }
