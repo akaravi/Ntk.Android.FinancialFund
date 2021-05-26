@@ -106,7 +106,7 @@ public class AccountReportActivity extends BaseActivity {
                     public void onNext(@NonNull ErrorException<FundAccountReport> response) {
                         switcher.showContentView();
                         if (response.IsSuccess) {
-                            AccountReportAdapter adapter = new AccountReportAdapter(response.ListItems);
+                            AccountReportAdapter adapter = new AccountReportAdapter(FundAccountReport.ACTUAL_REPORT(response.ListItems));
                             RecyclerView rc = (RecyclerView) findViewById(R.id.rc);
                             rc.setLayoutManager(new LinearLayoutManager(AccountReportActivity.this, RecyclerView.VERTICAL, false));
                             rc.setAdapter(adapter);
