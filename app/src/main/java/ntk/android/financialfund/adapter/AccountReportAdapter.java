@@ -51,14 +51,14 @@ public class AccountReportAdapter extends BaseRecyclerAdapter<FundAccountReport,
             {
                 date = itemView.findViewById(R.id.it1).findViewById(R.id.txtDesc);
                 TextView tv = itemView.findViewById(R.id.it1).findViewById(R.id.txtTv);
-                tv.setText("تاریخ:");
+                tv.setText("تاریخ :");
                 setTypeface(itemView.getContext(), date, tv);
                 ((ImageView) itemView.findViewById(R.id.it1).findViewById(R.id.icon)).setImageResource(R.drawable.date_icon);
             }
             {
                 desc = itemView.findViewById(R.id.it2).findViewById(R.id.txtDesc);
                 TextView tv = itemView.findViewById(R.id.it2).findViewById(R.id.txtTv);
-                tv.setText("توضیح:");
+                tv.setText("توضیح :");
                 setTypeface(itemView.getContext(), desc, tv);
                 ((ImageView) itemView.findViewById(R.id.it2).findViewById(R.id.icon)).setImageResource(R.drawable.description);
             }
@@ -66,14 +66,14 @@ public class AccountReportAdapter extends BaseRecyclerAdapter<FundAccountReport,
             {
                 debit = itemView.findViewById(R.id.it3).findViewById(R.id.txtDesc);
                 TextView tv = itemView.findViewById(R.id.it3).findViewById(R.id.txtTv);
-                tv.setText("واریز:");
+                tv.setText("واریز :");
                 setTypeface(itemView.getContext(), debit, tv);
                 ((ImageView) itemView.findViewById(R.id.it3).findViewById(R.id.icon)).setImageResource(R.drawable.debit);
             }
             {
                 credit = itemView.findViewById(R.id.it4).findViewById(R.id.txtDesc);
                 TextView tv = itemView.findViewById(R.id.it4).findViewById(R.id.txtTv);
-                tv.setText("برداشت:");
+                tv.setText("مانده :");
                 setTypeface(itemView.getContext(), credit, tv);
                 ((ImageView) itemView.findViewById(R.id.it4).findViewById(R.id.icon)).setImageResource(R.drawable.debit);
             }
