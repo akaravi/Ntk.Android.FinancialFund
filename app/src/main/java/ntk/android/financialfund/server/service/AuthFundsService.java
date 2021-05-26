@@ -12,7 +12,6 @@ import io.reactivex.subjects.BehaviorSubject;
 import ntk.android.base.entitymodel.base.CaptchaModel;
 import ntk.android.base.entitymodel.base.ErrorException;
 import ntk.android.financialfund.server.model.ClientTokenModel;
-import ntk.android.financialfund.server.model.GetTokenRequest;
 import ntk.android.financialfund.server.model.OrderTokenRequestModel;
 import ntk.android.financialfund.server.model.OrderUserToken;
 import ntk.android.financialfund.server.model.UserToken;
@@ -51,9 +50,9 @@ public class AuthFundsService extends BaseFundService {
         return mMovieCache;
     }
 
-    public  Observable<ErrorException<OrderUserToken>> orderToken(OrderTokenRequestModel req) {
+    public Observable<ErrorException<OrderUserToken>> orderToken(OrderTokenRequestModel req) {
         BehaviorSubject<ErrorException<OrderUserToken>> mMovieCache = BehaviorSubject.create();
-        getRetrofit(IAuthFund.class).OrderToken(headers,req)
+        getRetrofit(IAuthFund.class).OrderToken(headers, req)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io()).subscribe(new Observer<ErrorException<OrderUserToken>>() {
             @Override
@@ -79,7 +78,7 @@ public class AuthFundsService extends BaseFundService {
         return mMovieCache;
     }
 
-    public Observable<ErrorException<ClientTokenModel>>  checkToken() {
+    public Observable<ErrorException<ClientTokenModel>> checkToken() {
         BehaviorSubject<ErrorException<ClientTokenModel>> mMovieCache = BehaviorSubject.create();
         getRetrofit(IAuthFund.class).CheckToken(headers)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -108,9 +107,10 @@ public class AuthFundsService extends BaseFundService {
         });
         return mMovieCache;
     }
-    public Observable<ErrorException<ClientTokenModel>>  getToken(UserToken req) {
+
+    public Observable<ErrorException<ClientTokenModel>> getToken(UserToken req) {
         BehaviorSubject<ErrorException<ClientTokenModel>> mMovieCache = BehaviorSubject.create();
-        getRetrofit(IAuthFund.class).GetToken(headers,req)
+        getRetrofit(IAuthFund.class).GetToken(headers, req)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io()).subscribe(new Observer<ErrorException<ClientTokenModel>>() {
             @Override
@@ -120,7 +120,8 @@ public class AuthFundsService extends BaseFundService {
 
             @Override
             public void onNext(@NonNull ErrorException<ClientTokenModel> model) {
-                ConfigFundsHeaders.SET_TOKEN(model.Item.token);
+                if (model.IsSuccess)
+                    ConfigFundsHeaders.SET_TOKEN(model.Item.token);
                 mMovieCache.onNext(model);
             }
 
