@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import ntk.android.base.adapter.BaseRecyclerAdapter;
@@ -39,13 +40,17 @@ public class AccountReportAdapter extends BaseRecyclerAdapter<FundAccountReport,
         else
             holder.actionLinear.setVisibility(View.VISIBLE);
         if (item.Debtor != 0) {
-            holder.action.setText(String.format("%.0f", item.Debtor + " ریال "));
+            holder.action.setText(digitSeparator(item.Debtor) + " ریال ");
             holder.actionTitle.setText("واریز : ");
-        }else if(item.Creditor != 0){
-            holder.action.setText(String.format("%.0f", item.Creditor + " ریال "));
-            holder.actionTitle.setText("واریز : ");
+        } else if (item.Creditor != 0) {
+            holder.action.setText(digitSeparator(item.Creditor) + " ریال ");
+            holder.actionTitle.setText("برداشت : ");
         }
-        holder.remian.setText(String.format("%.0f", item.ActualRemain + " ریال "));
+        holder.remian.setText(digitSeparator(item.ActualRemain) + " ریال ");
+    }
+
+    public String digitSeparator(double t) {
+        return (new DecimalFormat("###,###,###,###,###,###").format(t));
     }
 
     public class VH extends RecyclerView.ViewHolder {
