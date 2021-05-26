@@ -39,6 +39,7 @@ public class CheckTokenDialog extends BaseActivity {
         ((TextView) findViewById(R.id.txtToolbar)).setText("احراز هویت");
         activity = (Class) getIntent().getExtras().get(EXTRA_CLASSNAME);
 
+        startActivity(new Intent(CheckTokenDialog.this, activity));
         String token = new FoundInfo(this).getToken();
         if (token.equalsIgnoreCase("")) {
             OrderToken();

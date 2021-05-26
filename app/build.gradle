@@ -3,7 +3,7 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 def BaseVersion='1.4.137'
-
+def incrementalVersion='1'
 android {
     compileSdkVersion 29
     defaultConfig {
@@ -13,7 +13,7 @@ android {
         targetSdkVersion 29
         multiDexEnabled true
         versionCode 1  //Build Version NTK
-        versionName "${BaseVersion}"//Splash Version Lable
+        versionName "${BaseVersion}${incrementalVersion}"//Splash Version Lable
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         vectorDrawables {
             useSupportLibrary = true

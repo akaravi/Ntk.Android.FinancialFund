@@ -2,7 +2,13 @@ package ntk.android.financialfund.server.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FundAccountReport {
+
+    public double ActualRemain;
+
     // تاریخ عملیات به فارس
     @SerializedName("PersianActionDate")
     public String PersianActionDate;
@@ -44,5 +50,24 @@ public class FundAccountReport {
     public int RowColor;
 
 
+    public static List<FundAccountReport> ACTUAL_REPORT(List<FundAccountReport> listItems) {
+        if (listItems == null)
+            return new ArrayList<>();
+        if (listItems.size() == 0)
+            return listItems;
+
+        FundAccountReport remain = listItems.get(0);
+        if (remain.Creditor != 0)
+            remain.ActualRemain = remain.Creditor;
+        if (remain.Debtor != 0)
+            remain.ActualRemain = remain.Debtor;
+        remain.Debtor = 0;
+        remain.Creditor = 0;
+//        FundAccountReport lastRecord = listItems.remove(listItems.size() - 1);
+        for (int i = 1; i <= listItems.size() - 2; i++) {
+            listItems.get(i).ActualRemain = listItems.get(i - 1).ActualRemain + listItems.get(i).Creditor - listItems.get(i).Debtor;
+        }
+        return listItems;
+    }
 }
           
