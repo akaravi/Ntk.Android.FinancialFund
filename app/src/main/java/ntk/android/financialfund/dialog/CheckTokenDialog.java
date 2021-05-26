@@ -144,6 +144,10 @@ public class CheckTokenDialog extends BaseActivity {
             Toasty.warning(this, "کد اعتبار سنجی که برایتان ارسال شده را وارد کنید", Toasty.LENGTH_LONG, true).show();
             return;
         }
+        if (captcha.getCaptchaText().trim().equalsIgnoreCase("")) {
+            Toasty.warning(this, "متن تصویر را وارد کنید", Toasty.LENGTH_LONG, true).show();
+            return;
+        }
         findViewById(R.id.sub_auth_loading).setVisibility(View.VISIBLE);
         UserToken req = new UserToken();
         req.packageName = ConfigFundsHeaders.GET_PACKAGENAME();

@@ -14,6 +14,7 @@ import ntk.android.base.config.NtkObserver;
 import ntk.android.base.config.ServiceExecute;
 import ntk.android.base.entitymodel.base.CaptchaModel;
 import ntk.android.base.entitymodel.base.ErrorException;
+import ntk.android.financialfund.R;
 import ntk.android.financialfund.server.service.AuthFundsService;
 
 public class FundCaptchaView extends FrameLayout {
@@ -29,8 +30,8 @@ public class FundCaptchaView extends FrameLayout {
 
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View inflate = inflater.inflate(ntk.android.base.R.layout.sub_base_captcha, this);
-        inflate.findViewById(ntk.android.base.R.id.imgCaptcha).setOnClickListener(v -> getNewCaptcha());
+        View inflate = inflater.inflate(R.layout.sub_base_captcha, this);
+        inflate.findViewById(R.id.imgCaptcha).setOnClickListener(v -> getNewCaptcha());
 
     }
 
@@ -40,16 +41,16 @@ public class FundCaptchaView extends FrameLayout {
                     @Override
                     public void onNext(@io.reactivex.annotations.NonNull ErrorException<CaptchaModel> captchaResponce) {
                         if (captchaResponce.IsSuccess) {
-                            ImageLoader.getInstance().displayImage(captchaResponce.Item.Image, (ImageView) findViewById(ntk.android.base.R.id.imgCaptcha));
+                            ImageLoader.getInstance().displayImage(captchaResponce.Item.Image, (ImageView) findViewById(R.id.imgCaptcha));
                             captcha = captchaResponce.Item;
                         } else {
-                            ((ImageView) findViewById(ntk.android.base.R.id.imgCaptcha)).setImageResource(ntk.android.base.R.drawable.error_captcha);
+                            ((ImageView) findViewById(R.id.imgCaptcha)).setImageResource(R.drawable.error_captcha);
                         }
                     }
 
                     @Override
                     public void onError(@io.reactivex.annotations.NonNull Throwable e) {
-                        ((ImageView) findViewById(ntk.android.base.R.id.imgCaptcha)).setImageResource(ntk.android.base.R.drawable.error_captcha);
+                        ((ImageView) findViewById(R.id.imgCaptcha)).setImageResource(R.drawable.error_captcha);
 
                     }
 
@@ -58,7 +59,7 @@ public class FundCaptchaView extends FrameLayout {
 
 
     public String getCaptchaText() {
-        return ((EditText) findViewById(ntk.android.base.R.id.txtCaptcha)).getText().toString();
+        return ((EditText) findViewById(R.id.txtCaptcha)).getText().toString();
     }
 
     public String getCaptchaKey() {
@@ -68,6 +69,6 @@ public class FundCaptchaView extends FrameLayout {
     }
 
     public void clearCaptchaText() {
-        ((EditText) findViewById(ntk.android.base.R.id.txtCaptcha)).setText("");
+        ((EditText) findViewById(R.id.txtCaptcha)).setText("");
     }
 }
