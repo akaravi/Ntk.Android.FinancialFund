@@ -63,9 +63,11 @@ public class FundAccountReport {
             remain.ActualRemain = remain.Debtor;
         remain.Debtor = 0;
         remain.Creditor = 0;
-//        FundAccountReport lastRecord = listItems.remove(listItems.size() - 1);
+        FundAccountReport lastRecord = listItems.remove(listItems.size() - 1);
+        double s=remain.ActualRemain;
         for (int i = 1; i <= listItems.size() - 2; i++) {
-            listItems.get(i).ActualRemain = listItems.get(i - 1).ActualRemain - listItems.get(i).Creditor + listItems.get(i).Debtor;
+            s=s+listItems.get(i).Debtor-listItems.get(i).Creditor;
+            listItems.get(i).ActualRemain = s;//listItems.get(i - 1).ActualRemain - listItems.get(i).Creditor + listItems.get(i).Debtor;
         }
         return listItems;
     }
