@@ -16,3 +16,5 @@
 /Log.txt
 /.idea/gradle.xml
 /app/app.iml
+NtkCmsBuild.bat
+NtkCmsGitPull.bat
