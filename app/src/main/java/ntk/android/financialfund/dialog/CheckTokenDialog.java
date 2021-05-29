@@ -107,6 +107,7 @@ public class CheckTokenDialog extends BaseActivity implements FundSmsReceiver.Sm
                 return;
             }
             if (CheckPermission()) {
+                registerListener();
                 OrderTokenApi();
             } else {
                 ActivityCompat.requestPermissions(CheckTokenDialog.this, new String[]{Manifest.permission.RECEIVE_SMS}, REQ_PERMISSION);

@@ -1,5 +1,7 @@
 package ntk.android.financialfund.server.model;
 
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -65,10 +67,12 @@ public class FundAccountReport {
         remain.Creditor = 0;
         FundAccountReport lastRecord = listItems.remove(listItems.size() - 1);
         double s=remain.ActualRemain;
-        for (int i = 1; i <= listItems.size() - 2; i++) {
+        for (int i = 1; i <= listItems.size() - 1; i++) {
             s=s+listItems.get(i).Debtor-listItems.get(i).Creditor;
             listItems.get(i).ActualRemain = s;//listItems.get(i - 1).ActualRemain - listItems.get(i).Creditor + listItems.get(i).Debtor;
         }
+        if(lastRecord.Debtor==listItems.get(listItems.size()-1).ActualRemain)
+            Log.d("ACTUAL_REPORT", "ACTUAL_REPORT: Thats Right");
         return listItems;
     }
 }
