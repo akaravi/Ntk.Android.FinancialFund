@@ -83,6 +83,7 @@ public class MyApplication extends NTKApplication {
 
     @Override
     protected void attachBaseContext(Context base) {
+        instance = this;
         super.attachBaseContext(base);
         MultiDex.install(base);
     }
