@@ -11,6 +11,7 @@ import ntk.android.base.ApplicationStaticParameter;
 import ntk.android.base.BaseNtkApplication;
 import ntk.android.base.utill.AppUtill;
 import ntk.android.base.utill.prefrense.Preferences;
+import ntk.android.financialfund.MyApplication;
 import ntk.android.financialfund.db.FoundInfo;
 
 public class ConfigFundsHeaders {
@@ -74,8 +75,8 @@ public class ConfigFundsHeaders {
     }
 
     public static String GET_PACKAGENAME() {
-        return "ntk.android.financialfund.app88";
-//        return MyApplication.get().getApplicationParameter().PACKAGE_NAME();
+//        return "ntk.android.financialfund.app88";
+        return MyApplication.get().getApplicationParameter().PACKAGE_NAME();
     }
 
     public static String GET_DEVICE_ID(Context context) {
