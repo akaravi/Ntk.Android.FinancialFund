@@ -123,10 +123,12 @@ dependencies {
     implementation 'net.sourceforge.streamsupport:android-retrostreams:1.7.2'
     //for datePicker
     implementation 'com.mohamadamin:persianmaterialdatetimepicker:1.2.1'
+    //for inidcator
+    implementation 'com.romandanylyk:pageindicatorview:0.1.1'
+
     //base of project
-    api "com.github.akaravi:Ntk.Android.BaseActivity:${BaseVersion}"
-//
-//    api project(path: ':baseActivity')
+//    api "com.github.akaravi:Ntk.Android.BaseActivity:${BaseVersion}"
+    api project(path: ':baseActivity')
 
 }
 repositories {

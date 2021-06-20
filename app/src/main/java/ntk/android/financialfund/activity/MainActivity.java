@@ -111,7 +111,6 @@ public class MainActivity extends AbstractMainActivity {
         fixViewSize();
         ButterKnife.bind(this);
         init();
-//        Preferences.with(MainActivity.this).UserInfo().setMobile("09132131542");
     }
 
     private void fixViewSize() {
