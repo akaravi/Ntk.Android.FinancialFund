@@ -15,24 +15,24 @@ import ntk.android.base.adapter.BaseRecyclerAdapter;
 import ntk.android.financialfund.R;
 import ntk.android.financialfund.model.PanelViewModel;
 
-public class PanelAdapter extends BaseRecyclerAdapter<PanelViewModel, PanelAdapter.vh> {
+public class MainAdapter2 extends BaseRecyclerAdapter<PanelViewModel, MainAdapter2.vh> {
 
 
     PanelInterface myInterface;
 
-    public PanelAdapter(List<PanelViewModel> PanelViewModels, PanelInterface panelInterface) {
+    public MainAdapter2(List<PanelViewModel> PanelViewModels, PanelInterface panelInterface) {
         super(PanelViewModels);
         myInterface = panelInterface;
     }
 
     @Override
-    public PanelAdapter.vh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new vh(inflate(parent, R.layout.item_panel_list));
+    public MainAdapter2.vh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new vh(inflate(parent, R.layout.item_main_list_2));
     }
 
 
     @Override
-    public void onBindViewHolder(@NonNull PanelAdapter.vh holder, int position) { // called for every row in recycler view
+    public void onBindViewHolder(@NonNull MainAdapter2.vh holder, int position) { // called for every row in recycler view
 
         final PanelViewModel curr = getItem(position);
         if (curr.Title != null) {

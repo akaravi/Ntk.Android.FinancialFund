@@ -15,16 +15,16 @@ import java.util.List;
 import ntk.android.financialfund.R;
 import ntk.android.financialfund.model.PanelViewModel;
 
-public class PanelSlidingAdapter extends PagerAdapter {
+public class MainViewPager2 extends PagerAdapter {
 
     private List<PanelViewModel> thirdList;
     private List<PanelViewModel> frislList = new ArrayList<>();
     private List<PanelViewModel> secondList = new ArrayList<>();
-    private PanelAdapter adapter;
+    private MainAdapter2 adapter;
     PanelInterface myInterface;
     int PageCount;
 
-    public PanelSlidingAdapter(PanelInterface panelInterface, List<PanelViewModel>... models) {
+    public MainViewPager2(PanelInterface panelInterface, List<PanelViewModel>... models) {
         frislList = models[0];
         secondList = models[1];
         PageCount = models.length;
@@ -57,13 +57,13 @@ public class PanelSlidingAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup view, final int position) {
-        View imageLayout = LayoutInflater.from(view.getContext()).inflate(R.layout.layout_paneladapter, view, false);
+        View imageLayout = LayoutInflater.from(view.getContext()).inflate(R.layout.viewpager_main2, view, false);
         if (position == 0) {
             RecyclerView rv = imageLayout.findViewById(R.id.rv_parent);
 
             GridLayoutManager llm = new GridLayoutManager(view.getContext(), 3, GridLayoutManager.VERTICAL, false);
             try {
-                adapter = new PanelAdapter(frislList, myInterface);
+                adapter = new MainAdapter2(frislList, myInterface);
                 rv.setAdapter(adapter);
                 rv.setLayoutManager(llm);
 //                rv.addItemDecoration(new SimpleDividerItemDecoration(view.getContext().getResources().getDimensionPixelSize(R.dimen.photos_list_spacing),
@@ -75,7 +75,7 @@ public class PanelSlidingAdapter extends PagerAdapter {
             RecyclerView rv = (RecyclerView) imageLayout.findViewById(R.id.rv_parent);
             GridLayoutManager llm = new GridLayoutManager(view.getContext(), 3, GridLayoutManager.VERTICAL, false);
             try {
-                adapter = new PanelAdapter(secondList, myInterface);
+                adapter = new MainAdapter2(secondList, myInterface);
                 rv.setAdapter(adapter);
                 rv.setLayoutManager(llm);
 //                rv.addItemDecoration(new SimpleDividerItemDecoration(view.getContext().getResources().getDimensionPixelSize(R.dimen.photos_list_spacing),
@@ -87,7 +87,7 @@ public class PanelSlidingAdapter extends PagerAdapter {
             RecyclerView rv = (RecyclerView) imageLayout.findViewById(R.id.rv_parent);
             GridLayoutManager llm = new GridLayoutManager(view.getContext(), 3, GridLayoutManager.VERTICAL, false);
             try {
-                adapter = new PanelAdapter(thirdList, myInterface);
+                adapter = new MainAdapter2(thirdList, myInterface);
                 rv.setAdapter(adapter);
                 rv.setLayoutManager(llm);
 //                rv.addItemDecoration(new SimpleDividerItemDecoration(view.getContext().getResources().getDimensionPixelSize(R.dimen.photos_list_spacing),
