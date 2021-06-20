@@ -21,7 +21,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:supportsRtl,android:icon">
-        <activity android:name=".activity.MainActivity_3">
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -32,6 +32,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MainActivity_2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MainActivity_3"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.AboutUsActivity"
