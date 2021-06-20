@@ -1,6 +1,6 @@
 include ':app' //finance 84
 rootProject.name = "Ntk.Android.FinancialFund"
-include 'baseActivity'
-project(':baseActivity').projectDir = new File('..\\Ntk.Android.BaseActivity\\app')
-include 'baseApi'
-project(':baseApi').projectDir = new File('..\\Ntk.Android.Base\\api')
+//include 'baseActivity'
+//project(':baseActivity').projectDir = new File('..\\Ntk.Android.BaseActivity\\app')
+//include 'baseApi'
+//project(':baseApi').projectDir = new File('..\\Ntk.Android.Base\\api')

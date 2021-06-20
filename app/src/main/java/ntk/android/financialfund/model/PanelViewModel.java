@@ -1,6 +1,7 @@
 package ntk.android.financialfund.model;
 
 public class PanelViewModel {
+    public int tag;
     public String Title;
     public int ImageId;
     public int badgeCount;
@@ -17,6 +18,11 @@ public class PanelViewModel {
 
     public PanelViewModel setBadgeCount(int badgeCount) {
         this.badgeCount = badgeCount;
+        return this;
+    }
+
+    public PanelViewModel setTag(int tag) {
+        this.tag = tag;
         return this;
     }
 }
