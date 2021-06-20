@@ -14,14 +14,15 @@ abstract class BaseMainViewpagerActivity extends AbstractMainActivity implements
         m.add(new PanelViewModel().setTitle(getString(R.string.accountToaccount)).setImageId(R.drawable.search));
         m.add(new PanelViewModel().setTitle(getString(R.string.mainCard1)).setImageId(R.drawable.search));
         m.add(new PanelViewModel().setTitle(getString(R.string.mainCard4)).setImageId(R.drawable.search));
+
         m.add(new PanelViewModel().setTitle(getString(R.string.mainCard4)).setImageId(R.drawable.search));
         m.add(new PanelViewModel().setTitle(getString(R.string.mainCard3)).setImageId(R.drawable.search));
         m.add(new PanelViewModel().setTitle(getString(R.string.mainCard6)).setImageId(R.drawable.search));
+
         m.add(new PanelViewModel().setTitle(getString(R.string.mainCard5)).setImageId(R.drawable.search));
         m.add(new PanelViewModel().setTitle(getString(R.string.mainCard7)).setImageId(R.drawable.search));
         m.add(new PanelViewModel().setTitle("پشتیبانی").setImageId(R.drawable.search));
-        m.add(new PanelViewModel().setTitle("صندوق پیام").setImageId(R.drawable.search));
-        m.add(new PanelViewModel().setTitle("پیگیری").setImageId(R.drawable.search));
+
         return m;
     }
 
@@ -30,14 +31,15 @@ abstract class BaseMainViewpagerActivity extends AbstractMainActivity implements
         m.add(new PanelViewModel().setTitle(getString(R.string.accountToaccount)).setImageId(R.drawable.search));
         m.add(new PanelViewModel().setTitle(getString(R.string.mainCard1)).setImageId(R.drawable.search));
         m.add(new PanelViewModel().setTitle(getString(R.string.mainCard4)).setImageId(R.drawable.search));
+
         m.add(new PanelViewModel().setTitle(getString(R.string.mainCard4)).setImageId(R.drawable.search));
         m.add(new PanelViewModel().setTitle(getString(R.string.mainCard3)).setImageId(R.drawable.search));
         m.add(new PanelViewModel().setTitle(getString(R.string.mainCard6)).setImageId(R.drawable.search));
+
         m.add(new PanelViewModel().setTitle(getString(R.string.mainCard5)).setImageId(R.drawable.search));
         m.add(new PanelViewModel().setTitle(getString(R.string.mainCard7)).setImageId(R.drawable.search));
         m.add(new PanelViewModel().setTitle("پشتیبانی").setImageId(R.drawable.search));
-        m.add(new PanelViewModel().setTitle("صندوق پیام").setImageId(R.drawable.search));
-        m.add(new PanelViewModel().setTitle("پیگیری").setImageId(R.drawable.search));
+
         return m;
     }
 

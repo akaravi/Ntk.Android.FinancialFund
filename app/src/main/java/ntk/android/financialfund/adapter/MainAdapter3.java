@@ -15,24 +15,28 @@ import ntk.android.base.adapter.BaseRecyclerAdapter;
 import ntk.android.financialfund.R;
 import ntk.android.financialfund.model.PanelViewModel;
 
-public class MainAdapter2 extends BaseRecyclerAdapter<PanelViewModel, MainAdapter2.vh> {
-
+public class MainAdapter3 extends BaseRecyclerAdapter<PanelViewModel, MainAdapter3.vh> {
 
     PanelInterface myInterface;
-
-    public MainAdapter2(List<PanelViewModel> PanelViewModels, PanelInterface panelInterface) {
+    int Height;
+    public MainAdapter3(int height,List<PanelViewModel> PanelViewModels, PanelInterface panelInterface) {
         super(PanelViewModels);
         myInterface = panelInterface;
+        Height=height;
     }
 
     @Override
-    public MainAdapter2.vh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new vh(inflate(parent, R.layout.item_main_list_2));
+    public MainAdapter3.vh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = inflate(parent, R.layout.item_main_list_3);
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        layoutParams.height=Height;
+        view.setLayoutParams(layoutParams);
+        return new vh(view);
     }
 
 
     @Override
-    public void onBindViewHolder(@NonNull MainAdapter2.vh holder, int position) { // called for every row in recycler view
+    public void onBindViewHolder(@NonNull MainAdapter3.vh holder, int position) { // called for every row in recycler view
 
         final PanelViewModel curr = getItem(position);
         if (curr.Title != null) {
@@ -47,7 +51,7 @@ public class MainAdapter2 extends BaseRecyclerAdapter<PanelViewModel, MainAdapte
     public class vh extends RecyclerView.ViewHolder {
         ImageView listimage;
         TextView listtitle;
-        TextView badge;
+//        TextView badge;
         ImageView lockImae;
 
         public vh(View itemView) {
@@ -55,20 +59,19 @@ public class MainAdapter2 extends BaseRecyclerAdapter<PanelViewModel, MainAdapte
 
             listimage = (ImageView) itemView.findViewById(R.id.listimage);
             listtitle = (TextView) itemView.findViewById(R.id.listtitle);
-            badge = (TextView) itemView.findViewById(R.id.badge);
+//            badge = (TextView) itemView.findViewById(R.id.badge);
             lockImae = itemView.findViewById(R.id.luckImage);
-
 
         }
 
         public void setData(PanelViewModel curr, int position) {
             listimage.setImageResource(curr.ImageId);
             listtitle.setText(curr.Title);
-            if (curr.badgeCount > 0) {
-                badge.setVisibility(View.VISIBLE);
-                badge.setText("" + curr.badgeCount);
-            } else
-                badge.setVisibility(View.GONE);
+//            if (curr.badgeCount > 0) {
+//                badge.setVisibility(View.VISIBLE);
+//                badge.setText("" + curr.badgeCount);
+//            } else
+//                badge.setVisibility(View.GONE);
         }
 
     }

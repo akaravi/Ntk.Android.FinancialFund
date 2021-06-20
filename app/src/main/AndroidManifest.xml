@@ -21,7 +21,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:supportsRtl,android:icon">
-        <activity android:name=".activity.MainActivity2">
+        <activity android:name=".activity.MainActivity3">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -31,37 +31,34 @@
             android:name=".activity.MainActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activity.MainActivity2"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.AboutUsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
 
         <activity
             android:name=".activity.NewsListActivity"
-            android:screenOrientation="portrait"
-          />
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".activity.NewsDetailActivity"
-            android:screenOrientation="portrait"
-             />
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".activity.ArticleListActivity"
-            android:screenOrientation="portrait"
-         />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ArticleDetailActivity"
-            android:screenOrientation="portrait"
-             />
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".activity.NewsSearchActivity"
-            android:screenOrientation="portrait"
-      />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ArticleSearchActivity"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
         <activity android:name=".activity.Class1" />
         <activity android:name=".activity.AccountToAccountActivity" />
         <activity android:name=".activity.Class3" />
@@ -69,7 +66,9 @@
         <activity android:name=".activity.Class5" />
         <activity android:name=".activity.LoanReportActivity" />
         <activity android:name=".activity.AccountReportActivity" />
-        <activity android:name=".dialog.CheckTokenDialog" android:theme="@style/AppTheme.Dialog"/>
+        <activity
+            android:name=".dialog.CheckTokenDialog"
+            android:theme="@style/AppTheme.Dialog" />
 
 
         <provider
