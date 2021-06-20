@@ -11,7 +11,7 @@ import ntk.android.financialfund.R;
 import ntk.android.financialfund.adapter.MainViewPager2;
 import ntk.android.financialfund.model.PanelViewModel;
 
-public class MainActivity2 extends BaseMainViewpagerActivity {
+public class MainActivity_2 extends BaseMainViewpagerActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

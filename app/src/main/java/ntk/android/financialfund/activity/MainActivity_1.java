@@ -42,14 +42,13 @@ import ntk.android.base.entitymodel.base.FilterModel;
 import ntk.android.base.entitymodel.news.NewsContentModel;
 import ntk.android.base.services.news.NewsContentService;
 import ntk.android.base.utill.FontManager;
-import ntk.android.base.utill.prefrense.Preferences;
 import ntk.android.base.view.NViewUtils;
 import ntk.android.financialfund.R;
 import ntk.android.financialfund.adapter.CoreImageAdapter;
 import ntk.android.financialfund.dialog.CheckTokenDialog;
 import ntk.android.financialfund.event.toolbar.EVSearchClick;
 
-public class MainActivity extends AbstractMainActivity {
+public class MainActivity_1 extends AbstractMainActivity {
 
     @BindViews({
             R.id.txtCard1,
@@ -188,9 +187,9 @@ public class MainActivity extends AbstractMainActivity {
                                 findViewById(R.id.linear).setVisibility(View.VISIBLE);
                                 findViewById(R.id.linear).setBackground(null);
                                 SnapHelper snapHelper = new PagerSnapHelper();
-                                CoreImageAdapter adapter = new CoreImageAdapter(MainActivity.this, newsContentResponse.ListItems);
+                                CoreImageAdapter adapter = new CoreImageAdapter(MainActivity_1.this, newsContentResponse.ListItems);
                                 Slider.setHasFixedSize(true);
-                                LinearLayoutManager manager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, true);
+                                LinearLayoutManager manager = new LinearLayoutManager(MainActivity_1.this, LinearLayoutManager.HORIZONTAL, true);
                                 Slider.setLayoutManager(manager);
                                 Slider.setAdapter(adapter);
                                 snapHelper.attachToRecyclerView(Slider);

@@ -17,7 +17,7 @@ import ntk.android.base.ApplicationStyle;
 import ntk.android.base.NTKApplication;
 import ntk.android.base.utill.FontManager;
 import ntk.android.base.view.ViewController;
-import ntk.android.financialfund.activity.MainActivity;
+import ntk.android.financialfund.activity.MainActivity_1;
 //import ntk.android.base.view.ViewController;
 
 
@@ -27,40 +27,7 @@ public class MyApplication extends NTKApplication {
 
     @Override
     public void onCreate() {
-        applicationStyle = new ApplicationStyle() {
-
-            @Override
-            public void Init() {
-                show_notInterestedBtn = false;
-            }
-
-            @Override
-            public ViewController getViewController() {
-                ViewController vc = new ViewController() {
-                };
-                vc.setLoading_view(R.layout.sub_base_loading)
-                        .setEmpty_view(R.layout.sub_base_empty)
-                        .setError_view(R.layout.sub_base_error)
-                        .setError_button(R.id.btn_error_tryAgain)
-                        .setError_label(R.id.tvError);
-                return vc;
-            }
-
-            @Override
-            public Class<?> getMainActivity() {
-                return MainActivity.class;
-            }
-
-//            @Override
-//            public ViewController getViewController() {
-//                ViewController v = new ViewController() {
-//                };
-//                v.setError_view(R.layout.sub_base_error);
-//                v.setLoading_view(R.layout.sub_base_loading);
-//                v.setEmpty_view(R.layout.sub_base_empty);
-//                return v;
-//            }
-        };
+        applicationStyle =new MyAppStyle();
         super.onCreate();
         DEBUG = true;
         if (!new File(getCacheDir(), "image").exists()) {

@@ -14,7 +14,7 @@ import ntk.android.base.view.NViewUtils;
 import ntk.android.financialfund.R;
 import ntk.android.financialfund.adapter.MainViewPager3;
 
-public class MainActivity3 extends BaseMainViewpagerActivity {
+public class MainActivity_3 extends BaseMainViewpagerActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
