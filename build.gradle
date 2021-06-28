@@ -3,8 +3,15 @@
 buildscript {
     repositories {
         google()
-        maven { url "https://jitpack.io" }
+        mavenCentral()
         jcenter()
+        maven { url "https://jitpack.io" }
+        maven {
+            url "https://maven.google.com"
+        }
+        maven {
+            url 'https://dl.bintray.com'
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.2.1'
@@ -18,9 +25,15 @@ buildscript {
 allprojects {
     repositories {
         google()
-        maven { url "https://jitpack.io" }
+        mavenCentral()
         jcenter()
-
+        maven { url "https://jitpack.io" }
+        maven {
+            url "https://maven.google.com"
+        }
+        maven {
+            url 'https://dl.bintray.com'
+        }
     }
 }
 
