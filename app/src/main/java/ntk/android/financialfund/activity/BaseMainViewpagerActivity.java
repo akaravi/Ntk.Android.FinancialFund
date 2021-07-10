@@ -41,12 +41,12 @@ abstract class BaseMainViewpagerActivity extends AbstractMainActivity implements
         m.add(new PanelViewModel().setTag(11).setTitle("بازخورد").setImageId(R.drawable.feed_back));
 
         m.add(new PanelViewModel().setTag(12).setTitle("اخبار").setImageId(R.drawable.news));
-        m.add(new PanelViewModel().setTag(14).setTitle("راهنما").setImageId(R.drawable.intro));
-        m.add(new PanelViewModel().setTag(13).setTitle("مجلات").setImageId(R.drawable.pooling));
+        m.add(new PanelViewModel().setTag(13).setTitle("راهنما").setImageId(R.drawable.intro));
+        m.add(new PanelViewModel().setTag(14).setTitle("مجلات").setImageId(R.drawable.pooling));
 
-        m.add(new PanelViewModel().setTag(13).setTitle("نظرسنجی").setImageId(R.drawable.pooling));
-        m.add(new PanelViewModel().setTag(15).setTitle("درباره ما").setImageId(R.drawable.about_us));
-        m.add(new PanelViewModel().setTag(16).setTitle("دعوت از دوستان").setImageId(R.drawable.invate));
+        m.add(new PanelViewModel().setTag(15).setTitle("نظرسنجی").setImageId(R.drawable.pooling));
+        m.add(new PanelViewModel().setTag(16).setTitle("درباره ما").setImageId(R.drawable.about_us));
+        m.add(new PanelViewModel().setTag(17).setTitle("دعوت از دوستان").setImageId(R.drawable.invate));
 
         return m;
     }
