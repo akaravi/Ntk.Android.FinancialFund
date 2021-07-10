@@ -1,68 +1,113 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:attrs="http://schemas.android.com/apk/res-auto"
+<com.mxn.soul.flowingdrawer_core.FlowingDrawer xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawerlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/riv"
-    android:background="@color/colorMainBackground"
-    android:orientation="vertical">
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    app:edMenuBackground="#fff"
+    app:edMenuSize="220dp"
+    app:edPosition="2">
 
-    <View
-        android:id="@+id/main3TopView"
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="?colorPrimary" />
-
-
-    <ntk.android.financialfund.view.WrapContentViewPager
-        android:id="@+id/slpager"
+    <RelativeLayout xmlns:attrs="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/riv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/pageIndicatorView"
-        android:layout_below="@+id/MainLogo"
-        android:layout_margin="8dp" />
+        android:background="@color/colorMainBackground"
+        android:orientation="vertical">
 
-    <com.rd.PageIndicatorView
-        android:id="@+id/pageIndicatorView"
-        android:layout_width="wrap_content"
-        android:layout_height="15dp"
-        android:layout_above="@+id/lin"
-        android:layout_centerHorizontal="true"
-        attrs:piv_animationType="drop"
-        attrs:piv_interactiveAnimation="true"
-        attrs:piv_padding="12dp"
-        attrs:piv_radius="4dp"
-        attrs:piv_selectedColor="@color/colorPrimary"
-        attrs:piv_unselectedColor="#848383" />
+        <View
+            android:id="@+id/main3TopView"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="?colorPrimary" />
 
+        <ImageView
+            android:id="@+id/menuImage"
+            android:layout_width="32dp"
+            android:layout_height="?actionBarSize"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:rotation="90"
+            android:src="@drawable/ic_menu_90" />
 
-    <LinearLayout
-        android:id="@+id/lin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="?colorSecondary"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
+        <ntk.android.financialfund.view.WrapContentViewPager
+            android:id="@+id/slpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/pageIndicatorView"
+            android:layout_below="@+id/MainLogo"
+            android:layout_margin="8dp" />
 
-        <TextView
-            android:id="@+id/textview1"
+        <com.rd.PageIndicatorView
+            android:id="@+id/pageIndicatorView"
             android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:layout_above="@+id/lin"
+            android:layout_centerHorizontal="true"
+            attrs:piv_animationType="drop"
+            attrs:piv_interactiveAnimation="true"
+            attrs:piv_padding="12dp"
+            attrs:piv_radius="4dp"
+            attrs:piv_selectedColor="@color/colorPrimary"
+            attrs:piv_unselectedColor="#848383" />
+
+
+        <LinearLayout
+            android:id="@+id/lin"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:shadowColor="@color/colorWhite"
-            android:text="@string/app_name"
-            android:textColor="#862983"
-            android:textSize="15sp" />
+            android:layout_alignParentBottom="true"
+            android:background="?colorSecondary"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textview1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:shadowColor="@color/colorWhite"
+                android:text="@string/app_name"
+                android:textColor="#862983"
+                android:textSize="15sp" />
 
 
-    </LinearLayout>
+        </LinearLayout>
 
-    <ImageView
-        android:id="@+id/MainLogo"
-        android:layout_width="70dp"
-        android:src="@drawable/logo"
-        android:layout_centerHorizontal="true"
-        android:layout_height="70dp"/>
+        <ImageView
+            android:id="@+id/MainLogo"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/logo" />
 
-</RelativeLayout>
+    </RelativeLayout>
+
+    <com.mxn.soul.flowingdrawer_core.FlowingMenuLayout
+        android:id="@+id/menulayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/container_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/HeaderImageActMain"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:src="@drawable/logo" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecyclerDrawer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none" />
+        </LinearLayout>
+
+    </com.mxn.soul.flowingdrawer_core.FlowingMenuLayout>
+</com.mxn.soul.flowingdrawer_core.FlowingDrawer>
 

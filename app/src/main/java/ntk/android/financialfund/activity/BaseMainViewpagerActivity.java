@@ -17,6 +17,7 @@ import ntk.android.financialfund.dialog.CheckTokenDialog;
 import ntk.android.financialfund.model.PanelViewModel;
 
 abstract class BaseMainViewpagerActivity extends AbstractMainActivity implements PanelInterface {
+
     List<PanelViewModel> createTab1() {
         List<PanelViewModel> m = new ArrayList<>();
         m.add(new PanelViewModel().setTag(0).setTitle(getString(R.string.accountToaccount)).setImageId(R.drawable.search));
