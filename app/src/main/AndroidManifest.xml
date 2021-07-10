@@ -37,6 +37,9 @@
             android:name=".activity.MainActivity_3"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activity.MainActivity_4"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.AboutUsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
