@@ -24,14 +24,14 @@ public class MyAppStyle extends ApplicationStyle {
 
     @Override
     public Class<?> getMainActivity() {
-//        if (theme == ThemeNameEnum.THEME4)
+        if (theme == ThemeNameEnum.THEME4)
             return MainActivity_4.class;
-//        else if (theme == ThemeNameEnum.THEME3)
-//            return MainActivity_3.class;
-//        else if (theme == ThemeNameEnum.THEME2)
-//            return MainActivity_2.class;
-//        else
-//            return MainActivity_1.class;
+        else if (theme == ThemeNameEnum.THEME3)
+            return MainActivity_3.class;
+        else if (theme == ThemeNameEnum.THEME2)
+            return MainActivity_2.class;
+        else
+            return MainActivity_1.class;
 
     }
 

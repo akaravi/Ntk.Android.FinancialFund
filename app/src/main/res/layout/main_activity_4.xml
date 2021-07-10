@@ -1,5 +1,4 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:attrs="http://schemas.android.com/apk/res-auto"
     android:id="@+id/riv"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -29,28 +28,13 @@
 
     </LinearLayout>
 
-    <ntk.android.financialfund.view.WrapContentViewPager
-        android:id="@+id/slpager"
+    <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rv_parent"
+        android:padding="8dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/pageIndicatorView"
         android:layout_below="@+id/lin"
-        android:layout_margin="8dp" />
-
-    <com.rd.PageIndicatorView
-        android:id="@+id/pageIndicatorView"
-        android:layout_width="wrap_content"
-        android:layout_height="15dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        attrs:piv_animationType="drop"
-        attrs:piv_interactiveAnimation="true"
-        attrs:piv_padding="12dp"
-        attrs:piv_radius="4dp"
-        attrs:piv_selectedColor="@color/colorPrimary"
-        attrs:piv_unselectedColor="#848383" />
-
+        android:background="@color/transparent" />
 
 </RelativeLayout>
 
