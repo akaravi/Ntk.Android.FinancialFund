@@ -2,6 +2,7 @@ package ntk.android.financialfund.activity;
 
 import android.os.Bundle;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ntk.android.base.adapter.BaseRecyclerAdapter;
+import ntk.android.base.utill.FontManager;
 import ntk.android.base.view.NViewUtils;
 import ntk.android.financialfund.R;
 import ntk.android.financialfund.adapter.MainViewPager3;
@@ -53,13 +55,20 @@ public class MainActivity_3 extends BaseMainViewpagerActivity {
         //menu click listener
         findViewById(R.id.menuImage).setOnClickListener(view -> drawer.openMenu(true));
         //set drawer
-        drawer=findViewById(R.id.drawerlayout);
+        drawer = findViewById(R.id.drawerlayout);
         drawer.requestDisallowInterceptTouchEvent(true);
         RecyclerView RvDrawer = findViewById(R.id.RecyclerDrawer);
         RvDrawer.setHasFixedSize(true);
         RvDrawer.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         DrawerAdapter AdDrawer = new DrawerAdapter(getdrawerList(), drawer, this);
         RvDrawer.setAdapter(AdDrawer);
+
+        //set font
+        setFont();
+    }
+
+    private void setFont() {
+        ((TextView) findViewById(R.id.textview1)).setTypeface(FontManager.T1_BOLD_Typeface(this));
     }
 
 

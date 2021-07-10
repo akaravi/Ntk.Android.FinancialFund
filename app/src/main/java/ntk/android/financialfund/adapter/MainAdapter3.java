@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import ntk.android.base.adapter.BaseRecyclerAdapter;
+import ntk.android.base.utill.FontManager;
 import ntk.android.financialfund.R;
 import ntk.android.financialfund.model.PanelViewModel;
 
@@ -61,7 +62,7 @@ public class MainAdapter3 extends BaseRecyclerAdapter<PanelViewModel, MainAdapte
             listtitle = (TextView) itemView.findViewById(R.id.listtitle);
 //            badge = (TextView) itemView.findViewById(R.id.badge);
             lockImae = itemView.findViewById(R.id.luckImage);
-
+            listtitle.setTypeface(FontManager.T1_Typeface(itemView.getContext()));
         }
 
         public void setData(PanelViewModel curr, int position) {
