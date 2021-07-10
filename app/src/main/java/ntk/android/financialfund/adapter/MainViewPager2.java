@@ -31,12 +31,7 @@ public class MainViewPager2 extends PagerAdapter {
         myInterface = panelInterface;
     }
 
-    public void Updatelist(List<PanelViewModel> PanelViewModel, List<PanelViewModel> instalmen2, List<PanelViewModel> tab3) {
-        frislList = PanelViewModel;
-        secondList = instalmen2;
-        thirdList = tab3;
-        notifyDataSetChanged();
-    }
+
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {

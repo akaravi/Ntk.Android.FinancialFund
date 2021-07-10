@@ -32,9 +32,4 @@ public class MainActivity_2 extends BaseMainViewpagerActivity {
         mPager.setCurrentItem(0, true);
     }
 
-
-    @Override
-    public void OnCardClick(PanelViewModel panel) {
-
-    }
 }
