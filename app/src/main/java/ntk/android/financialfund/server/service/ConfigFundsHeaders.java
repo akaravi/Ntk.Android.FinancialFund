@@ -9,7 +9,7 @@ import java.util.Map;
 
 import ntk.android.base.ApplicationStaticParameter;
 import ntk.android.base.BaseNtkApplication;
-import ntk.android.base.utill.AppUtill;
+import ntk.android.base.utill.AppUtil;
 import ntk.android.base.utill.prefrense.Preferences;
 import ntk.android.financialfund.MyApplication;
 import ntk.android.financialfund.db.FoundInfo;
@@ -59,7 +59,7 @@ public class ConfigFundsHeaders {
         headers.put("LocationLong", "0");
         headers.put("LocationLat", "0");
         headers.put("DeviceId", GET_DEVICE_ID(context));
-        headers.put("DeviceBrand", AppUtill.GetDeviceName());
+        headers.put("DeviceBrand", AppUtil.GetDeviceName());
         headers.put("Country", "IR");
         headers.put("Language", "FA");
         headers.put("SimCard", manager.getSimOperatorName());
